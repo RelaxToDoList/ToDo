@@ -4,19 +4,20 @@ class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
         MainWindow.resize(950, 517)
-        MainWindow.setFixedSize(950,517)
-        MainWindow.setStyleSheet("background:url(../../doc/images/wall.jpg) center no-repeat;")
+        MainWindow.setStyleSheet("")
         self.centralwidget = QtGui.QWidget(MainWindow)
-        self.centralwidget.setStyleSheet("QWidget{\n"
-"background-color: url(../../doc/images/wall.jpg) center no-repeat;\n"
-"    }\n"
-"QPushButton {\n"
+        self.centralwidget.setStyleSheet("QPushButton {\n"
 "    border-radius: 15px;\n"
 "    background: #337AB7;\n"
 "    }\n"
 "QLabel{\n"
 "    background: none;\n"
 "    }")
+        self.label_4 = QtGui.QLabel(self.centralwidget)
+        self.label_4.setGeometry(QtCore.QRect(0, 0, 951, 481))
+        self.label_4.setText("")
+        self.label_4.setPixmap(QtGui.QPixmap("icons/wall.png"))
+        self.label_4.setObjectName("label_4")
         self.centralwidget.setObjectName("centralwidget")
         self.label = QtGui.QLabel(self.centralwidget)
         self.label.setGeometry(QtCore.QRect(420, 20, 131, 101))
