@@ -14,14 +14,11 @@
    <string>MainWindow</string>
   </property>
   <property name="styleSheet">
-   <string notr="true">background: url(C:/Users/Лысый Фраер/MainWindow/Welcome Window/wall.png) center no-repeat;</string>
+   <string notr="true"/>
   </property>
   <widget class="QWidget" name="centralwidget">
    <property name="styleSheet">
-    <string notr="true">QWidget{
-background-color: url(C:/Users/Лысый Фраер/MainWindow/Welcome Window/wall.png) center no-repeat;
-	}
-QPushButton {
+    <string notr="true">QPushButton {
 	border-radius: 15px;
 	background: #337AB7;
 	}
@@ -129,6 +126,27 @@ QPushButton:pressed {
      <string>Sign In</string>
     </property>
    </widget>
+   <widget class="QLabel" name="label_4">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>0</y>
+      <width>951</width>
+      <height>481</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="pixmap">
+     <pixmap>wall.png</pixmap>
+    </property>
+   </widget>
+   <zorder>label_4</zorder>
+   <zorder>label</zorder>
+   <zorder>label_2</zorder>
+   <zorder>label_3</zorder>
+   <zorder>pushButton</zorder>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
