@@ -24,7 +24,7 @@ class Ui_MainWindow(object):
         self.label = QtGui.QLabel(self.centralwidget)
         self.label.setGeometry(QtCore.QRect(0, 0, 951, 491))
         self.label.setText("")
-        self.label.setPixmap(QtGui.QPixmap("../../Documents/AProg/gitlab/ToDo/src/Welcome_Window1/icons/wall.png"))
+        self.label.setPixmap(QtGui.QPixmap("icons/wall.png"))
         self.label.setObjectName("label")
         self.centralwidget.setObjectName("centralwidget")
         self.Firstnamelab = QtGui.QLabel(self.centralwidget)
@@ -103,7 +103,7 @@ class Ui_MainWindow(object):
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
     def retranslateUi(self, MainWindow):
-        MainWindow.setWindowTitle(QtGui.QApplication.translate("MainWindow", "MainWindow", None, QtGui.QApplication.UnicodeUTF8))
+        MainWindow.setWindowTitle(QtGui.QApplication.translate("ToDoList", "ToDoList", None, QtGui.QApplication.UnicodeUTF8))
         self.Firstnamelab.setText(QtGui.QApplication.translate("MainWindow", "First name", None, QtGui.QApplication.UnicodeUTF8))
         self.Secondnamelab.setText(QtGui.QApplication.translate("MainWindow", "Second Name", None, QtGui.QApplication.UnicodeUTF8))
         self.Signin.setText(QtGui.QApplication.translate("MainWindow", "Sign in to ToDo list", None, QtGui.QApplication.UnicodeUTF8))
