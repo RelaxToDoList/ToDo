@@ -84,5 +84,5 @@ class Ui_MainWindow(object):
         MainWindow.setWindowTitle(QtGui.QApplication.translate("ToDoList", "ToDoList", None, QtGui.QApplication.UnicodeUTF8))
         self.Welcome.setText(QtGui.QApplication.translate("MainWindow", "Welcome,", None, QtGui.QApplication.UnicodeUTF8))
         self.usersname.setText(QtGui.QApplication.translate("MainWindow", "Firstname", None, QtGui.QApplication.UnicodeUTF8))
-        self.Things.setText(QtGui.QApplication.translate("MainWindow", "We hope you\'re ready to organize your things", None, QtGui.QApplication.UnicodeUTF8))
+        self.Things.setText(QtGui.QApplication.translate("MainWindow", "We hope you\'re ready to organize your deals", None, QtGui.QApplication.UnicodeUTF8))
         self.Letsgobutton_2.setText(QtGui.QApplication.translate("MainWindow", "Continue", None, QtGui.QApplication.UnicodeUTF8))
