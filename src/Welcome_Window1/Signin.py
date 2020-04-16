@@ -89,6 +89,8 @@ class Ui_Sign(object):
 "border: 1px solid black;\n"
 "font-size: 21px;\n"
 "font-weight: 502;")
+        self.InputSecond.setMaxLength(25)
+        self.InputFirst.setMaxLength(25)
         self.InputSecond.setObjectName("InputSecond")
         self.label.raise_()
         self.Firstnamelab.raise_()
