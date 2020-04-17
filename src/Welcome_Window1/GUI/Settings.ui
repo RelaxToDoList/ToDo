@@ -1,0 +1,530 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>950</width>
+    <height>517</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <widget class="QLabel" name="label">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>0</y>
+      <width>950</width>
+      <height>517</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="pixmap">
+     <pixmap>background_Settings.png</pixmap>
+    </property>
+    <property name="scaledContents">
+     <bool>true</bool>
+    </property>
+   </widget>
+   <widget class="QToolButton" name="toolButton">
+    <property name="geometry">
+     <rect>
+      <x>900</x>
+      <y>10</y>
+      <width>25</width>
+      <height>19</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border:none;
+</string>
+    </property>
+    <property name="text">
+     <string>...</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_2">
+    <property name="geometry">
+     <rect>
+      <x>360</x>
+      <y>60</y>
+      <width>221</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">font-size: 20px;
+color: #FFFFFF;
+font-weight: bold;
+</string>
+    </property>
+    <property name="text">
+     <string>Personal Information</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_3">
+    <property name="geometry">
+     <rect>
+      <x>380</x>
+      <y>110</y>
+      <width>149</width>
+      <height>123</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="pixmap">
+     <pixmap>../../../../Documents/AProg/gitlab/ToDo/src/Welcome_Window1/icons/Empty_avatar.png</pixmap>
+    </property>
+    <property name="scaledContents">
+     <bool>true</bool>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton">
+    <property name="geometry">
+     <rect>
+      <x>410</x>
+      <y>250</y>
+      <width>91</width>
+      <height>23</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border:none;
+color: #663366;
+font-weight: bold;</string>
+    </property>
+    <property name="text">
+     <string>Add or Change</string>
+    </property>
+   </widget>
+   <widget class="Line" name="line">
+    <property name="geometry">
+     <rect>
+      <x>50</x>
+      <y>300</y>
+      <width>817</width>
+      <height>3</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color:#666666;
+
+</string>
+    </property>
+    <property name="orientation">
+     <enum>Qt::Horizontal</enum>
+    </property>
+   </widget>
+   <widget class="Line" name="line_2">
+    <property name="geometry">
+     <rect>
+      <x>50</x>
+      <y>350</y>
+      <width>314</width>
+      <height>3</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: #666666;
+</string>
+    </property>
+    <property name="orientation">
+     <enum>Qt::Horizontal</enum>
+    </property>
+   </widget>
+   <widget class="Line" name="line_3">
+    <property name="geometry">
+     <rect>
+      <x>50</x>
+      <y>410</y>
+      <width>314</width>
+      <height>3</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: #666666;
+</string>
+    </property>
+    <property name="orientation">
+     <enum>Qt::Horizontal</enum>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_4">
+    <property name="geometry">
+     <rect>
+      <x>60</x>
+      <y>320</y>
+      <width>101</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">font-size: 20px;
+color: #949494;
+</string>
+    </property>
+    <property name="text">
+     <string>First Name:</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_5">
+    <property name="geometry">
+     <rect>
+      <x>60</x>
+      <y>380</y>
+      <width>131</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">font-size: 20px;
+color: #949494;
+</string>
+    </property>
+    <property name="text">
+     <string>Second Name:</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_6">
+    <property name="geometry">
+     <rect>
+      <x>180</x>
+      <y>320</y>
+      <width>51</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color: #FFFFFF;
+font-size:16px;
+font-weight:bold;
+
+</string>
+    </property>
+    <property name="text">
+     <string>Name</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_7">
+    <property name="geometry">
+     <rect>
+      <x>200</x>
+      <y>380</y>
+      <width>91</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">font-size: 16px;
+font-weight: bold;
+color: #FFFFFF;
+</string>
+    </property>
+    <property name="text">
+     <string>Secname</string>
+    </property>
+   </widget>
+   <widget class="QToolButton" name="toolButton_2">
+    <property name="geometry">
+     <rect>
+      <x>240</x>
+      <y>320</y>
+      <width>51</width>
+      <height>19</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border:none;
+color:#663366;
+font-weight: bold;
+</string>
+    </property>
+    <property name="text">
+     <string>Change</string>
+    </property>
+   </widget>
+   <widget class="QToolButton" name="toolButton_3">
+    <property name="geometry">
+     <rect>
+      <x>290</x>
+      <y>380</y>
+      <width>51</width>
+      <height>19</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border:none;
+color:#663366;
+font-weight: bold;
+</string>
+    </property>
+    <property name="text">
+     <string>Change</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_8">
+    <property name="geometry">
+     <rect>
+      <x>570</x>
+      <y>310</y>
+      <width>81</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">font-size:20px;
+font-weight: bold;
+color:#FFFFFF;
+</string>
+    </property>
+    <property name="text">
+     <string>Theme</string>
+    </property>
+   </widget>
+   <widget class="QGraphicsView" name="Light_border_up_2">
+    <property name="geometry">
+     <rect>
+      <x>400</x>
+      <y>340</y>
+      <width>167</width>
+      <height>40</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: #FFFFFF;
+</string>
+    </property>
+   </widget>
+   <widget class="QToolButton" name="toolButton_4">
+    <property name="geometry">
+     <rect>
+      <x>400</x>
+      <y>380</y>
+      <width>167</width>
+      <height>60</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QToolButton:clicked {
+	background-color:#D7D7D7;
+	border-style: hidden;
+	}
+QToolButton:hover {
+	background-color: #D7D7D7;
+	border-style: hidden;
+	}
+QToolButton {
+	background-color: #D7D7D7;
+	border-style: hidden;
+	}
+</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QLabel" name="Checkbox_Light">
+    <property name="geometry">
+     <rect>
+      <x>410</x>
+      <y>400</y>
+      <width>21</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="pixmap">
+     <pixmap>../../../../Documents/AProg/gitlab/ToDo/src/Welcome_Window1/icons/Checkbox_Light.png</pixmap>
+    </property>
+    <property name="scaledContents">
+     <bool>true</bool>
+    </property>
+   </widget>
+   <widget class="QLabel" name="LightDeal">
+    <property name="geometry">
+     <rect>
+      <x>450</x>
+      <y>400</y>
+      <width>81</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color: #363636;
+font-size: 16px;
+font-weight: bold;
+font-family: Calibri, Candara, Segoe, &quot;Segoe UI&quot;, Optima, Arial, sans-serif;
+font-style: normal;</string>
+    </property>
+    <property name="text">
+     <string>Your Deal</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="Light">
+    <property name="geometry">
+     <rect>
+      <x>460</x>
+      <y>340</y>
+      <width>61</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color: #363636;
+font-size: 22px;
+font-weight: bold;
+font-family: Calibri, Candara, Segoe, &quot;Segoe UI&quot;, Optima, Arial, sans-serif;
+font-style: normal;</string>
+    </property>
+    <property name="text">
+     <string>Light</string>
+    </property>
+   </widget>
+   <widget class="QGraphicsView" name="Dark_border_up_2">
+    <property name="geometry">
+     <rect>
+      <x>640</x>
+      <y>340</y>
+      <width>167</width>
+      <height>40</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: #1B1B1B;
+border-color: black;
+
+
+</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="Dark">
+    <property name="geometry">
+     <rect>
+      <x>700</x>
+      <y>340</y>
+      <width>51</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color: #D7D7D7;
+font-size: 22px;
+font-weight: bold;
+font-family: Calibri, Candara, Segoe, &quot;Segoe UI&quot;, Optima, Arial, sans-serif;
+font-style: normal;</string>
+    </property>
+    <property name="text">
+     <string>Dark</string>
+    </property>
+   </widget>
+   <widget class="QToolButton" name="toolButton_5">
+    <property name="geometry">
+     <rect>
+      <x>640</x>
+      <y>380</y>
+      <width>171</width>
+      <height>71</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: #0D0D0D;
+</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QLabel" name="Checkbox_Dark_2">
+    <property name="geometry">
+     <rect>
+      <x>650</x>
+      <y>400</y>
+      <width>21</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true"/>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="pixmap">
+     <pixmap>../../../../Documents/AProg/gitlab/ToDo/src/Welcome_Window1/icons/Checkbox_Dark.png</pixmap>
+    </property>
+    <property name="scaledContents">
+     <bool>true</bool>
+    </property>
+   </widget>
+   <widget class="QLabel" name="DarkDEal">
+    <property name="geometry">
+     <rect>
+      <x>690</x>
+      <y>400</y>
+      <width>91</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color: #949494;
+font-size: 16px;
+font-weight: bold;
+font-family: Calibri, Candara, Segoe, &quot;Segoe UI&quot;, Optima, Arial, sans-serif;
+font-style: normal;</string>
+    </property>
+    <property name="text">
+     <string>Your Deal</string>
+    </property>
+   </widget>
+   <zorder>label</zorder>
+   <zorder>toolButton</zorder>
+   <zorder>label_2</zorder>
+   <zorder>label_3</zorder>
+   <zorder>pushButton</zorder>
+   <zorder>line</zorder>
+   <zorder>line_2</zorder>
+   <zorder>line_3</zorder>
+   <zorder>label_4</zorder>
+   <zorder>label_5</zorder>
+   <zorder>label_6</zorder>
+   <zorder>label_7</zorder>
+   <zorder>toolButton_2</zorder>
+   <zorder>toolButton_3</zorder>
+   <zorder>label_8</zorder>
+   <zorder>toolButton_4</zorder>
+   <zorder>Light_border_up_2</zorder>
+   <zorder>Checkbox_Light</zorder>
+   <zorder>LightDeal</zorder>
+   <zorder>Light</zorder>
+   <zorder>Dark_border_up_2</zorder>
+   <zorder>Dark</zorder>
+   <zorder>toolButton_5</zorder>
+   <zorder>Checkbox_Dark_2</zorder>
+   <zorder>DarkDEal</zorder>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>950</width>
+     <height>21</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
