@@ -27,4 +27,4 @@ def create_db():
 	cur.close()
 	con.close()
 
-creat_db()
+create_db()
