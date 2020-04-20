@@ -1,7 +1,7 @@
 import sqlite3
 
 def create_db():
-	con = sqlite3.connect('DataBase.db')
+	con = sqlite3.connect('./Data_base/DataBase.db')
 	cur = con.cursor()
 
 	cur.execute('PRAGMA foreign_keys = ON')
