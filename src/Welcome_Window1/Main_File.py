@@ -8,10 +8,26 @@ import sqlite3
 import random
 
 class Fifth_Window(QtWidgets.QMainWindow, Ui_Core):
+    def show_first_last(self):
+        con = sqlite3.connect('./Data_base/DataBase.db')
+        cur = con.cursor()
+        query = 'SELECT First FROM user'
+        cur.execute(query)
+        data = cur.fetchone()
+        self.FirstName.setText(data[0])
+        query = 'SELECT Last FROM user'
+        cur.execute(query)
+        data = cur.fetchone()
+        self.SecondName.setText(data[0])
+        cur.close()
+        con.close()
+
     def __init__(self, parent = None):
         super(Fifth_Window, self).__init__(parent)
         self.setupUi(self)
         self.check_box.clicked.connect(self.check_box_checked)
+        # self.show_first_last()
+
 class Fourth_Window(QtWidgets.QMainWindow, Ui_Choose_Theme): ## Window of theme choosing
     def __init__(self, parent = None):
         super(Fourth_Window, self).__init__(parent)
@@ -50,7 +66,7 @@ class Second_Window(QtWidgets.QMainWindow, Ui_Sign): ##Window of signing in
     def __init__(self, parent = None):
         super(Second_Window, self).__init__(parent)
         self.setupUi(self)
-        self.Letsgobutton.clicked.connect(self.signin)
+        # self.Letsgobutton.clicked.connect(self.signin)
         self.Letsgobutton.clicked.connect(self.nextWindow)
 
     def nextWindow(self):
