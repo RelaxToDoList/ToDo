@@ -4,8 +4,16 @@ from Introduction import Ui_Welcome
 from Signin import Ui_Sign
 from Choose_Theme import Ui_Choose_Theme
 from MainWindow import Ui_Core
+from Settings import Ui_Settings
 import sqlite3
 import random
+
+class Settings_Menu(QtWidgets.QMainWindow, Ui_Settings):
+    def __init__(self, parent = None):
+        super(Settings_Menu, self).__init__(parent)
+        self.setupUi(self)
+        self.dark_theme.clicked.connect(self.buttonpressed_1)
+        self.light_theme.clicked.connect(self.buttonpressed_2)
 
 class Fifth_Window(QtWidgets.QMainWindow, Ui_Core):
     def show_first_last(self):
@@ -26,7 +34,14 @@ class Fifth_Window(QtWidgets.QMainWindow, Ui_Core):
         super(Fifth_Window, self).__init__(parent)
         self.setupUi(self)
         self.check_box.clicked.connect(self.check_box_checked)
+        self.Settings_but.clicked.connect(self.settings_but_clicked)
+        self.settings_but_open.clicked.connect(self.nextWindow)
         # self.show_first_last()
+        self.plus_button.clicked.connect(self.add_task_button_clicked)
+        self.okey.clicked.connect(self.add_task_button_clicked)
+    def nextWindow(self):
+        self.next = Settings_Menu()
+        self.next.show()
 
 class Fourth_Window(QtWidgets.QMainWindow, Ui_Choose_Theme): ## Window of theme choosing
     def __init__(self, parent = None):
