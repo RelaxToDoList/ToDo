@@ -4,23 +4,14 @@ from Introduction import Ui_Welcome
 from Signin import Ui_Sign
 from Choose_Theme import Ui_Choose_Theme
 from MainWindow import Ui_Core
+import DBfunctions
 import sqlite3
 import random
 
 class Fifth_Window(QtWidgets.QMainWindow, Ui_Core):
     def show_first_last(self):
-        con = sqlite3.connect('./Data_base/DataBase.db')
-        cur = con.cursor()
-        query = 'SELECT First FROM user'
-        cur.execute(query)
-        data = cur.fetchone()
-        self.FirstName.setText(data[0])
-        query = 'SELECT Last FROM user'
-        cur.execute(query)
-        data = cur.fetchone()
-        self.SecondName.setText(data[0])
-        cur.close()
-        con.close()
+        self.FirstName.setText(DBfunctions.read_db('First', 'user'))
+        self.SecondName.setText(DBfunctions.read_db('Last', 'user'))
 
     def __init__(self, parent = None):
         super(Fifth_Window, self).__init__(parent)
@@ -55,13 +46,8 @@ class Second_Window(QtWidgets.QMainWindow, Ui_Sign): ##Window of signing in
         first_name = self.InputFirst.text()
         last_name = self.InputSecond.text()
         user_id = random.randint(1000, 10000)
-        con = sqlite3.connect('./Data_base/DataBase.db')
-        cur = con.cursor()
-        query = 'INSERT INTO user VALUES (?, ?, ?, ?)'
-        cur.execute(query, (user_id, first_name, last_name, None))
-        con.commit()
-        cur.close()
-        con.close()
+        data = [user_id, first_name, last_name, None]
+        DBfunctions.write_in_db_user(data)
 
     def __init__(self, parent = None):
         super(Second_Window, self).__init__(parent)
