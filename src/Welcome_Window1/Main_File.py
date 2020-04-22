@@ -39,6 +39,7 @@ class Fifth_Window(QtWidgets.QMainWindow, Ui_Core):
         # self.show_first_last()
         self.plus_button.clicked.connect(self.add_task_button_clicked)
         self.okey.clicked.connect(self.add_task_button_clicked)
+        self.left_button.clicked.connect(self.left_button_popup_window_open)
     def nextWindow(self):
         self.next = Settings_Menu()
         self.next.show()
