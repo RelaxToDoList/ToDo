@@ -1,5 +1,5 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
-
+from PyQt5.QtWidgets import QMessageBox
 
 class Ui_Sign(object):
     def setupUi(self, MainWindow):
@@ -118,3 +118,11 @@ class Ui_Sign(object):
         self.Secondnamelab.setText(_translate("MainWindow", "Second Name"))
         self.Signin.setText(_translate("MainWindow", "Sign in to ToDo list"))
         self.Letsgobutton.setText(_translate("MainWindow", "Let\'s Go"))
+
+    def error(self):
+        message = QMessageBox()
+        message.setWindowTitle("ToDo")
+        message.setText("Input first and second name")
+        message.setStandardButtons(QMessageBox.Retry)
+        message.setDefaultButton(QMessageBox.Retry)
+        x = message.exec_()
