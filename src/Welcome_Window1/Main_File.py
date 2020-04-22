@@ -74,7 +74,13 @@ class Second_Window(QtWidgets.QMainWindow, Ui_Sign): ##Window of signing in
         first_name = self.InputFirst.text()
         global last_name
         last_name = self.InputSecond.text()
-        if self.check_signin() == 1:
+        #self.check(last_name,first_name)
+        print(self.InputFirst.text())
+        print(self.InputSecond.text())
+        if str(self.InputFirst.text()) or str(self.InputSecond.text()) == "":
+            self.error()
+            Second_Window.__init__(self)
+        elif self.check_signin() == 1:
             self.Letsgobutton.clicked.connect(self.nextWindow)
         else:
             global User_ID
@@ -85,16 +91,15 @@ class Second_Window(QtWidgets.QMainWindow, Ui_Sign): ##Window of signing in
 
     def __init__(self, parent = None):
         super(Second_Window, self).__init__(parent)
-        self.setupUi(self) 
+        self.setupUi(self)
         self.Letsgobutton.clicked.connect(self.signin)
-        self.Letsgobutton.clicked.connect(self.nextWindow)
-
+        #self.Letsgobutton.clicked.connect(self.nextWindow)
     def nextWindow(self):
         self.close()
         self.next = Third_Window()
         self.next.show()
-
-
+    def repeat_win(self):
+        self.signin()
 class First_Window(QtWidgets.QMainWindow,Ui_MainWindow): ## Window Start
 
     def __init__(self, parent= None):
