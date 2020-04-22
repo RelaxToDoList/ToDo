@@ -50,6 +50,7 @@ class Third_Window(QtWidgets.QMainWindow, Ui_Welcome): ## Window of Welcoming us
     def __init__(self, parent = None):
         super(Third_Window, self).__init__(parent)
         self.setupUi(self)
+        self.usersname.setText(DBfunctions.read_db('First', 'user', 'User_ID', User_ID))
         self.Letsgobutton_2.clicked.connect(self.nextWindow)
     def nextWindow(self):
         self.close()
