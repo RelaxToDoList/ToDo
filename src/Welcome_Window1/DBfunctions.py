@@ -34,7 +34,7 @@ def read_db(show_column_name, table, param_column_name = None, record = None):
 		cur.close()
 		con.close()
 		return data[0]
-	
+
 def delete_table(table):
 	con = sqlite3.connect('./Data_base/DataBase.db')
 	cur = con.cursor()
