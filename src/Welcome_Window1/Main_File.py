@@ -77,10 +77,10 @@ class Second_Window(QtWidgets.QMainWindow, Ui_Sign): ##Window of signing in
         #self.check(last_name,first_name)
         print(self.InputFirst.text())
         print(self.InputSecond.text())
-        if str(self.InputFirst.text()) or str(self.InputSecond.text()) == "":
-            self.error()
-            Second_Window.__init__(self)
-        elif self.check_signin() == 1:
+        #if str(self.InputFirst.text()) or str(self.InputSecond.text()) == "":
+        #    self.error()
+        #    Second_Window.__init__(self)
+        if self.check_signin() == 1:
             self.Letsgobutton.clicked.connect(self.nextWindow)
         else:
             global User_ID
