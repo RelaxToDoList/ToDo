@@ -15,7 +15,6 @@ def create_db():
 	cur.execute('CREATE TABLE IF NOT EXISTS tasks(Num_Task INTEGER UNIQUE PRIMARY KEY AUTOINCREMENT, '
 												'Pos_Task TEXT, '
 												'Date_time TEXT, '
-												'Task_name TEXT, '
 												'Task_text TEXT, '
 												'Deadline TEXT, '
 												'Rem_time TEXT, '
