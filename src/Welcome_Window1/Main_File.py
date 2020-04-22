@@ -10,14 +10,14 @@ import random
 
 class Fifth_Window(QtWidgets.QMainWindow, Ui_Core):
     def show_first_last(self):
-        self.FirstName.setText(DBfunctions.read_db('First', 'user'))
-        self.SecondName.setText(DBfunctions.read_db('Last', 'user'))
+        self.FirstName.setText(DBfunctions.read_db('First', 'user', 'User_ID', User_ID))
+        self.SecondName.setText(DBfunctions.read_db('Last', 'user', 'User_ID', User_ID))
 
     def __init__(self, parent = None):
         super(Fifth_Window, self).__init__(parent)
         self.setupUi(self)
         self.check_box.clicked.connect(self.check_box_checked)
-        # self.show_first_last()
+        self.show_first_last()
 
 class Fourth_Window(QtWidgets.QMainWindow, Ui_Choose_Theme): ## Window of theme choosing
     def __init__(self, parent = None):
@@ -42,17 +42,34 @@ class Third_Window(QtWidgets.QMainWindow, Ui_Welcome): ## Window of Welcoming us
         self.next.show()
 
 class Second_Window(QtWidgets.QMainWindow, Ui_Sign): ##Window of signing in
+    def check_signin(self):
+        if DBfunctions.read_db('count(User_ID)', 'user') == 0:
+            return 0
+        elif DBfunctions.str_compare(first_name, 'user') == 0:
+            return 0
+        else:
+            global User_ID
+            User_ID = DBfunctions.read_db('User_ID', 'user', 'First', first_name)
+            return 1
+
     def signin(self):
+        global first_name
         first_name = self.InputFirst.text()
+        global last_name
         last_name = self.InputSecond.text()
-        user_id = random.randint(1000, 10000)
-        data = [user_id, first_name, last_name, None]
-        DBfunctions.write_in_db_user(data)
+        if self.check_signin() == 1:
+            self.Letsgobutton.clicked.connect(self.nextWindow)
+        else:
+            global User_ID
+            User_ID = random.randint(1000, 10000)
+            data = [User_ID, first_name, last_name, None]
+            DBfunctions.write_in_db_user(data)
+            self.Letsgobutton.clicked.connect(self.nextWindow)
 
     def __init__(self, parent = None):
         super(Second_Window, self).__init__(parent)
-        self.setupUi(self)
-        # self.Letsgobutton.clicked.connect(self.signin)
+        self.setupUi(self) 
+        self.Letsgobutton.clicked.connect(self.signin)
         self.Letsgobutton.clicked.connect(self.nextWindow)
 
     def nextWindow(self):
