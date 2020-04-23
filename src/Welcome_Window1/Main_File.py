@@ -51,8 +51,9 @@ class Third_Window(QtWidgets.QMainWindow, Ui_Welcome): ## Window of Welcoming us
     def __init__(self, parent = None):
         super(Third_Window, self).__init__(parent)
         self.setupUi(self)
-        self.usersname.setText(DBfunctions.read_db('First', 'user', 'User_ID', User_ID))
-        self.Letsgobutton_2.clicked.connect(self.nextWindow)
+        if check ==1:
+            self.usersname.setText(DBfunctions.read_db('First', 'user', 'User_ID', User_ID))
+            self.Letsgobutton_2.clicked.connect(self.nextWindow)
     def nextWindow(self):
         self.close()
         self.next = Fourth_Window()
@@ -70,30 +71,36 @@ class Second_Window(QtWidgets.QMainWindow, Ui_Sign): ##Window of signing in
             return 1
 
     def signin(self):
+        global check
+        check = 1
         global first_name
         first_name = self.InputFirst.text()
         global last_name
         last_name = self.InputSecond.text()
-        #self.check(last_name,first_name)
         print(self.InputFirst.text())
         print(self.InputSecond.text())
-        #if str(self.InputFirst.text()) or str(self.InputSecond.text()) == "":
-        #    self.error()
-        #    Second_Window.__init__(self)
-        if self.check_signin() == 1:
-            self.Letsgobutton.clicked.connect(self.nextWindow)
+        if not first_name:
+            self.error()
+            check = 0
+            return
+        elif not last_name:
+            self.error()
+            check = 0
+            return
         else:
-            global User_ID
-            User_ID = random.randint(1000, 10000)
-            data = [User_ID, first_name, last_name, None]
-            DBfunctions.write_in_db_user(data)
-            self.Letsgobutton.clicked.connect(self.nextWindow)
+            if self.check_signin() == 1:
+                self.nextWindow()
+            else:
+                global User_ID
+                User_ID = random.randint(1000, 10000)
+                data = [User_ID, first_name, last_name, None]
+                DBfunctions.write_in_db_user(data)
+                self.nextWindow()
 
     def __init__(self, parent = None):
         super(Second_Window, self).__init__(parent)
         self.setupUi(self)
         self.Letsgobutton.clicked.connect(self.signin)
-        #self.Letsgobutton.clicked.connect(self.nextWindow)
     def nextWindow(self):
         self.close()
         self.next = Third_Window()
