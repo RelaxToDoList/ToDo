@@ -115,6 +115,11 @@ class Ui_Core(object):
         self.line_enter.setObjectName("line_enter")
         self.line_enter.setStyleSheet("font-weight: bold;"
         "font-size:16px;")
+        self.statistic_label = QtWidgets.QLabel(self.centralwidget)
+        self.statistic_label.setGeometry(QtCore.QRect(710,100,50,30))
+        self.statistic_label.setStyleSheet("font-weight: bold;"
+        "font-size:15px;"
+        "color: #000000;")
         self.account_label = QtWidgets.QLabel(self.centralwidget)
         self.account_label.setGeometry(QtCore.QRect(710,50,50,30))
         self.account_label.setStyleSheet("font-weight: bold;"
@@ -167,6 +172,9 @@ class Ui_Core(object):
         "border:none;"
         "font-weight: bold;")
         self.daily_add_button.setObjectName("daily_add_button")
+        self.statistic_button = QtWidgets.QToolButton(self.centralwidget)
+        self.statistic_button.setGeometry(QtCore.QRect(660,100,25,25))
+        self.statistic_button.setObjectName("statistic_button")
         self.notification_but = QtWidgets.QToolButton(self.centralwidget)
         self.notification_but.setGeometry(QtCore.QRect(850, 10, 31, 26))
         self.notification_but.setIcon(QtGui.QIcon("icons/icon_notification_dark.png"))
@@ -349,6 +357,10 @@ class Ui_Core(object):
         self.label_hint.hide()
         self.radio_monday.raise_()
         self.radio_monday.hide()
+        self.statistic_button.raise_()
+        self.statistic_button.hide()
+        self.statistic_label.raise_()
+        self.statistic_label.hide()
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtWidgets.QMenuBar(MainWindow)
         self.menubar.setGeometry(QtCore.QRect(0, 0, 950, 21))
@@ -391,8 +403,11 @@ class Ui_Core(object):
         self.label_friday.setText(_translate("MainWindow","Friday"))
         self.label_saturday.setText(_translate("MainWindow","Saturday"))
         self.label_sunday.setText(_translate("MainWindow","Sunday"))
+        self.statistic_label.setText(_translate("MainWindow","Statistic"))
 
     def left_button_popup_window_open(self):
+        self.close_window()
+        self.add_task_button_unclicked()
         self.radio_tuesday.show()
         self.radio_wednesday.show()
         self.radio_thursday.show()
@@ -436,7 +451,7 @@ class Ui_Core(object):
         self.label_daily_task.hide()
         self.daily_add_button.hide()
         self.left_button_popup_window.hide()
-        self.left_button.clicked.connect(self.left_button_popup_window_open)
+        #self.left_button.clicked.connect(self.left_button_popup_window_open)
     def add_task_button_unclicked(self):
         self.label_hint.hide()
         self.okey.hide()
@@ -456,18 +471,26 @@ class Ui_Core(object):
         self.notification_single_but.show()
         self.line_enter.show()
         self.graphicsView.show()
+        self.close_window()
+        self.left_button_popup_window_close()
         self.plus_button.clicked.connect(self.close_window)
         self.plus_button.clicked.connect(self.left_button_popup_window_close)
         self.plus_button.clicked.connect(self.add_task_button_unclicked)
         self.okey.clicked.connect(self.add_task_button_unclicked)
     def settings_but_clicked(self):
+        self.statistic_label.show()
+        self.statistic_button.show()
         self.settings_popup.show()
         self.settings_but_open.show()
         self.account_label.show()
+        self.add_task_button_unclicked()
+        self.left_button_popup_window_close()
         self.Settings_but.clicked.connect(self.close_window)
         self.Settings_but.clicked.connect(self.left_button_popup_window_close)
         self.Settings_but.clicked.connect(self.add_task_button_unclicked)
     def close_window(self):
+        self.statistic_label.hide()
+        self.statistic_button.hide()
         self.settings_popup.hide()
         self.settings_but_open.hide()
         self.account_label.hide()

@@ -5,9 +5,26 @@ from Signin import Ui_Sign
 from Choose_Theme import Ui_Choose_Theme
 from MainWindow import Ui_Core
 from Settings import Ui_Settings
+from statistic import Ui_Statistic
 import DBfunctions
 import sqlite3
 import random
+
+class Statistic_Menu(QtWidgets.QMainWindow, Ui_Statistic):
+    def __init__(self,parent = None):
+        super(Statistic_Menu,self).__init__(parent)
+        self.setupUi(self)
+        self.settings_but.clicked.connect(self.popup_window_open)
+        self.mainwindow_button.clicked.connect(self.mainWindow)
+        self.statistic_button.clicked.connect(self.statisticMenu)
+    def mainWindow(self):
+        self.previous = Fifth_Window()
+        self.close()
+        self.previous.show()
+    def statisticMenu(self):
+        self.statistic = Settings_Menu()
+        self.close()
+        self.statistic.show()
 
 class Settings_Menu(QtWidgets.QMainWindow, Ui_Settings):
     def __init__(self, parent = None):
@@ -31,9 +48,15 @@ class Fifth_Window(QtWidgets.QMainWindow, Ui_Core):
         self.plus_button.clicked.connect(self.add_task_button_clicked)
         self.okey.clicked.connect(self.add_task_button_clicked)
         self.left_button.clicked.connect(self.left_button_popup_window_open)
+        self.statistic_button.clicked.connect(self.statisticMenu)
+    def statisticMenu(self):
+        self.next = Statistic_Menu()
+        self.next.show()
+        self.close()
     def nextWindow(self):
         self.next = Settings_Menu()
         self.next.show()
+        self.close()
 
 class Fourth_Window(QtWidgets.QMainWindow, Ui_Choose_Theme): ## Window of theme choosing
     def __init__(self, parent = None):

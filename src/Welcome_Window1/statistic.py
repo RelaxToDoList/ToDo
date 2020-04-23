@@ -40,6 +40,13 @@ class Ui_Statistic(object):
         self.completted.setStyleSheet("color: #F2F2F2;\n"
 "")
         self.completted.setObjectName("completted")
+        self.settings_popup = QtWidgets.QGraphicsView(self.centralwidget)
+        self.settings_popup.setGeometry(QtCore.QRect(650, 41 , 308, 517))
+        self.settings_popup.setObjectName("settings_popup")
+        self.settings_popup.setStyleSheet("background-color: #666666;"
+        "border:5px black")
+        self.settings_popup.raise_()
+        self.hide()
         self.failed = QtWidgets.QLabel(self.centralwidget)
         self.failed.setGeometry(QtCore.QRect(50, 380, 431, 31))
         font = QtGui.QFont()
@@ -62,13 +69,48 @@ class Ui_Statistic(object):
 "color:#663366;\n"
 "font-weight: bold;\n"
 "")
+        self.settings_popup.raise_()
+        self.settings_popup.hide()
+        self.mainwindow_button = QtWidgets.QToolButton(self.centralwidget)
+        self.mainwindow_button.setGeometry(QtCore.QRect(660,50,25, 25))
+        self.mainwindow_button.setIcon(QtGui.QIcon("icons/icon_list.png"))
+        self.mainwindow_button.setStyleSheet("border: none;")
+        self.mainwindow_button.setIconSize(QtCore.QSize(25,25))
+        self.mainwindow_button.raise_()
+        self.mainwindow_button.hide()
         self.number_all.setObjectName("number_all")
+        self.account_label = QtWidgets.QLabel(self.centralwidget)
+        self.account_label.setGeometry(QtCore.QRect(710,50,50,30))
+        self.account_label.setStyleSheet("font-weight: bold;"
+        "font-size:14px;"
+        "color: #000000;")
+        self.account_label.raise_()
+        self.account_label.hide()
+        self.statistic_label = QtWidgets.QLabel(self.centralwidget)
+        self.statistic_label.setGeometry(QtCore.QRect(710,100,50,30))
+        self.statistic_label.setStyleSheet("font-weight: bold;"
+        "font-size:14px;"
+        "color: #000000;")
+        self.statistic_label.raise_()
+        self.statistic_label.hide()
         self.completted_number = QtWidgets.QLabel(self.centralwidget)
         self.completted_number.setGeometry(QtCore.QRect(460, 332, 121, 31))
         self.completted_number.setStyleSheet("color: #339900;\n"
 "font-size: 24px;\n"
 "font-weight: bold;")
         self.completted_number.setObjectName("completted_number")
+        self.statistic_label = QtWidgets.QLabel(self.centralwidget)
+        self.statistic_label.setGeometry(QtCore.QRect(710,100,50,30))
+        self.statistic_label.setStyleSheet("font-weight: bold;"
+        "font-size:15px;"
+        "color: #000000;")
+        self.statistic_label.raise_()
+        self.statistic_label.hide()
+        self.statistic_button = QtWidgets.QToolButton(self.centralwidget)
+        self.statistic_button.setGeometry(QtCore.QRect(660,100,25,25))
+        self.statistic_button.setObjectName("statistic_button")
+        self.statistic_button.raise_()
+        self.statistic_button.hide()
         self.failed_number = QtWidgets.QLabel(self.centralwidget)
         self.failed_number.setGeometry(QtCore.QRect(400, 387, 101, 21))
         self.failed_number.setStyleSheet("color: #990000;\n"
@@ -102,6 +144,7 @@ class Ui_Statistic(object):
         self.retranslateUi(MainWindow)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
+
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "ToDo"))
@@ -114,13 +157,22 @@ class Ui_Statistic(object):
         self.failed_number.setText(_translate("MainWindow", "Number"))
         self.unfinished_number.setText(_translate("MainWindow", "Number"))
         self.settings_but.setText(_translate("MainWindow", "..."))
+        self.account_label.setText(_translate("MainWindow","Tasks"))
+        self.statistic_label.setText(_translate("MainWindow","Statistic"))
 
-
-if __name__ == "__main__":
-    import sys
-    app = QtWidgets.QApplication(sys.argv)
-    MainWindow = QtWidgets.QMainWindow()
-    ui = Ui_Statistic()
-    ui.setupUi(MainWindow)
-    MainWindow.show()
-    sys.exit(app.exec_())
+    def popup_window_close(self):
+        self.statistic_button.hide()
+        self.statistic_label.hide()
+        self.settings_popup.hide()
+        self.account_label.hide()
+        self.statistic_label.hide()
+        self.mainwindow_button.hide()
+        self.settings_but.clicked.connect(self.popup_window_open)
+    def popup_window_open(self):
+        self.statistic_label.show()
+        self.statistic_button.show()
+        self.mainwindow_button.show()
+        self.settings_popup.show()
+        self.account_label.show()
+        self.statistic_label.show()
+        self.settings_but.clicked.connect(self.popup_window_close)
