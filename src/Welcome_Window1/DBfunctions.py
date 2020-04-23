@@ -65,7 +65,7 @@ def update_record(table, param_column, param_val, id_column, record_id):
 def write_in_db_tasks(records):
 	con = sqlite3.connect('./Data_base/DataBase.db')
 	cur = con.cursor()
-	query = 'INSERT INTO tasks VALUES (?, ?, ?, ?, ?, ?, ? ,?)'
+	query = 'INSERT INTO tasks VALUES (?, ?, ?, ?, ?)'
 	cur.execute(query, records)
 	con.commit()
 	cur.close()
