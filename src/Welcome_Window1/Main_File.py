@@ -51,9 +51,8 @@ class Third_Window(QtWidgets.QMainWindow, Ui_Welcome): ## Window of Welcoming us
     def __init__(self, parent = None):
         super(Third_Window, self).__init__(parent)
         self.setupUi(self)
-        if check ==1:
-            self.usersname.setText(DBfunctions.read_db('First', 'user', 'User_ID', User_ID))
-            self.Letsgobutton_2.clicked.connect(self.nextWindow)
+        self.usersname.setText(DBfunctions.read_db('First', 'user', 'User_ID', User_ID))
+        self.Letsgobutton_2.clicked.connect(self.nextWindow)
     def nextWindow(self):
         self.close()
         self.next = Fourth_Window()
@@ -71,8 +70,6 @@ class Second_Window(QtWidgets.QMainWindow, Ui_Sign): ##Window of signing in
             return 1
 
     def signin(self):
-        global check
-        check = 1
         global first_name
         first_name = self.InputFirst.text()
         global last_name
@@ -81,11 +78,9 @@ class Second_Window(QtWidgets.QMainWindow, Ui_Sign): ##Window of signing in
         print(self.InputSecond.text())
         if not first_name:
             self.error()
-            check = 0
             return
         elif not last_name:
             self.error()
-            check = 0
             return
         else:
             if self.check_signin() == 1:
