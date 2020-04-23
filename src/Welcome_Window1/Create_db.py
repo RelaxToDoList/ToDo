@@ -6,21 +6,24 @@ def create_db():
 
 	cur.execute('PRAGMA foreign_keys = ON')
 
-	cur.execute('CREATE TABLE IF NOT EXISTS user(User_ID INTEGER UNIQUE PRIMARY KEY, '
-												'First TEXT, '
-												'Last TEXT, '
+	cur.execute('CREATE TABLE IF NOT EXISTS user(User_ID INTEGER UNIQUE PRIMARY KEY NOT NULL, '
+												'First TEXT NOT NULL, '
+												'Last TEXT NOT NULL, '
 												'Image BLOB)')
 	con.commit()
 
-	cur.execute('CREATE TABLE IF NOT EXISTS tasks(Num_Task INTEGER UNIQUE PRIMARY KEY AUTOINCREMENT, '
-												'Pos_Task TEXT, '
-												'Date_time TEXT, '
-												'Task_text TEXT, '
-												'Deadline TEXT, '
-												'Rem_time TEXT, '
-												'Status TEXT, '
-												'User_ID INTEGER, '
-												'FOREIGN KEY(User_ID) REFERENCES user(User_ID))')
+	cur.execute('CREATE TABLE IF NOT EXISTS tasks(Num_Task INTEGER UNIQUE PRIMARY KEY AUTOINCREMENT NOT NULL, '
+												 'Pos_Task INTEGER, '
+												 'Date_time TEXT NOT NULL, '
+												 'Task_text TEXT NOT NULL, '
+												 'User_ID INTEGER NOT NULL, '
+												 'FOREIGN KEY(User_ID) REFERENCES user(User_ID) ON DELETE CASCADE)')
+	con.commit()
+
+	cur.execute('CREATE TABLE IF NOT EXISTS remind(Rem_active INTEGER NOT NULL, '
+												  'Rem_time TEXT, '
+												  'Num_Task INTEGER UNUQUE PRIMARY KEY NOT NULL, '
+												  'FOREIGN KEY(Num_Task) REFERENCES tasks(Num_Task) ON DELETE CASCADE)')
 	con.commit()
 
 	cur.close()
