@@ -54,14 +54,14 @@ class Fifth_Window(QtWidgets.QMainWindow, Ui_Core):
         self.next = Statistic_Menu()
         self.next.show()
         self.close()
+    def Add_Task(self):
+        text_task = self.line_enter.text()
+        task = [None, None, None, text_task, User_ID]
+        DBfunctions.write_in_db_tasks(task)
     def nextWindow(self):
         self.next = Settings_Menu()
         self.next.show()
         self.close()
-    def Add_Task(self):
-        text_task = self.line_enter.text()
-        task = [None, None, None, task_text, User_ID]
-        DBfunctions.write_in_db_task(task)
 
 class Fourth_Window(QtWidgets.QMainWindow, Ui_Choose_Theme): ## Window of theme choosing
     def __init__(self, parent = None):
