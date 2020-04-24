@@ -14,7 +14,7 @@ def create_db():
 
 	cur.execute('CREATE TABLE IF NOT EXISTS tasks(Num_Task INTEGER UNIQUE PRIMARY KEY AUTOINCREMENT NOT NULL, '
 												 'Pos_Task INTEGER, '
-												 'Date_time TEXT NOT NULL, '
+												 'Date_time TEXT, '
 												 'Task_text TEXT NOT NULL, '
 												 'User_ID INTEGER NOT NULL, '
 												 'FOREIGN KEY(User_ID) REFERENCES user(User_ID) ON DELETE CASCADE)')
