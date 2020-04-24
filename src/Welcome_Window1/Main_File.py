@@ -49,6 +49,7 @@ class Fifth_Window(QtWidgets.QMainWindow, Ui_Core):
         self.okey.clicked.connect(self.add_task_button_clicked)
         self.left_button.clicked.connect(self.left_button_popup_window_open)
         self.statistic_button.clicked.connect(self.statisticMenu)
+        self.okey.clicked.connect(self.Add_Task)
     def statisticMenu(self):
         self.next = Statistic_Menu()
         self.next.show()
@@ -57,6 +58,10 @@ class Fifth_Window(QtWidgets.QMainWindow, Ui_Core):
         self.next = Settings_Menu()
         self.next.show()
         self.close()
+    def Add_Task(self):
+        text_task = self.line_enter.text()
+        task = [None, None, None, task_text, User_ID]
+        DBfunctions.write_in_db_task(task)
 
 class Fourth_Window(QtWidgets.QMainWindow, Ui_Choose_Theme): ## Window of theme choosing
     def __init__(self, parent = None):
