@@ -47,7 +47,7 @@ def delete_table(table):
 def delete_record(table, id_column, record_id):
 	con = sqlite3.connect('./Data_base/DataBase.db')
 	cur = con.cursor()
-	query = 'DELETE FROM '+table+' WHERE '+id_column+" = '"+record_id+"'"
+	query = 'DELETE FROM '+table+' WHERE '+id_column+" = '"+str(record_id)+"'"
 	cur.execute(query)
 	con.commit()
 	cur.close()
