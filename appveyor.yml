@@ -1,2 +1,2 @@
 build_script:
-    cd src/Welcome_Window1 &&  python Main_Fily.py
+    cd src/Welcome_Window1 &&  python Main_File.py
