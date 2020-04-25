@@ -1,5 +1,5 @@
 build_script:
     cd src/Welcome_Window1 &&  python Main_File.py
-TOXENV: py37
 install:
+    set PATH=C:\Python37\Scripts
     pip3 install PyQt5
