@@ -1,8 +1,6 @@
-build_script:
-    cd src/Welcome_Window1 &&  python Main_File.py &&
-    pip3 install PyQt5 &&
-    pip install PyQt5-tools
 install:
     set PATH=C:/Python37;C:/Python37/Scripts &&
     pip3 install PyQt5 && 
     pip install PyQt5-tools
+build_script:
+    cd src/Welcome_Window1 &&  python Main_File.py &&
