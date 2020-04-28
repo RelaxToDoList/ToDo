@@ -1,10 +1,10 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
-
+import Choose_Theme
 
 class Ui_Settings(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
-        MainWindow.resize(950, 517)
+        MainWindow.setFixedSize(950, 517)
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
         self.background = QtWidgets.QLabel(self.centralwidget)
@@ -117,15 +117,15 @@ class Ui_Settings(object):
         self.light_theme = QtWidgets.QToolButton(self.centralwidget)
         self.light_theme.setGeometry(QtCore.QRect(400, 380, 167, 60))
         self.light_theme.setStyleSheet("QToolButton:clicked {\n"
-"    background-color:#D7D7D7;\n"
+"    background-color:#959595;\n"
 "    border-style: hidden;\n"
 "    }\n"
 "QToolButton:hover {\n"
-"    background-color: #D7D7D7;\n"
+"    background-color: #959595;\n"
 "    border-style: hidden;\n"
 "    }\n"
 "QToolButton {\n"
-"    background-color: #D7D7D7;\n"
+"    background-color: #959595;\n"
 "    border-style: hidden;\n"
 "    }\n"
 "")
@@ -170,7 +170,7 @@ class Ui_Settings(object):
 "font-style: normal;")
         self.Dark.setObjectName("Dark")
         self.dark_theme = QtWidgets.QToolButton(self.centralwidget)
-        self.dark_theme.setGeometry(QtCore.QRect(640, 380, 171, 71))
+        self.dark_theme.setGeometry(QtCore.QRect(640, 380, 167, 60))
         self.dark_theme.setStyleSheet("background-color: #0D0D0D;\n"
 "")
         self.dark_theme.setText("")
@@ -244,25 +244,61 @@ class Ui_Settings(object):
         self.Light.setText(_translate("MainWindow", "Light"))
         self.Dark.setText(_translate("MainWindow", "Dark"))
         self.DarkDEal.setText(_translate("MainWindow", "Your Deal"))
+
+    def check_theme(self):
+        if Choose_Theme.theme == 0:
+            self.background.setPixmap(QtGui.QPixmap("icons/background_settings_light.png"))
+            self.background.setScaledContents(True)
+            self.setting_menu.setIcon(QtGui.QIcon("icons/icon_gear.png"))
+            self.personalInf.setStyleSheet("font-size: 20px;\n"
+            "color: black;\n"
+            "font-weight: bold;\n"
+            "")
+            self.first_name.setStyleSheet("font-size: 20px;\n"
+            "color: black;\n"
+            "")
+            self.second_name.setStyleSheet("font-size: 20px;\n"
+            "color: black;\n"
+            "")
+            self.name.setStyleSheet("color: #474747;\n"
+            "font-size:16px;\n"
+            "font-weight:bold;\n"
+            "\n"
+            "")
+            self.secname.setStyleSheet("font-size: 16px;\n"
+        "font-weight: bold;\n"
+        "color: #474747;\n"
+        "")
+            self.theme.setStyleSheet("font-size:20px;\n"
+            "font-weight: bold;\n"
+            "color:black;\n"
+            "")
+        else:
+            pass
+
     def buttonpressed_1(self):
+        Choose_Theme.theme = 1
+        self.check_theme()
         self.dark_theme.setStyleSheet("QToolButton{\n"
     "    border-style: hidden;\n"
     " background-color: #4E1580;  }\n"
     "")
         self.light_theme.setStyleSheet("QToolButton:clicked {\n"
-    "    background-color:#D7D7D7;\n"
+    "    background-color:#959595;\n"
     "    border-style: hidden;\n"
     "    }\n"
     "QToolButton:hover {\n"
-    "    background-color: #D7D7D7;\n"
+    "    background-color: #959595;\n"
     "    border-style: hidden;\n"
     "    }\n"
     "QToolButton {\n"
-    "    background-color: #D7D7D7;\n"
+    "    background-color: #959595;\n"
     "    border-style: hidden;\n"
     "    }\n"
     "")
     def buttonpressed_2(self):
+        Choose_Theme.theme = 0
+        self.check_theme()
         self.light_theme.setStyleSheet("QToolButton{\n"
     "    border-style: hidden;\n"
     " background-color: #B782E5;  }\n"

@@ -139,6 +139,7 @@ class Ui_Choose_Theme(object):
         self.Checkbox_Light.raise_()
         self.DarkDEal.raise_()
         self.Checkbox_Dark.raise_()
+        self.theme = 1
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtWidgets.QMenuBar(MainWindow)
         self.menubar.setGeometry(QtCore.QRect(0, 0, 950, 21))
@@ -160,7 +161,9 @@ class Ui_Choose_Theme(object):
         self.Light.setText(_translate("MainWindow", "Light"))
         self.Dark.setText(_translate("MainWindow", "Dark"))
         self.Letsgobutton_2.setText(_translate("MainWindow", "Create my list"))
-    def buttonpressed_2(self):                                  # Функция смены цвета при нажатии на кнопку
+    def buttonpressed_2(self):
+        global theme
+        theme = 1                                  # Функция смены цвета при нажатии на кнопку
         self.toolButton_2.setStyleSheet("QToolButton{\n"
     "    border-style: hidden;\n"
     " background-color: #4E1580;  }\n"
@@ -178,7 +181,9 @@ class Ui_Choose_Theme(object):
     "    border-style: hidden;\n"
     "    }\n"
     "")
-    def buttonpressed_1(self):                                      # Функция смены цвета при нажатии на кнопку
+    def buttonpressed_1(self):
+        global theme
+        theme = 0                                       # Функция смены цвета при нажатии на кнопку
         self.toolButton.clicked.connect(int)
         self.toolButton.setStyleSheet("QToolButton{\n"
     "    border-style: hidden;\n"

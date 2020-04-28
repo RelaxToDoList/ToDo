@@ -1,5 +1,5 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
-
+import Choose_Theme
 
 class Ui_Core(object):
     def setupUi(self, MainWindow):
@@ -372,7 +372,7 @@ class Ui_Core(object):
         self.statusbar = QtWidgets.QStatusBar(MainWindow)
         self.statusbar.setObjectName("statusbar")
         MainWindow.setStatusBar(self.statusbar)
-
+        self.theme = 1
         self.retranslateUi(MainWindow)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
@@ -408,9 +408,72 @@ class Ui_Core(object):
         self.label_sunday.setText(_translate("MainWindow","Sunday"))
         self.statistic_label.setText(_translate("MainWindow","Statistic"))
 
+    def check_theme_person(self):
+        if Choose_Theme.theme == 0:
+            self.label.setPixmap(QtGui.QPixmap("icons/background_light.png"))
+            self.label.setScaledContents(True)
+            self.left_button.setIcon(QtGui.QIcon("icons/icon_list_light.png"))
+            self.Settings_but.setIcon(QtGui.QIcon("icons/icon_gear.png"))
+            self.notification_but.setIcon(QtGui.QIcon("icons/icon_notification.png"))
+            self.FirstName.setStyleSheet("color:#666666;"
+            "font-size: 20px;\n"
+            "font-family: Calibri, Candara, Segoe, \"Segoe UI\", Optima, Arial, sans-serif;\n"
+            "font-style:normal;")
+            self.SecondName.setStyleSheet("color:#666666;"
+            "font-size: 20px;\n"
+            "font-family: Calibri, Candara, Segoe, \"Segoe UI\", Optima, Arial, sans-serif;\n"
+            "font-style:normal;")
+            self.do.setStyleSheet("color:#666666;"
+            "font-size: 20px;")
+            self.did.setStyleSheet("color:#666666;"
+            "font-size: 20px;")
+            self.daily_add_button.setStyleSheet("color: #663366;"
+            "font-size:12px;"
+            "border:none;"
+            "font-weight: bold;")
+            self.deal_text.setStyleSheet("color:#161616;\n"
+            "font-weight:bold;\n"
+            "font-family: Calibri, Candara, Segoe, \\Segoe UI\\, Optima, Arial, sans-serif;"
+            "font-size:16px;")
+            self.Data.setStyleSheet("color:#605E5E;"
+            "font-size:16px;")
+            self.day.setStyleSheet("color: black;\n"
+            "font-size: 24px;\n"
+            "font-weight: 900;\n"
+            "font-family: Calibri, Candara, Segoe, \"Segoe UI\", Optima, Arial, sans-serif;\n"
+            "font-style:normal;")
+            self.remaining_time.setStyleSheet("color: black;"
+            "font-family: Calibri, Candara, Segoe, \\Segoe UI\\, Optima, Arial, sans-serif;")
+            self.add_task.setStyleSheet("color: black;"
+            "font-size:14px;")
+            self.settings_popup.setStyleSheet("background-color: #E2E2E2;"
+            "border:5px black")
+            self.left_button_popup_window.setStyleSheet("background-color: #E2E2E2;"
+            "border: 1px;")
+            self.graphicsView.setStyleSheet("background-color:#E2E2E2;"
+            "border-radius:15px;")
+            self.label_monday.setStyleSheet("color:#474747;"
+            "font-size:20px;")
+            self.label_tuesday.setStyleSheet("color:#474747;"
+            "font-size:20px;")
+            self.label_wednesday.setStyleSheet("color:#474747;"
+            "font-size:20px;")
+            self.label_thursday.setStyleSheet("color:#474747;"
+            "font-size:20px;")
+            self.label_friday.setStyleSheet("color: #474747;"
+            "font-size:20px;")
+            self.label_saturday.setStyleSheet("color: #474747;"
+            "font-size:20px;")
+            self.label_sunday.setStyleSheet("color: #474747;"
+            "font-size:20px;")
+            self.label_task_prog.setStyleSheet("color: #474747;"
+            "font-size:20px;")
+        else:
+            pass
+
     def left_button_popup_window_open(self):
-        self.close_window()
-        self.add_task_button_unclicked()
+        #self.close_window()
+        #self.add_task_button_unclicked()
         self.radio_tuesday.show()
         self.radio_wednesday.show()
         self.radio_thursday.show()
@@ -430,7 +493,6 @@ class Ui_Core(object):
         self.daily_add_button.show()
         self.left_button_popup_window.show()
         self.label_daily_task.show()
-        self.statusbar.close()
         self.left_button.clicked.connect(self.left_button_popup_window_close)
         self.left_button.clicked.connect(self.add_task_button_unclicked)
         self.left_button.clicked.connect(self.close_window)
@@ -454,7 +516,7 @@ class Ui_Core(object):
         self.label_daily_task.hide()
         self.daily_add_button.hide()
         self.left_button_popup_window.hide()
-        #self.left_button.clicked.connect(self.left_button_popup_window_open)
+        self.left_button.clicked.connect(self.left_button_popup_window_open)
     def add_task_button_unclicked(self):
         self.label_hint.hide()
         self.okey.hide()
@@ -499,11 +561,19 @@ class Ui_Core(object):
         self.account_label.hide()
         self.Settings_but.clicked.connect(self.settings_but_clicked)
     def check_box_unchecked(self):
-        self.check_box.setIcon(QtGui.QIcon("icons/Empty_Box_Light.png"))
-        self.check_box.clicked.connect(self.check_box_checked)
+        if Choose_Theme == 0:
+            self.check_box.setIcon(QtGui.QIcon("icons/Empty_Box_Dark.png"))
+            self.check_box.clicked.connect(self.check_box_checked)
+        else:
+            self.check_box.setIcon(QtGui.QIcon("icons/Empty_Box_Light.png"))
+            self.check_box.clicked.connect(self.check_box_checked)
     def check_box_checked(self):
-        self.check_box.setIcon(QtGui.QIcon("icons/Checkbox_Light.png"))
-        self.check_box.clicked.connect(self.check_box_unchecked)
+        if Choose_Theme == 0:
+            self.check_box.setIcon(QtGui.QIcon("icons/Checkbox_Dark.png"))
+            self.check_box.clicked.connect(self.check_box_unchecked)
+        else:
+            self.check_box.setIcon(QtGui.QIcon("icons/Checkbox_Light.png"))
+            self.check_box.clicked.connect(self.check_box_unchecked)
 
 
 if __name__ == "__main__":
