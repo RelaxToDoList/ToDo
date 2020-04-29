@@ -1,10 +1,10 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
-
+import Choose_Theme
 
 class Ui_Settings(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
-        MainWindow.resize(950, 517)
+        MainWindow.setFixedSize(950, 517)
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
         self.background = QtWidgets.QLabel(self.centralwidget)
@@ -13,6 +13,11 @@ class Ui_Settings(object):
         self.background.setPixmap(QtGui.QPixmap("icons/background_Settings.png"))
         self.background.setScaledContents(True)
         self.background.setObjectName("label")
+        self.settings_popup = QtWidgets.QGraphicsView(self.centralwidget)
+        self.settings_popup.setGeometry(QtCore.QRect(650, 41 , 308, 517))
+        self.settings_popup.setObjectName("settings_popup")
+        self.settings_popup.setStyleSheet("background-color: #666666;"
+        "border:5px black")
         self.setting_menu = QtWidgets.QToolButton(self.centralwidget)
         self.setting_menu.setGeometry(QtCore.QRect(900, 10, 31, 26))
         self.setting_menu.setStyleSheet("border:none;\n"
@@ -27,6 +32,29 @@ class Ui_Settings(object):
 "font-weight: bold;\n"
 "")
         self.personalInf.setObjectName("personalInf")
+        self.mainwindow_button = QtWidgets.QToolButton(self.centralwidget)
+        self.mainwindow_button.setGeometry(QtCore.QRect(660,55,25, 25))
+        self.mainwindow_button.setIcon(QtGui.QIcon("icons/icon_list.png"))
+        self.mainwindow_button.setStyleSheet("border: none;")
+        self.mainwindow_button.setIconSize(QtCore.QSize(25,25))
+        self.account_label = QtWidgets.QLabel(self.centralwidget)
+        self.account_label.setGeometry(QtCore.QRect(710,50,50,30))
+        self.account_label.setStyleSheet("font-weight: bold;"
+        "font-size:14px;"
+        "color: #000000;")
+        self.account_label.setObjectName("account_label")
+        self.statistic_button = QtWidgets.QToolButton(self.centralwidget)
+        self.statistic_button.setIcon(QtGui.QIcon("icons/icon_statistic.png"))
+        self.statistic_button.setGeometry(QtCore.QRect(660,100,30,30))
+        self.statistic_button.setStyleSheet("border: none;")
+        self.statistic_button.setIconSize(QtCore.QSize(30,30))
+        self.statistic_button.setObjectName("statistic_button")
+        self.statistic_label = QtWidgets.QLabel(self.centralwidget)
+        self.statistic_label.setGeometry(QtCore.QRect(710,90,100,50))
+        self.statistic_label.setStyleSheet("font-weight: bold;"
+        "font-size:15px;"
+        "color: #000000;")
+        self.statistic_label.setObjectName("statistic_label")
         self.avatar = QtWidgets.QLabel(self.centralwidget)
         self.avatar.setGeometry(QtCore.QRect(380, 110, 149, 123))
         self.avatar.setText("")
@@ -117,15 +145,15 @@ class Ui_Settings(object):
         self.light_theme = QtWidgets.QToolButton(self.centralwidget)
         self.light_theme.setGeometry(QtCore.QRect(400, 380, 167, 60))
         self.light_theme.setStyleSheet("QToolButton:clicked {\n"
-"    background-color:#D7D7D7;\n"
+"    background-color:#959595;\n"
 "    border-style: hidden;\n"
 "    }\n"
 "QToolButton:hover {\n"
-"    background-color: #D7D7D7;\n"
+"    background-color: #959595;\n"
 "    border-style: hidden;\n"
 "    }\n"
 "QToolButton {\n"
-"    background-color: #D7D7D7;\n"
+"    background-color: #959595;\n"
 "    border-style: hidden;\n"
 "    }\n"
 "")
@@ -170,7 +198,7 @@ class Ui_Settings(object):
 "font-style: normal;")
         self.Dark.setObjectName("Dark")
         self.dark_theme = QtWidgets.QToolButton(self.centralwidget)
-        self.dark_theme.setGeometry(QtCore.QRect(640, 380, 171, 71))
+        self.dark_theme.setGeometry(QtCore.QRect(640, 380, 167, 60))
         self.dark_theme.setStyleSheet("background-color: #0D0D0D;\n"
 "")
         self.dark_theme.setText("")
@@ -216,13 +244,6 @@ class Ui_Settings(object):
         self.Checkbox_Dark_2.raise_()
         self.DarkDEal.raise_()
         MainWindow.setCentralWidget(self.centralwidget)
-        self.menubar = QtWidgets.QMenuBar(MainWindow)
-        self.menubar.setGeometry(QtCore.QRect(0, 0, 950, 21))
-        self.menubar.setObjectName("menubar")
-        MainWindow.setMenuBar(self.menubar)
-        self.statusbar = QtWidgets.QStatusBar(MainWindow)
-        self.statusbar.setObjectName("statusbar")
-        MainWindow.setStatusBar(self.statusbar)
 
         self.retranslateUi(MainWindow)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
@@ -244,25 +265,111 @@ class Ui_Settings(object):
         self.Light.setText(_translate("MainWindow", "Light"))
         self.Dark.setText(_translate("MainWindow", "Dark"))
         self.DarkDEal.setText(_translate("MainWindow", "Your Deal"))
+        self.statistic_label.setText(_translate("MainWindow","Statistic"))
+        self.account_label.setText(_translate("MainWindow","Tasks"))
+
+    def check_theme(self):
+        if Choose_Theme.theme == 0:
+            self.background.setPixmap(QtGui.QPixmap("icons/background_settings_light.png"))
+            self.background.setScaledContents(True)
+            self.setting_menu.setIcon(QtGui.QIcon("icons/icon_gear.png"))
+            self.personalInf.setStyleSheet("font-size: 20px;\n"
+            "color: black;\n"
+            "font-weight: bold;\n"
+            "")
+            self.first_name.setStyleSheet("font-size: 20px;\n"
+            "color: black;\n"
+            "")
+            self.second_name.setStyleSheet("font-size: 20px;\n"
+            "color: black;\n"
+            "")
+            self.name.setStyleSheet("color: #474747;\n"
+            "font-size:16px;\n"
+            "font-weight:bold;\n"
+            "\n"
+            "")
+            self.secname.setStyleSheet("font-size: 16px;\n"
+        "font-weight: bold;\n"
+        "color: #474747;\n"
+        "")
+            self.theme.setStyleSheet("font-size:20px;\n"
+            "font-weight: bold;\n"
+            "color:black;\n"
+            "")
+            self.settings_popup.setStyleSheet("color: #E2E2E2;")
+            self.mainwindow_button.setIcon(QtGui.QIcon("icons/icon_list_light.png"))
+        else:
+            self.background.setPixmap(QtGui.QPixmap("icons/background_Settings.png"))
+            self.background.setScaledContents(True)
+            self.setting_menu.setIcon(QtGui.QIcon("icons/icon_gear_dark.png"))
+            self.personalInf.setStyleSheet("font-size: 20px;\n"
+            "color: white;\n"
+            "font-weight: bold;\n"
+            "")
+            self.first_name.setStyleSheet("font-size: 20px;\n"
+            "color: white;\n"
+            "")
+            self.second_name.setStyleSheet("font-size: 20px;\n"
+            "color: white;\n"
+            "")
+            self.name.setStyleSheet("color: #FFFFFF;\n"
+            "font-size:16px;\n"
+            "font-weight:bold;\n"
+            "\n"
+            "")
+            self.secname.setStyleSheet("font-size: 16px;\n"
+        "font-weight: bold;\n"
+        "color: #FFFFFF;\n"
+        "")
+            self.theme.setStyleSheet("font-size:20px;\n"
+            "font-weight: bold;\n"
+            "color:white;\n"
+            "")
+            self.settings_popup.setStyleSheet("background-color: #666666;")
+
+    def settings_but_open(self):
+        self.statistic_label.raise_()
+        self.account_label.show()
+        self.settings_popup.raise_()
+        self.settings_popup.show()
+        self.mainwindow_button.raise_()
+        self.mainwindow_button.show()
+        self.statistic_button.raise_()
+        self.statistic_button.show()
+        self.setting_menu.clicked.connect(self.settings_but_close)
+    def settings_but_close(self):
+        self.statistic_label.hide()
+        self.settings_popup.hide()
+        self.mainwindow_button.hide()
+        self.account_label.hide()
+        self.statistic_button.hide()
+        self.setting_menu.clicked.connect(self.settings_but_open)
+
     def buttonpressed_1(self):
+        self.settings_but_close()
+        Choose_Theme.theme = 1
+        self.check_theme()
         self.dark_theme.setStyleSheet("QToolButton{\n"
     "    border-style: hidden;\n"
     " background-color: #4E1580;  }\n"
     "")
         self.light_theme.setStyleSheet("QToolButton:clicked {\n"
-    "    background-color:#D7D7D7;\n"
+    "    background-color:#959595;\n"
     "    border-style: hidden;\n"
     "    }\n"
     "QToolButton:hover {\n"
-    "    background-color: #D7D7D7;\n"
+    "    background-color: #959595;\n"
     "    border-style: hidden;\n"
     "    }\n"
     "QToolButton {\n"
-    "    background-color: #D7D7D7;\n"
+    "    background-color: #959595;\n"
     "    border-style: hidden;\n"
     "    }\n"
     "")
     def buttonpressed_2(self):
+        self.settings_but_close()
+        Choose_Theme.theme = 0
+        self.check_theme()
         self.light_theme.setStyleSheet("QToolButton{\n"
     "    border-style: hidden;\n"
     " background-color: #B782E5;  }\n"
@@ -272,12 +379,3 @@ class Ui_Settings(object):
     "    border-style: hidden;\n"
     "    }\n"
     "")
-
-if __name__ == "__main__":
-    import sys
-    app = QtWidgets.QApplication(sys.argv)
-    MainWindow = QtWidgets.QMainWindow()
-    ui = Ui_Settings()
-    ui.setupUi(MainWindow)
-    MainWindow.show()
-    sys.exit(app.exec_())

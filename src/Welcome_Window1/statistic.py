@@ -1,10 +1,10 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
-
+import Choose_Theme
 
 class Ui_Statistic(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
-        MainWindow.resize(950, 517)
+        MainWindow.setFixedSize(950, 517)
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
         self.background = QtWidgets.QLabel(self.centralwidget)
@@ -45,8 +45,6 @@ class Ui_Statistic(object):
         self.settings_popup.setObjectName("settings_popup")
         self.settings_popup.setStyleSheet("background-color: #666666;"
         "border:5px black")
-        self.settings_popup.raise_()
-        self.hide()
         self.failed = QtWidgets.QLabel(self.centralwidget)
         self.failed.setGeometry(QtCore.QRect(50, 380, 431, 31))
         font = QtGui.QFont()
@@ -72,7 +70,7 @@ class Ui_Statistic(object):
         self.settings_popup.raise_()
         self.settings_popup.hide()
         self.mainwindow_button = QtWidgets.QToolButton(self.centralwidget)
-        self.mainwindow_button.setGeometry(QtCore.QRect(660,50,25, 25))
+        self.mainwindow_button.setGeometry(QtCore.QRect(660,55,25, 25))
         self.mainwindow_button.setIcon(QtGui.QIcon("icons/icon_list.png"))
         self.mainwindow_button.setStyleSheet("border: none;")
         self.mainwindow_button.setIconSize(QtCore.QSize(25,25))
@@ -100,14 +98,17 @@ class Ui_Statistic(object):
 "font-weight: bold;")
         self.completted_number.setObjectName("completted_number")
         self.statistic_label = QtWidgets.QLabel(self.centralwidget)
-        self.statistic_label.setGeometry(QtCore.QRect(710,100,50,30))
+        self.statistic_label.setGeometry(QtCore.QRect(710,90,100,50))
         self.statistic_label.setStyleSheet("font-weight: bold;"
         "font-size:15px;"
         "color: #000000;")
         self.statistic_label.raise_()
         self.statistic_label.hide()
         self.statistic_button = QtWidgets.QToolButton(self.centralwidget)
+        self.statistic_button.setIcon(QtGui.QIcon("icons/Empty_avatar.png"))
         self.statistic_button.setGeometry(QtCore.QRect(660,100,25,25))
+        self.statistic_button.setStyleSheet("border: none;")
+        self.statistic_button.setIconSize(QtCore.QSize(25,25))
         self.statistic_button.setObjectName("statistic_button")
         self.statistic_button.raise_()
         self.statistic_button.hide()
@@ -158,8 +159,19 @@ class Ui_Statistic(object):
         self.unfinished_number.setText(_translate("MainWindow", "Number"))
         self.settings_but.setText(_translate("MainWindow", "..."))
         self.account_label.setText(_translate("MainWindow","Tasks"))
-        self.statistic_label.setText(_translate("MainWindow","Statistic"))
+        self.statistic_label.setText(_translate("MainWindow","Settings"))
 
+    def check_theme(self):
+        if Choose_Theme.theme == 0:
+            self.background.setPixmap(QtGui.QPixmap("icons/background_settings_light.png"))
+            self.background.setScaledContents(True)
+            self.settings_but.setIcon(QtGui.QIcon("icons/icon_gear.png"))
+            self.mainwindow_button.setIcon(QtGui.QIcon("icons/icon_list_light.png"))
+            self.all_task.setStyleSheet("color: #3D3D3D;\n")
+            self.completted.setStyleSheet("color: #3D3D3D;\n")
+            self.failed.setStyleSheet("color: #3D3D3D;\n")
+            self.unfinished.setStyleSheet("color: #3D3D3D;\n")
+            self.settings_popup.setStyleSheet("color: #E2E2E2;")
     def popup_window_close(self):
         self.statistic_button.hide()
         self.statistic_label.hide()

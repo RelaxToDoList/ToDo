@@ -14,6 +14,7 @@ class Statistic_Menu(QtWidgets.QMainWindow, Ui_Statistic):
     def __init__(self,parent = None):
         super(Statistic_Menu,self).__init__(parent)
         self.setupUi(self)
+        self.check_theme()
         self.settings_but.clicked.connect(self.popup_window_open)
         self.mainwindow_button.clicked.connect(self.mainWindow)
         self.statistic_button.clicked.connect(self.statisticMenu)
@@ -30,17 +31,29 @@ class Settings_Menu(QtWidgets.QMainWindow, Ui_Settings):
     def __init__(self, parent = None):
         super(Settings_Menu, self).__init__(parent)
         self.setupUi(self)
+        self.check_theme()
         self.dark_theme.clicked.connect(self.buttonpressed_1)
         self.light_theme.clicked.connect(self.buttonpressed_2)
-
+        self.setting_menu.clicked.connect(self.settings_but_open)
+        self.mainwindow_button.clicked.connect(self.back_main)
+        self.statistic_button.clicked.connect(self.statistic_menu)
+    def back_main(self):
+        self.back = Fifth_Window()
+        self.close()
+        self.back.show()
+    def statistic_menu(self):
+        self.back = Statistic_Menu()
+        self.close()
+        self.back.show()
 class Fifth_Window(QtWidgets.QMainWindow, Ui_Core):
     def show_first_last(self):
         self.FirstName.setText(DBfunctions.read_db('First', 'user', 'User_ID', User_ID))
         self.SecondName.setText(DBfunctions.read_db('Last', 'user', 'User_ID', User_ID))
 
-    def __init__(self, parent = None):
+    def __init__(self,parent = None):
         super(Fifth_Window, self).__init__(parent)
         self.setupUi(self)
+        self.check_theme_person()
         self.check_box.clicked.connect(self.check_box_checked)
         self.Settings_but.clicked.connect(self.settings_but_clicked)
         self.settings_but_open.clicked.connect(self.nextWindow)
