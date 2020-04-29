@@ -292,7 +292,6 @@ class Ui_Core(object):
         self.line.setObjectName("line")
         self.gridLayout_2.addWidget(self.line, 1, 0, 1, 4)
         self.label.raise_()
-        #self.okey.raise_()
         self.left_button.raise_()
         self.Settings_but.raise_()
         self.notification_but.raise_()
@@ -317,9 +316,6 @@ class Ui_Core(object):
         self.line_enter.hide()
         self.left_button_popup_window.raise_()
         self.left_button_popup_window.hide()
-        #self.notification_single_but.hide()
-        #self.accept.hide()
-        #self.okey.hide()
         self.radio_monday.raise_()
         self.radio_monday.hide()
         self.radio_tuesday.raise_()
@@ -365,13 +361,6 @@ class Ui_Core(object):
         self.statistic_label.raise_()
         self.statistic_label.hide()
         MainWindow.setCentralWidget(self.centralwidget)
-        self.menubar = QtWidgets.QMenuBar(MainWindow)
-        self.menubar.setGeometry(QtCore.QRect(0, 0, 950, 21))
-        self.menubar.setObjectName("menubar")
-        MainWindow.setMenuBar(self.menubar)
-        self.statusbar = QtWidgets.QStatusBar(MainWindow)
-        self.statusbar.setObjectName("statusbar")
-        MainWindow.setStatusBar(self.statusbar)
         self.theme = 1
         self.retranslateUi(MainWindow)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
@@ -472,8 +461,6 @@ class Ui_Core(object):
             pass
 
     def left_button_popup_window_open(self):
-        #self.close_window()
-        #self.add_task_button_unclicked()
         self.radio_tuesday.show()
         self.radio_wednesday.show()
         self.radio_thursday.show()
@@ -520,7 +507,6 @@ class Ui_Core(object):
     def add_task_button_unclicked(self):
         self.label_hint.hide()
         self.okey.hide()
-        #self.accept.hide()
         self.notification_single_but.hide()
         self.line_enter.hide()
         self.graphicsView.hide()
@@ -530,8 +516,6 @@ class Ui_Core(object):
         self.okey.raise_()
         self.okey.show()
         self.label_hint.show()
-        #self.accept.raise_()
-        #self.accept.show()
         self.notification_single_but.raise_()
         self.notification_single_but.show()
         self.line_enter.show()
@@ -574,13 +558,3 @@ class Ui_Core(object):
         else:
             self.check_box.setIcon(QtGui.QIcon("icons/Checkbox_Light.png"))
             self.check_box.clicked.connect(self.check_box_unchecked)
-
-
-if __name__ == "__main__":
-    import sys
-    app = QtWidgets.QApplication(sys.argv)
-    MainWindow = QtWidgets.QMainWindow()
-    ui = Ui_Core()
-    ui.setupUi(MainWindow)
-    MainWindow.show()
-    sys.exit(app.exec_())
