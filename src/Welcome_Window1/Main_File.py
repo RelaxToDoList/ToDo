@@ -9,7 +9,6 @@ from statistic import Ui_Statistic
 import DBfunctions
 import sqlite3
 import random
-
 class Statistic_Menu(QtWidgets.QMainWindow, Ui_Statistic):
     def __init__(self,parent = None):
         super(Statistic_Menu,self).__init__(parent)
@@ -32,6 +31,8 @@ class Settings_Menu(QtWidgets.QMainWindow, Ui_Settings):
         super(Settings_Menu, self).__init__(parent)
         self.setupUi(self)
         self.check_theme()
+        self.name.setText(DBfunctions.read_db('First', 'user', 'User_ID', User_ID))
+        self.secname.setText(DBfunctions.read_db('Last','user','User_ID',User_ID))
         self.dark_theme.clicked.connect(self.buttonpressed_1)
         self.light_theme.clicked.connect(self.buttonpressed_2)
         self.setting_menu.clicked.connect(self.settings_but_open)
@@ -77,6 +78,7 @@ class Fifth_Window(QtWidgets.QMainWindow, Ui_Core):
         text_task = self.line_enter.text()
         task = [None, None, None, text_task, User_ID]
         DBfunctions.write_in_db_tasks(task)
+        self.line_enter.clear()
         self.show_task(text_task)
 
 class Fourth_Window(QtWidgets.QMainWindow, Ui_Choose_Theme): ## Window of theme choosing
@@ -85,7 +87,6 @@ class Fourth_Window(QtWidgets.QMainWindow, Ui_Choose_Theme): ## Window of theme 
         self.setupUi(self)
         self.toolButton_2.clicked.connect(self.buttonpressed_2)
         self.toolButton.clicked.connect(self.buttonpressed_1)
-        self.Letsgobutton_2.clicked.connect(self.nextWindow)
     def nextWindow(self):
         self.close()
         self.next = Fifth_Window()
@@ -97,6 +98,7 @@ class Third_Window(QtWidgets.QMainWindow, Ui_Welcome): ## Window of Welcoming us
         self.setupUi(self)
         self.usersname.setText(DBfunctions.read_db('First', 'user', 'User_ID', User_ID))
         self.Letsgobutton_2.clicked.connect(self.nextWindow)
+
     def nextWindow(self):
         self.close()
         self.next = Fourth_Window()
