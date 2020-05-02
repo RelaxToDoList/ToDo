@@ -1,5 +1,5 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
-
+from PyQt5.QtWidgets import QMessageBox
 
 class Ui_Choose_Theme(object):
     def setupUi(self, MainWindow):
@@ -181,7 +181,9 @@ class Ui_Choose_Theme(object):
     "    border-style: hidden;\n"
     "    }\n"
     "")
+        self.Letsgobutton_2.clicked.connect(self.nextWindow)
     def buttonpressed_1(self):
+        self.click = 1
         global theme
         theme = 0                                       # Функция смены цвета при нажатии на кнопку
         self.toolButton.clicked.connect(int)
@@ -194,3 +196,4 @@ class Ui_Choose_Theme(object):
     "    border-style: hidden;\n"
     "    }\n"
     "")
+        self.Letsgobutton_2.clicked.connect(self.nextWindow)
