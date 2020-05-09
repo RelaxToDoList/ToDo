@@ -56,7 +56,7 @@ def delete_record(table, id_column, record_id):
 def update_record(table, param_column, param_val, id_column, record_id):
 	con = sqlite3.connect('./Data_base/DataBase.db')
 	cur = con.cursor()
-	query = 'UPDATE '+table+' SET '+param_column+'='+str(param_val)+' WHERE '+id_column+" = '"+str(record_id)+"'"
+	query = 'UPDATE '+table+' SET '+param_column+" = '"+str(param_val)+"'"' WHERE '+id_column+" = '"+str(record_id)+"'"
 	cur.execute(query)
 	con.commit()
 	cur.close()
