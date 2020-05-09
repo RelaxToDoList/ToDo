@@ -17,6 +17,23 @@ def str_compare(str1, table):
 		str2 = ''
 	return 0
 
+def str_compare2(str1, table):
+	con = sqlite3.connect('./Data_base/DataBase.db')
+	cur = con.cursor()
+	query = 'SELECT Last FROM '+table
+	cur.execute(query)
+	data = cur.fetchall()
+	str1.lower()
+	str2 = ''
+	for i in range(int(read_db('count(User_ID)', 'user'))):
+		for line in data[i]:
+			str2 = line + str2
+		str2.lower()
+		if str1 == str2:
+			return 1
+		str2 = ''
+	return 0
+
 def read_db(show_column_name, table, param_column_name = None, record = None):
 	con = sqlite3.connect('./Data_base/DataBase.db')
 	cur = con.cursor()
