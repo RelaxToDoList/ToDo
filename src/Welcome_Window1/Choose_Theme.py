@@ -69,7 +69,7 @@ class Ui_Choose_Theme(object):
         self.Dark_border_up = QtWidgets.QGraphicsView(self.centralwidget)
         self.Dark_border_up.setGeometry(QtCore.QRect(530, 210, 261, 48))
         self.Dark_border_up.setStyleSheet("background-color: #1B1B1B;\n"
-"borde-style: hidden;\n"
+"border-style: hidden;\n"
 "")
         self.Dark_border_up.setObjectName("Dark_border_up")
         self.Dark = QtWidgets.QLabel(self.centralwidget)
