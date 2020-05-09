@@ -59,7 +59,7 @@ class Settings_Menu(QtWidgets.QMainWindow, Ui_Settings):
         self.statistic_button.clicked.connect(self.statistic_menu)
         self.change_name.clicked.connect(self.change_name_func)
         self.change_secname.clicked.connect(self.change_secname_func)
-        self.change_avatar.clicked.connect(self.choose_picture_dialog_open) 
+        self.change_avatar.clicked.connect(self.choose_picture_dialog_open)
 
     def change_name_func(self):
         self.change_name_pressed()
@@ -77,7 +77,7 @@ class Settings_Menu(QtWidgets.QMainWindow, Ui_Settings):
             DBfunctions.update_record('user','Last',second_name,'User_ID',User_ID)
             self.secname.setText(second_name)
         self.close_line_edit()
-   
+
     def back_main(self):
         self.back = Fifth_Window()
         self.close()
@@ -155,11 +155,28 @@ class Second_Window(QtWidgets.QMainWindow, Ui_Sign): ##Window of signing in
     def check_signin(self):
         if DBfunctions.read_db('count(User_ID)', 'user') == 0:
             return 0
-        elif DBfunctions.str_compare(first_name, 'user') == 0:
+        elif DBfunctions.str_compare(first_name, 'user') == 0: # and DBfunctions.str_compare(last_name, 'user') == 0:
             return 0
         else:
             global User_ID
             User_ID = DBfunctions.read_db('User_ID', 'user', 'First', first_name)
+        #   id_check = DBfunctions.read_db('User_ID','user','Last',last_name)
+        #    print(id_check)
+        #    id_check2 = DBfunctions.read_db('User_ID', 'user', 'First', first_name)
+        #    print(id_check2)
+        #    if DBfunctions.read_db('First','user','User_ID',id_check) != first_name:
+        #        print("True")
+        #        name = first_name
+        #        User_ID = DBfunctions.read_db('User_ID','user','First',name)
+        #        print(name)
+        #        if DBfunctions.read_db('First','user','User_ID',id_check) != last_name:
+        #            secname = last_name
+        #            print(secname)
+
+                    #if DBfunctions.read_db('Last','user','User_ID',id_check) == last_name:
+                #        if DBfunctions.read_db('First','user','User_ID',id_check2) == first_name:
+                    #        firstnam = first_name
+                #            User_ID = DBfunctions.read_db('User_ID','user','First',firstnam)
             return 1
 
     def signin(self):
