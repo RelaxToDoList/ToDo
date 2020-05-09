@@ -210,10 +210,14 @@ class First_Window(QtWidgets.QMainWindow,Ui_MainWindow): ## Window Start
 
 
 if __name__ =="__main__":
-    import sys
+    import sys, os
     app = QtWidgets.QApplication(sys.argv)
 
     window = First_Window()
     window.show()
 
-    sys.exit(app.exec_())
+    status = app.exec_()
+
+    os.remove('./Data_base/pict_user.png')
+
+    sys.exit(status)
