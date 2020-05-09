@@ -26,7 +26,7 @@ class Ui_MainWindow(object):
         self.label.setObjectName("label")
         self.label_2 = QtWidgets.QLabel(self.centralwidget)
         self.label_2.setGeometry(QtCore.QRect(460, 100, 51, 51))
-        self.label_2.setStyleSheet("display: inline-block;\n"
+        self.label_2.setStyleSheet(
 "color:#FFF;\n"
 "font-size: 27px;\n"
 "font-weight:bold;\n"
