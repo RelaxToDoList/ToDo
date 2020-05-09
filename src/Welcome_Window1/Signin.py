@@ -41,9 +41,7 @@ class Ui_Sign(object):
         self.Signin.setStyleSheet("background: none;\n"
 "font-size: 24px;\n"
 "font-weight: bold;\n"
-"color: #FFF;\n"
-"mix-blend-mod:multiply;\n"
-"display: inline-block;")
+"color: #FFF;\n")
         self.Signin.setObjectName("Signin")
         self.Letsgobutton = QtWidgets.QPushButton(self.centralwidget)
         self.Letsgobutton.setGeometry(QtCore.QRect(330, 360, 291, 71))
@@ -78,14 +76,12 @@ class Ui_Sign(object):
         self.InputFirst.setGeometry(QtCore.QRect(220, 220, 497, 35))
         self.InputFirst.setStyleSheet("background: none;\n"
 "border: 1px solid black;\n"
-"border: 1px solid black;\n"
 "font-size: 21px;\n"
 "font-weight: 502;")
         self.InputFirst.setObjectName("InputFirst")
         self.InputSecond = QtWidgets.QLineEdit(self.centralwidget)
         self.InputSecond.setGeometry(QtCore.QRect(220, 290, 497, 35))
         self.InputSecond.setStyleSheet("background: none;\n"
-"border: 1px solid black;\n"
 "border: 1px solid black;\n"
 "font-size: 21px;\n"
 "font-weight: 502;")
