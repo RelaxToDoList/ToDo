@@ -32,26 +32,12 @@ class Settings_Menu(QtWidgets.QMainWindow, Ui_Settings):
         fname = QFileDialog.getOpenFileName(self,
                                             'Choose picture',
                                             './')
+        if not fname[0]:
+            return;
         pict_path = fname[0]
         pixmap = QtGui.QPixmap(fname[0])
         self.avatar.setPixmap(pixmap)
-        self.pict_import(User_ID, pict_path)
-    def pict_import(self, User_ID, pict_path):
-        binary_pict = self.import_pict_binary(pict_path)
-        DBfunctions.update_record('user', 'Image', binary_pict, 'User_ID', User_ID)
-        # con = sqlite3.connect('./Data_base/DataBase.db')
-        # cur = con.cursor()
-        # data = (6789, 'rty', 'rty', binary_pict)
-        # query = 'INSERT INTO user VALUES(?, ?, ?, ?)'
-        # cur.execute(query, data)
-        # con.commit()
-        # cur.close()
-        # con.close()
-
-    def import_pict_binary(self, pict_path):
-        f = open(pict_path, 'rb')
-        pict_binary = f.read()
-        return pict_binary
+        DBfunctions.pict_import(User_ID, pict_path)
 
     def show_avatar(self):
         if DBfunctions.pict_export(User_ID) == 0:

@@ -56,8 +56,8 @@ def delete_record(table, id_column, record_id):
 def update_record(table, param_column, param_val, id_column, record_id):
 	con = sqlite3.connect('./Data_base/DataBase.db')
 	cur = con.cursor()
-	query = 'UPDATE '+table+' SET '+param_column+" = '"+str(param_val)+"'"' WHERE '+id_column+" = '"+str(record_id)+"'"
-	cur.execute(query)
+	query = f'UPDATE {table} SET {param_column} = ? WHERE {id_column} = ?'
+	cur.execute(query, (param_val, record_id))
 	con.commit()
 	cur.close()
 	con.close()
@@ -88,6 +88,15 @@ def pict_export(User_ID):
     write_pict_from_binary(photoPath,pict_binary)
     return photoPath
 
+def pict_import(User_ID, pict_path):
+    binary_pict = import_pict_binary(pict_path)
+    update_record('user', 'Image', binary_pict, 'User_ID', User_ID)
+
 def write_pict_from_binary(file_path, pict_binary):
     f = open(file_path, 'wb')
     f.write(pict_binary)
+
+def import_pict_binary(pict_path):
+    f = open(pict_path, 'rb')
+    pict_binary = f.read()
+    return pict_binary
