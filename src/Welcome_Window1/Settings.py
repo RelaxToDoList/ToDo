@@ -13,6 +13,30 @@ class Ui_Settings(object):
         self.background.setPixmap(QtGui.QPixmap("icons/background_Settings.png"))
         self.background.setScaledContents(True)
         self.background.setObjectName("label")
+        self.save_change = QtWidgets.QPushButton(self.centralwidget)
+        self.save_change.setGeometry(QtCore.QRect(270,420,101,41))
+        self.save_change.setStyleSheet("QPushButton{"
+        "background-color:#3BA851;"
+        "border-radius: 15px;"
+        "color:white;"
+        "border:none;"
+        "font-size:16px;"
+        "}"
+        "QPushButton:hover{"
+        "border-radius: 15px;"
+        "background-color:#159B30;"
+        "color:white;"
+        "border:none;"
+        "font-size:16px;"
+        "}"
+        "QPushButton:pressed{"
+        "background-color:#159B30;"
+        "border-radius: 15px;"
+        "border:none;"
+        "color:white;"
+        "font-size:16px;"
+        "}")
+        self.save_change.setObjectName("save_change")
         self.settings_popup = QtWidgets.QGraphicsView(self.centralwidget)
         self.settings_popup.setGeometry(QtCore.QRect(650, 41 , 308, 517))
         self.settings_popup.setObjectName("settings_popup")
@@ -218,9 +242,21 @@ class Ui_Settings(object):
 "font-family: Calibri, Candara, Segoe, \"Segoe UI\", Optima, Arial, sans-serif;\n"
 "font-style: normal;")
         self.DarkDEal.setObjectName("DarkDEal")
+        self.firstname_change = QtWidgets.QLineEdit(self.centralwidget)
+        self.firstname_change.setGeometry(QtCore.QRect(165,317,200,27))
+        self.firstname_change.setMaxLength(25)
+        self.firstname_change.setObjectName("firstname_change")
+        self.secondname_change = QtWidgets.QLineEdit(self.centralwidget)
+        self.secondname_change.setGeometry(QtCore.QRect(190,376,172,27))
+        self.secondname_change.setMaxLength(25)
+        self.secondname_change.setObjectName("secondname_change")
         self.background.raise_()
         self.setting_menu.raise_()
         self.personalInf.raise_()
+        self.save_change.raise_()
+        self.save_change.hide()
+        self.account_label.raise_()
+        self.account_label.hide()
         self.avatar.raise_()
         self.change_avatar.raise_()
         self.first_line.raise_()
@@ -232,6 +268,10 @@ class Ui_Settings(object):
         self.secname.raise_()
         self.change_name.raise_()
         self.change_secname.raise_()
+        self.secondname_change.raise_()
+        self.secondname_change.hide()
+        self.firstname_change.raise_()
+        self.firstname_change.hide()
         self.theme.raise_()
         self.light_theme.raise_()
         self.Light_border_up_2.raise_()
@@ -251,6 +291,7 @@ class Ui_Settings(object):
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "ToDo"))
+        self.save_change.setText(_translate("MainWindow","Save"))
         self.setting_menu.setText(_translate("MainWindow", "..."))
         self.personalInf.setText(_translate("MainWindow", "Personal Information"))
         self.change_avatar.setText(_translate("MainWindow", "Add or Change"))
@@ -268,6 +309,18 @@ class Ui_Settings(object):
         self.statistic_label.setText(_translate("MainWindow","Statistic"))
         self.account_label.setText(_translate("MainWindow","Tasks"))
 
+    def close_line_edit(self):
+        self.save_change.close()
+        self.firstname_change.close()
+        self.secondname_change.close()
+        self.secondname_change.clear()
+        self.firstname_change.clear()
+    def change_name_pressed(self):
+        self.save_change.show()
+        self.firstname_change.show()
+    def change_secname_pressed(self):
+        self.save_change.show()
+        self.secondname_change.show()
     def check_theme(self):
         if Choose_Theme.theme == 0:
             self.background.setPixmap(QtGui.QPixmap("icons/background_settings_light.png"))
@@ -296,6 +349,20 @@ class Ui_Settings(object):
             "font-weight: bold;\n"
             "color:black;\n"
             "")
+            self.secondname_change.setStyleSheet("background-color:#C4C1C1;"
+            "font-size: 14px;"
+            "border: none;"
+            "color:black;"
+            "font-weight: bold;"
+            "border-radius:10px;"
+            "border-color:white;")
+            self.firstname_change.setStyleSheet("background-color:#C4C1C1;"
+            "font-size: 14px;"
+            "border: none;"
+            "color:black;"
+            "font-weight: bold;"
+            "border-radius:10px;"
+            "border-color:white;")
             self.settings_popup.setStyleSheet("color: #E2E2E2;")
             self.mainwindow_button.setIcon(QtGui.QIcon("icons/icon_list_light.png"))
         else:
@@ -325,6 +392,20 @@ class Ui_Settings(object):
             "font-weight: bold;\n"
             "color:white;\n"
             "")
+            self.secondname_change.setStyleSheet("background-color:#262927;"
+            "font-size: 14px;"
+            "border: none;"
+            "color:white;"
+            "font-weight: bold;"
+            "border-radius:10px;"
+            "border-color:white;")
+            self.firstname_change.setStyleSheet("background-color:#262927;"
+            "font-size: 14px;"
+            "border: none;"
+            "color:white;"
+            "font-weight: bold;"
+            "border-radius:10px;"
+            "border-color:white;")
             self.settings_popup.setStyleSheet("background-color: #666666;")
 
     def settings_but_open(self):
@@ -337,6 +418,7 @@ class Ui_Settings(object):
         self.statistic_button.raise_()
         self.statistic_button.show()
         self.setting_menu.clicked.connect(self.settings_but_close)
+        self.setting_menu.clicked.connect(self.close_line_edit)
     def settings_but_close(self):
         self.statistic_label.hide()
         self.settings_popup.hide()
@@ -344,7 +426,7 @@ class Ui_Settings(object):
         self.account_label.hide()
         self.statistic_button.hide()
         self.setting_menu.clicked.connect(self.settings_but_open)
-
+        self.setting_menu.clicked.connect(self.close_line_edit)
     def buttonpressed_1(self):
         self.settings_but_close()
         Choose_Theme.theme = 1

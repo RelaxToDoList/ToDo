@@ -128,27 +128,19 @@ class Ui_Core(object):
         self.settings_popup = QtWidgets.QGraphicsView(self.centralwidget)
         self.settings_popup.setGeometry(QtCore.QRect(650, 41 , 308, 517))
         self.settings_popup.setObjectName("settings_popup")
-        self.settings_popup.setStyleSheet("background-color: #666666;"
-        "border:5px black")
         self.did = QtWidgets.QLabel(self.centralwidget)
         self.did.setGeometry(QtCore.QRect(10,290, 371, 21))
         self.did.setObjectName("did")
-        self.did.setStyleSheet("color:white;"
-        "font-size: 20px;")
         self.do = QtWidgets.QLabel(self.centralwidget)
         self.do.setGeometry(QtCore.QRect(10, 250, 371, 21 ))
         self.do.setObjectName("do")
-        self.do.setStyleSheet("color: white;"
-        "font-size: 20px;")
         self.label = QtWidgets.QLabel(self.centralwidget)
         self.label.setGeometry(QtCore.QRect(0, 0, 950, 517))
         self.label.setText("")
-        self.label.setPixmap(QtGui.QPixmap("icons/icon_background.png"))
         self.label.setScaledContents(True)
         self.label.setObjectName("label")
         self.left_button = QtWidgets.QToolButton(self.centralwidget)
         self.left_button.setGeometry(QtCore.QRect(10, 10, 111, 21))
-        self.left_button.setIcon(QtGui.QIcon("icons/icon_list.png"))
         self.left_button.setIconSize(QtCore.QSize(31, 31))
         self.left_button.setGeometry(QtCore.QRect(10, 8, 31, 26))
         self.left_button.setStyleSheet("QToolButton {\n"
@@ -160,17 +152,12 @@ class Ui_Core(object):
         self.left_button.setObjectName("left_button")
         self.Settings_but = QtWidgets.QToolButton(self.centralwidget)
         self.Settings_but.setGeometry(QtCore.QRect(900, 10, 31, 26))
-        self.Settings_but.setIcon(QtGui.QIcon("icons/icon_gear_dark.png"))
         self.Settings_but.setIconSize(QtCore.QSize(70,70))
         self.Settings_but.setStyleSheet("border:none;")
         self.Settings_but.setText("")
         self.Settings_but.setObjectName("Settings_but")
         self.daily_add_button = QtWidgets.QToolButton(self.centralwidget)
         self.daily_add_button.setGeometry(QtCore.QRect(70,99,25,20))
-        self.daily_add_button.setStyleSheet("color: #663366;"
-        "font-size:12px;"
-        "border:none;"
-        "font-weight: bold;")
         self.daily_add_button.setObjectName("daily_add_button")
         self.statistic_button = QtWidgets.QToolButton(self.centralwidget)
         self.statistic_button.setGeometry(QtCore.QRect(660,100,35,35))
@@ -180,7 +167,6 @@ class Ui_Core(object):
         self.statistic_button.setStyleSheet("border:none;")
         self.notification_but = QtWidgets.QToolButton(self.centralwidget)
         self.notification_but.setGeometry(QtCore.QRect(850, 10, 31, 26))
-        self.notification_but.setIcon(QtGui.QIcon("icons/icon_notification_dark.png"))
         self.notification_but.setIconSize(QtCore.QSize(28,28))
         self.notification_but.setObjectName("notification_but")
         self.notification_but.setStyleSheet("border:none;")
@@ -199,17 +185,9 @@ class Ui_Core(object):
         self.Data.setObjectName("Data")
         self.FirstName = QtWidgets.QLabel(self.centralwidget)
         self.FirstName.setGeometry(QtCore.QRect(130, 70, 241, 21))
-        self.FirstName.setStyleSheet("color: #FFFFFF;\n"
-"font-size: 20px;\n"
-"font-family: Calibri, Candara, Segoe, \"Segoe UI\", Optima, Arial, sans-serif;\n"
-"font-style:normal;")
         self.FirstName.setObjectName("FirstName")
         self.SecondName = QtWidgets.QLabel(self.centralwidget)
         self.SecondName.setGeometry(QtCore.QRect(130, 100, 241, 21))
-        self.SecondName.setStyleSheet("color: #FFFFFF;\n"
-"font-size: 20px;\n"
-"font-family: Calibri, Candara, Segoe, \"Segoe UI\", Optima, Arial, sans-serif;\n"
-"font-style:normal;")
         self.SecondName.setObjectName("SecondName")
         self.dial = QtWidgets.QDial(self.centralwidget)
         self.dial.setGeometry(QtCore.QRect(110, 410, 141, 64))
@@ -234,16 +212,11 @@ class Ui_Core(object):
         self.gridLayout_2.setContentsMargins(0, 0, 0, 0)
         self.gridLayout_2.setObjectName("gridLayout_2")
         self.check_box = QtWidgets.QToolButton(self.gridLayoutWidget)
-        self.check_box.setIcon(QtGui.QIcon("icons/Empty_Box_Light.png"))
         self.check_box.setIconSize(QtCore.QSize(24,24))
         self.check_box.setStyleSheet("border:none")
         self.check_box.setObjectName("check_box")
         self.gridLayout_2.addWidget(self.check_box, 0, 0, 1, 1)
         self.deal_text = QtWidgets.QLabel(self.gridLayoutWidget)
-        self.deal_text.setStyleSheet("color:white;\n"
-"font-weight:bold;\n"
-"font-family: Calibri, Candara, Segoe, \\Segoe UI\\, Optima, Arial, sans-serif;"
-"font-size:16px;")
         self.deal_text.setText("Your Task")
         self.deal_text.setObjectName("deal_text")
         self.accept = QtWidgets.QDialogButtonBox(self.centralwidget)
@@ -259,12 +232,8 @@ class Ui_Core(object):
         self.gridLayout_2.addWidget(self.deal_text, 0, 1, 1, 1)
         self.graphicsView = QtWidgets.QGraphicsView(self.centralwidget)
         self.graphicsView.setGeometry(QtCore.QRect(380, 317, 585, 200))
-        self.graphicsView.setStyleSheet("background-color:#666666;"
-        "border-radius:15px;")
         self.graphicsView.setObjectName("graphicsView")
         self.remaining_time = QtWidgets.QLabel(self.gridLayoutWidget)
-        self.remaining_time.setStyleSheet("color: #666666;"
-        "font-family: Calibri, Candara, Segoe, \\Segoe UI\\, Optima, Arial, sans-serif;")
         self.remaining_time.setObjectName("remaining_time")
         self.gridLayout_2.addWidget(self.remaining_time, 0, 2, 1, 1)
         self.notification_single_but = QtWidgets.QToolButton(self.centralwidget)
@@ -274,15 +243,13 @@ class Ui_Core(object):
         self.notification_single_but.setIconSize(QtCore.QSize(25,25))
         self.notification_single_but.setObjectName("notification_single_but")
         self.plus_button = QtWidgets.QToolButton(self.gridLayoutWidget)
-        self.plus_button.setIcon(QtGui.QIcon("icons/icon_plus.png"))
-        self.plus_button.setIconSize(QtCore.QSize(24,24))
         self.plus_button.setStyleSheet("border:none;\n")
+        self.plus_button.setIconSize(QtCore.QSize(24,24))
+        self.plus_button.setIcon(QtGui.QIcon("icons/icon_plus.png"))
         self.plus_button.setObjectName("plus_button")
         self.gridLayout_2.addWidget(self.plus_button, 2, 0, 1, 1)
         self.add_task = QtWidgets.QLabel(self.gridLayoutWidget)
         self.add_task.setText("Add task")
-        self.add_task.setStyleSheet("color: #949494;"
-        "font-size:14px;")
         self.add_task.setText("Add")
         self.add_task.setObjectName("add_task")
         self.gridLayout_2.addWidget(self.add_task, 2, 1, 1, 1)
@@ -420,6 +387,7 @@ class Ui_Core(object):
             "font-size:12px;"
             "border:none;"
             "font-weight: bold;")
+            self.check_box.setIcon(QtGui.QIcon("icons/Empty_Box_Light.png"))
             self.deal_text.setStyleSheet("color:#161616;\n"
             "font-weight:bold;\n"
             "font-family: Calibri, Candara, Segoe, \\Segoe UI\\, Optima, Arial, sans-serif;"
@@ -458,8 +426,43 @@ class Ui_Core(object):
             self.label_task_prog.setStyleSheet("color: #474747;"
             "font-size:20px;")
         else:
-            pass
-
+            self.add_task.setStyleSheet("color: #949494;"
+            "font-size:14px;")
+            self.remaining_time.setStyleSheet("color: #666666;"
+            "font-family: Calibri, Candara, Segoe, \\Segoe UI\\, Optima, Arial, sans-serif;")
+            self.graphicsView.setStyleSheet("background-color:#666666;"
+            "border-radius:15px;")
+            self.deal_text.setStyleSheet("color:white;\n"
+    "font-weight:bold;\n"
+    "font-family: Calibri, Candara, Segoe, \\Segoe UI\\, Optima, Arial, sans-serif;"
+    "font-size:16px;")
+            self.check_box.setIcon(QtGui.QIcon("icons/Empty_Box_Light.png"))
+            self.SecondName.setStyleSheet("color: #FFFFFF;\n"
+    "font-size: 20px;\n"
+    "font-family: Calibri, Candara, Segoe, \"Segoe UI\", Optima, Arial, sans-serif;\n"
+    "font-style:normal;")
+            self.FirstName.setStyleSheet("color: #FFFFFF;\n"
+    "font-size: 20px;\n"
+    "font-family: Calibri, Candara, Segoe, \"Segoe UI\", Optima, Arial, sans-serif;\n"
+    "font-style:normal;")
+            self.notification_but.setIcon(QtGui.QIcon("icons/icon_notification_dark.png"))
+            self.daily_add_button.setStyleSheet("color: #663366;"
+            "font-size:12px;"
+            "border:none;"
+            "font-weight: bold;")
+            self.daily_add_button.setStyleSheet("color: #663366;"
+            "font-size:12px;"
+            "border:none;"
+            "font-weight: bold;")
+            self.Settings_but.setIcon(QtGui.QIcon("icons/icon_gear_dark.png"))
+            self.left_button.setIcon(QtGui.QIcon("icons/icon_list.png"))
+            self.label.setPixmap(QtGui.QPixmap("icons/icon_background.png"))
+            self.do.setStyleSheet("color: white;"
+            "font-size: 20px;")
+            self.did.setStyleSheet("color:white;"
+            "font-size: 20px;")
+            self.settings_popup.setStyleSheet("background-color: #666666;"
+            "border:5px black")
     def left_button_popup_window_open(self):
         self.radio_tuesday.show()
         self.radio_wednesday.show()

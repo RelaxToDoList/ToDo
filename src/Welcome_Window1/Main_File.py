@@ -38,6 +38,25 @@ class Settings_Menu(QtWidgets.QMainWindow, Ui_Settings):
         self.setting_menu.clicked.connect(self.settings_but_open)
         self.mainwindow_button.clicked.connect(self.back_main)
         self.statistic_button.clicked.connect(self.statistic_menu)
+        self.change_name.clicked.connect(self.change_name_func)
+        self.change_secname.clicked.connect(self.change_secname_func)
+
+    def change_name_func(self):
+        self.change_name_pressed()
+        self.save_change.clicked.connect(self.save_changes_button)
+    def change_secname_func(self):
+        self.change_secname_pressed()
+        self.save_change.clicked.connect(self.save_changes_button)
+    def save_changes_button(self):
+        first_name = self.firstname_change.text()
+        second_name = self.secondname_change.text()
+        if first_name:
+            DBfunctions.update_record('user','First',str(first_name),'User_ID',User_ID)
+            self.name.setText(first_name)
+        if second_name:
+            DBfunctions.update_record('user','Last',second_name,'User_ID',User_ID)
+            self.secname.setText(second_name)
+        self.close_line_edit()
     def back_main(self):
         self.back = Fifth_Window()
         self.close()
