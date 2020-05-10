@@ -7,6 +7,7 @@ from Choose_Theme import Ui_Choose_Theme
 from MainWindow import Ui_Core
 from Settings import Ui_Settings
 from statistic import Ui_Statistic
+import os.path
 import DBfunctions
 import sqlite3
 import random
@@ -58,8 +59,8 @@ class Settings_Menu(QtWidgets.QMainWindow, Ui_Settings):
         self.mainwindow_button.clicked.connect(self.back_main)
         self.statistic_button.clicked.connect(self.statistic_menu)
         self.change_name.clicked.connect(self.change_name_func)
-        self.change_secname.clicked.connect(self.change_secname_func)
-        self.change_avatar.clicked.connect(self.choose_picture_dialog_open)
+        #self.change_secname.clicked.connect(self.change_secname_func)
+        #self.change_avatar.clicked.connect(self.choose_picture_dialog_open)
 
     def change_name_func(self):
         self.change_name_pressed()
@@ -155,28 +156,11 @@ class Second_Window(QtWidgets.QMainWindow, Ui_Sign): ##Window of signing in
     def check_signin(self):
         if DBfunctions.read_db('count(User_ID)', 'user') == 0:
             return 0
-        elif DBfunctions.str_compare(first_name, 'user') == 0: # and DBfunctions.str_compare(last_name, 'user') == 0:
+        elif DBfunctions.str_compare(first_name, 'user') == 0:
             return 0
         else:
             global User_ID
             User_ID = DBfunctions.read_db('User_ID', 'user', 'First', first_name)
-        #   id_check = DBfunctions.read_db('User_ID','user','Last',last_name)
-        #    print(id_check)
-        #    id_check2 = DBfunctions.read_db('User_ID', 'user', 'First', first_name)
-        #    print(id_check2)
-        #    if DBfunctions.read_db('First','user','User_ID',id_check) != first_name:
-        #        print("True")
-        #        name = first_name
-        #        User_ID = DBfunctions.read_db('User_ID','user','First',name)
-        #        print(name)
-        #        if DBfunctions.read_db('First','user','User_ID',id_check) != last_name:
-        #            secname = last_name
-        #            print(secname)
-
-                    #if DBfunctions.read_db('Last','user','User_ID',id_check) == last_name:
-                #        if DBfunctions.read_db('First','user','User_ID',id_check2) == first_name:
-                    #        firstnam = first_name
-                #            User_ID = DBfunctions.read_db('User_ID','user','First',firstnam)
             return 1
 
     def signin(self):
@@ -234,7 +218,9 @@ if __name__ =="__main__":
     window.show()
 
     status = app.exec_()
-
-    os.remove('./Data_base/pict_user.png')
+    if os.path.exists('./Data_base/pict_user.png'):
+        os.remove('./Data_base/pict_user.png')
+    else:
+        pass
 
     sys.exit(status)
