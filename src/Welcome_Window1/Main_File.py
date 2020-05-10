@@ -7,6 +7,7 @@ from Choose_Theme import Ui_Choose_Theme
 from MainWindow import Ui_Core
 from Settings import Ui_Settings
 from statistic import Ui_Statistic
+import os.path
 import DBfunctions
 import sqlite3
 import random
@@ -58,8 +59,8 @@ class Settings_Menu(QtWidgets.QMainWindow, Ui_Settings):
         self.mainwindow_button.clicked.connect(self.back_main)
         self.statistic_button.clicked.connect(self.statistic_menu)
         self.change_name.clicked.connect(self.change_name_func)
-        self.change_secname.clicked.connect(self.change_secname_func)
-        self.change_avatar.clicked.connect(self.choose_picture_dialog_open) 
+        #self.change_secname.clicked.connect(self.change_secname_func)
+        #self.change_avatar.clicked.connect(self.choose_picture_dialog_open)
 
     def change_name_func(self):
         self.change_name_pressed()
@@ -77,7 +78,7 @@ class Settings_Menu(QtWidgets.QMainWindow, Ui_Settings):
             DBfunctions.update_record('user','Last',second_name,'User_ID',User_ID)
             self.secname.setText(second_name)
         self.close_line_edit()
-   
+
     def back_main(self):
         self.back = Fifth_Window()
         self.close()
@@ -217,7 +218,9 @@ if __name__ =="__main__":
     window.show()
 
     status = app.exec_()
-
-    os.remove('./Data_base/pict_user.png')
+    if os.path.exists('./Data_base/pict_user.png'):
+        os.remove('./Data_base/pict_user.png')
+    else:
+        pass
 
     sys.exit(status)
