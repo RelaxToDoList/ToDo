@@ -17,7 +17,7 @@ class Ui_MainWindow(object):
         self.centralwidget.setObjectName("centralwidget")
         self.label = QtWidgets.QLabel(self.centralwidget)
         self.label.setGeometry(QtCore.QRect(420, 20, 131, 101))
-        self.label.setStyleSheet("font-size: 27px;\n"
+        self.label.setStyleSheet("font-size: 25px;\n"
 "color:white;\n"
 "font-weight:bold;\n"
 "font-family:Copperplate Gothic Bold, sans-serif;\n"
@@ -25,10 +25,10 @@ class Ui_MainWindow(object):
 "")
         self.label.setObjectName("label")
         self.label_2 = QtWidgets.QLabel(self.centralwidget)
-        self.label_2.setGeometry(QtCore.QRect(460, 100, 51, 51))
+        self.label_2.setGeometry(QtCore.QRect(470, 100, 51, 51))
         self.label_2.setStyleSheet(
 "color:#FFF;\n"
-"font-size: 27px;\n"
+"font-size: 25px;\n"
 "font-weight:bold;\n"
 "font-family:Copperplate Gothic Bold, sans-serif;\n"
 "\n"
@@ -36,7 +36,7 @@ class Ui_MainWindow(object):
         self.label_2.setObjectName("label_2")
         self.label_3 = QtWidgets.QLabel(self.centralwidget)
         self.label_3.setGeometry(QtCore.QRect(420, 140, 131, 81))
-        self.label_3.setStyleSheet("font-size: 27px;\n"
+        self.label_3.setStyleSheet("font-size: 25px;\n"
 "color:white;\n"
 "font-weight:bold;\n"
 "font-family:Copperplate Gothic Bold, sans-serif;\n"
