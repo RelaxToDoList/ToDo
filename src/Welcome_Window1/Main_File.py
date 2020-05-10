@@ -58,9 +58,9 @@ class Settings_Menu(QtWidgets.QMainWindow, Ui_Settings):
         self.setting_menu.clicked.connect(self.settings_but_open)
         self.mainwindow_button.clicked.connect(self.back_main)
         self.statistic_button.clicked.connect(self.statistic_menu)
-        self.change_name.clicked.connect(self.change_name_func)
+        #self.change_name.clicked.connect(self.change_name_func)
         #self.change_secname.clicked.connect(self.change_secname_func)
-        #self.change_avatar.clicked.connect(self.choose_picture_dialog_open)
+        self.change_avatar.clicked.connect(self.choose_picture_dialog_open)
 
     def change_name_func(self):
         self.change_name_pressed()
