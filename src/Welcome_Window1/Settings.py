@@ -126,7 +126,7 @@ class Ui_Settings(object):
 "")
         self.second_name.setObjectName("second_name")
         self.name = QtWidgets.QLabel(self.centralwidget)
-        self.name.setGeometry(QtCore.QRect(180, 320, 51, 16))
+        self.name.setGeometry(QtCore.QRect(180, 303, 51, 50))
         self.name.setStyleSheet("color: #FFFFFF;\n"
 "font-size:16px;\n"
 "font-weight:bold;\n"
@@ -134,7 +134,7 @@ class Ui_Settings(object):
 "")
         self.name.setObjectName("name")
         self.secname = QtWidgets.QLabel(self.centralwidget)
-        self.secname.setGeometry(QtCore.QRect(200, 380, 91, 21))
+        self.secname.setGeometry(QtCore.QRect(200, 365, 91, 50))
         self.secname.setStyleSheet("font-size: 16px;\n"
 "font-weight: bold;\n"
 "color: #FFFFFF;\n"
@@ -266,8 +266,8 @@ class Ui_Settings(object):
         self.second_name.raise_()
         self.name.raise_()
         self.secname.raise_()
-        self.change_name.raise_()
-        self.change_secname.raise_()
+        #self.change_name.raise_()
+        #self.change_secname.raise_()
         self.secondname_change.raise_()
         self.secondname_change.hide()
         self.firstname_change.raise_()
