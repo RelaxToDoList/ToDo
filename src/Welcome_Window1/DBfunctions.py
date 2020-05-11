@@ -100,3 +100,9 @@ def import_pict_binary(pict_path):
     f = open(pict_path, 'rb')
     pict_binary = f.read()
     return pict_binary
+
+def show_avatar():
+    if pict_export(User_ID) == 0:
+        return 0;
+    photopath = pict_export(User_ID)
+    return photopath;
