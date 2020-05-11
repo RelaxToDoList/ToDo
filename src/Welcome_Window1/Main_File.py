@@ -107,6 +107,7 @@ class Fifth_Window(QtWidgets.QMainWindow, Ui_Core):
         self.settings_but_open.clicked.connect(self.nextWindow)
         self.show_first_last()
         self.show_Avatar()
+        self.tableWidget.setCellWidget(0,0,self.plus_button)
         self.plus_button.clicked.connect(self.add_task_button_clicked)
         self.okey.clicked.connect(self.add_task_button_clicked)
         self.left_button.clicked.connect(self.left_button_popup_window_open)
@@ -120,14 +121,12 @@ class Fifth_Window(QtWidgets.QMainWindow, Ui_Core):
         self.next = Settings_Menu()
         self.next.show()
         self.close()
-    def show_task(self,text_task):
-        self.deal_text.setText(DBfunctions.read_db('Task_text', 'tasks', 'User_ID', User_ID))
     def Add_Task(self):
         text_task = self.line_enter.text()
         task = [None, None, None, text_task, User_ID]
         DBfunctions.write_in_db_tasks(task)
         self.line_enter.clear()
-        self.show_task(text_task)
+        self.addWidgetss(text_task)
 
 class Fourth_Window(QtWidgets.QMainWindow, Ui_Choose_Theme): ## Window of theme choosing
     def __init__(self, parent = None):
