@@ -1,6 +1,8 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 import Choose_Theme
-
+from PyQt5.QtCore    import *
+from PyQt5.QtGui     import *
+from PyQt5.QtWidgets import *
 class Ui_Core(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
@@ -21,6 +23,21 @@ class Ui_Core(object):
         self.progress.setStyleSheet("border: 15px;"
         "color: ;")
         self.progress.setValue(50)
+        self.tableWidget = QtWidgets.QTableWidget(self.centralwidget)
+        self.tableWidget.setObjectName("tableWidget")
+        self.tableWidget.setGeometry(380,141,700,335)
+        self.tableWidget.setShowGrid(False)
+        self.tableWidget.verticalHeader().hide()
+        self.tableWidget.horizontalHeader().hide()
+        self.tableWidget.setRowCount(10)
+        self.tableWidget.setColumnCount(3)
+        self.tableWidget.resizeColumnsToContents()
+        self.tableWidget.setFocusPolicy(Qt.NoFocus)
+        self.tableWidget.setSelectionMode(QAbstractItemView.NoSelection)
+        self.tableWidget.setEditTriggers(QAbstractItemView.NoEditTriggers)
+        self.tableWidget.setColumnWidth(0,50)
+        self.tableWidget.setColumnWidth(1,300)
+        self.tableWidget.setColumnWidth(2,200)
         self.radio_monday = QtWidgets.QRadioButton(self.centralwidget)
         self.radio_monday.setGeometry(QtCore.QRect(90, 167, 150, 50))
         self.radio_monday.setObjectName("radio_monday")
@@ -211,11 +228,10 @@ class Ui_Core(object):
         self.gridLayout_2.setSizeConstraint(QtWidgets.QLayout.SetNoConstraint)
         self.gridLayout_2.setContentsMargins(0, 0, 0, 0)
         self.gridLayout_2.setObjectName("gridLayout_2")
-        self.check_box = QtWidgets.QToolButton(self.gridLayoutWidget)
-        self.check_box.setIconSize(QtCore.QSize(24,24))
+        self.check_box = QtWidgets.QToolButton(self.centralwidget)
+        self.check_box.setIconSize(QtCore.QSize(27,27))
         self.check_box.setStyleSheet("border:none")
         self.check_box.setObjectName("check_box")
-        self.gridLayout_2.addWidget(self.check_box, 0, 0, 1, 1)
         self.deal_text = QtWidgets.QLabel(self.gridLayoutWidget)
         self.deal_text.setText("Your Task")
         self.deal_text.setObjectName("deal_text")
@@ -242,22 +258,15 @@ class Ui_Core(object):
         self.notification_single_but.setStyleSheet("border:none;\n")
         self.notification_single_but.setIconSize(QtCore.QSize(25,25))
         self.notification_single_but.setObjectName("notification_single_but")
-        self.plus_button = QtWidgets.QToolButton(self.gridLayoutWidget)
+        self.plus_button = QtWidgets.QToolButton(self.centralwidget)
         self.plus_button.setStyleSheet("border:none;\n")
         self.plus_button.setIconSize(QtCore.QSize(24,24))
         self.plus_button.setIcon(QtGui.QIcon("icons/icon_plus.png"))
         self.plus_button.setObjectName("plus_button")
-        self.gridLayout_2.addWidget(self.plus_button, 2, 0, 1, 1)
-        self.add_task = QtWidgets.QLabel(self.gridLayoutWidget)
+        self.add_task = QtWidgets.QLabel(self.centralwidget)
         self.add_task.setText("Add task")
         self.add_task.setText("Add")
         self.add_task.setObjectName("add_task")
-        self.gridLayout_2.addWidget(self.add_task, 2, 1, 1, 1)
-        self.line = QtWidgets.QFrame(self.gridLayoutWidget)
-        self.line.setFrameShape(QtWidgets.QFrame.HLine)
-        self.line.setFrameShadow(QtWidgets.QFrame.Sunken)
-        self.line.setObjectName("line")
-        self.gridLayout_2.addWidget(self.line, 1, 0, 1, 4)
         self.label.raise_()
         self.left_button.raise_()
         self.Settings_but.raise_()
@@ -270,6 +279,7 @@ class Ui_Core(object):
         self.gridLayoutWidget.raise_()
         self.do.raise_()
         self.did.raise_()
+        self.tableWidget.raise_()
         self.graphicsView.raise_()
         self.progress.raise_()
         self.settings_popup.raise_()
@@ -387,7 +397,7 @@ class Ui_Core(object):
             "font-size:12px;"
             "border:none;"
             "font-weight: bold;")
-            self.check_box.setIcon(QtGui.QIcon("icons/Empty_Box_Light.png"))
+            self.check_box.setIcon(QtGui.QIcon("icons/Empty_Box_Dark.png"))
             self.deal_text.setStyleSheet("color:#161616;\n"
             "font-weight:bold;\n"
             "font-family: Calibri, Candara, Segoe, \\Segoe UI\\, Optima, Arial, sans-serif;"
@@ -425,6 +435,21 @@ class Ui_Core(object):
             "font-size:20px;")
             self.label_task_prog.setStyleSheet("color: #474747;"
             "font-size:20px;")
+            self.tableWidget.setStyleSheet("QTableWidget{"
+            "background-color:#D7D7D7;"
+            "color:white;\n"
+            "font-weight:bold;\n"
+            "font-family: Calibri, Candara, Segoe, \\Segoe UI\\, Optima, Arial, sans-serif;"
+            "font-size:20px;"
+            "selection-background-color:#D7D7D7;"
+            "border: none;}"
+            "QTableWidget:item {"
+            "border-style:2px solid;"
+            "gridline-color: #fffff8;"
+            "border-color:#D7D7D7; }"
+            #"QTableView:item {"
+        #    "border-bottom: 2px solid white;}"
+            )
         else:
             self.add_task.setStyleSheet("color: #949494;"
             "font-size:14px;")
@@ -436,7 +461,7 @@ class Ui_Core(object):
     "font-weight:bold;\n"
     "font-family: Calibri, Candara, Segoe, \\Segoe UI\\, Optima, Arial, sans-serif;"
     "font-size:16px;")
-            self.check_box.setIcon(QtGui.QIcon("icons/Empty_Box_Light.png"))
+            self.check_box.setIcon(QtGui.QIcon("icons/Empty_Box_Dark.png"))
             self.SecondName.setStyleSheet("color: #FFFFFF;\n"
     "font-size: 20px;\n"
     "font-family: Calibri, Candara, Segoe, \"Segoe UI\", Optima, Arial, sans-serif;\n"
@@ -463,6 +488,21 @@ class Ui_Core(object):
             "font-size: 20px;")
             self.settings_popup.setStyleSheet("background-color: #666666;"
             "border:5px black")
+            self.tableWidget.setStyleSheet("QTableWidget{"
+            "background-color:#0D0D0D;"
+            "color:white;\n"
+            "font-weight:bold;\n"
+            "font-family: Calibri, Candara, Segoe, \\Segoe UI\\, Optima, Arial, sans-serif;"
+            "font-size:20px;"
+            "selection-background-color:#0D0D0D;"
+            "border: none;}"
+            "QTableWidget:item {"
+            "border-style:2px solid;"
+            "gridline-color: #fffff8;"
+            "border-color:#0D0D0D; }"
+            #"QTableView:item {"
+        #    "border-bottom: 2px solid white;}"
+            )
     def left_button_popup_window_open(self):
         self.radio_tuesday.show()
         self.radio_wednesday.show()
@@ -548,16 +588,30 @@ class Ui_Core(object):
         self.account_label.hide()
         self.Settings_but.clicked.connect(self.settings_but_clicked)
     def check_box_unchecked(self):
-        if Choose_Theme == 0:
+        if Choose_Theme.theme == 0:
             self.check_box.setIcon(QtGui.QIcon("icons/Empty_Box_Dark.png"))
             self.check_box.clicked.connect(self.check_box_checked)
         else:
             self.check_box.setIcon(QtGui.QIcon("icons/Empty_Box_Light.png"))
             self.check_box.clicked.connect(self.check_box_checked)
     def check_box_checked(self):
-        if Choose_Theme == 0:
+        if Choose_Theme.theme == 0:
             self.check_box.setIcon(QtGui.QIcon("icons/Checkbox_Dark.png"))
             self.check_box.clicked.connect(self.check_box_unchecked)
         else:
             self.check_box.setIcon(QtGui.QIcon("icons/Checkbox_Light.png"))
             self.check_box.clicked.connect(self.check_box_unchecked)
+
+
+    def addWidgetss(self,text_task):  # Not real. Just for seeing
+        row = self.tableWidget.rowCount()
+        self.tableWidget.insertRow(row)
+        row = row - 9
+        time2 = 0
+        item = QTableWidgetItem(text_task)
+        time = QTableWidgetItem(f"Remaining Time: {time2}")
+        self.tableWidget.setCellWidget(row,0,self.check_box)
+        self.tableWidget.setItem(row,1,item)
+        self.tableWidget.setItem(row,2,time)
+        row = row + 1
+        self.tableWidget.setCellWidget(row,0,self.plus_button)
