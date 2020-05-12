@@ -100,7 +100,7 @@ class Ui_Core(object):
         "font-size:20px;")
         self.label_sunday.setObjectName("label_sunday")
         self.todo_list_week = QtWidgets.QLabel(self.centralwidget)
-        self.todo_list_week.setGeometry(QtCore.QRect(10,124,300,50))
+        self.todo_list_week.setGeometry(QtCore.QRect(10,124,350,50))
         self.todo_list_week.setObjectName("todo_list_week")
         self.todo_list_week.setStyleSheet("color:black;"
         "font-size:21px;"
@@ -188,9 +188,9 @@ class Ui_Core(object):
         self.notification_but.setObjectName("notification_but")
         self.notification_but.setStyleSheet("border:none;")
         self.day = QtWidgets.QLabel(self.centralwidget)
-        self.day.setGeometry(QtCore.QRect(400, 80, 71, 31))
+        self.day.setGeometry(QtCore.QRect(400, 80, 77, 31))
         self.day.setStyleSheet("color: #FFFFFF;\n"
-"font-size: 24px;\n"
+"font-size: 24px;\n"#
 "font-weight: 900;\n"
 "font-family: Calibri, Candara, Segoe, \"Segoe UI\", Optima, Arial, sans-serif;\n"
 "font-style:normal;")
@@ -240,7 +240,7 @@ class Ui_Core(object):
         self.accept.setStandardButtons(QtWidgets.QDialogButtonBox.Cancel|QtWidgets.QDialogButtonBox.Ok)
         self.accept.setObjectName("accept")
         self.label_hint = QtWidgets.QLabel(self.centralwidget)
-        self.label_hint.setGeometry(QtCore.QRect(600,300,150,70))
+        self.label_hint.setGeometry(QtCore.QRect(600,300,152,70))
         self.label_hint.setObjectName("label_hint")
         self.label_hint.setStyleSheet("color: black;"
         "font-size:14px;"
@@ -364,7 +364,7 @@ class Ui_Core(object):
         self.label_daily_task.setText(_translate("MainWindow","Your Daily task:"))
         self.label_task_prog.setText(_translate("MainWindow","task"))
         self.daily_add_button.setText(_translate("MainWindow","Add"))
-        self.todo_list_week.setText(_translate("MainWindow","To do list by the day of the week:"))
+        self.todo_list_week.setText(_translate("MainWindow","Choose day of the week:"))
         self.label_monday.setText(_translate("MainWindow","Monday"))
         self.label_tuesday.setText(_translate("MainWindow","Tuesday"))
         self.label_wednesday.setText(_translate("MainWindow","Wednesday"))
@@ -401,7 +401,7 @@ class Ui_Core(object):
             self.deal_text.setStyleSheet("color:#161616;\n"
             "font-weight:bold;\n"
             "font-family: Calibri, Candara, Segoe, \\Segoe UI\\, Optima, Arial, sans-serif;"
-            "font-size:16px;")
+            "font-size:10px;")
             self.Data.setStyleSheet("color:#605E5E;"
             "font-size:16px;")
             self.day.setStyleSheet("color: black;\n"
