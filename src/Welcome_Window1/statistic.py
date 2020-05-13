@@ -1,6 +1,8 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
+from PyQt5.QtCore import Qt
+from PyQt5.QtGui import QBrush, QColor, QPalette
 import Choose_Theme
-
+from qroundprogressbar import QRoundProgressBar
 class Ui_Statistic(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
@@ -13,10 +15,6 @@ class Ui_Statistic(object):
         self.background.setPixmap(QtGui.QPixmap("icons/background_Settings.png"))
         self.background.setScaledContents(True)
         self.background.setObjectName("background")
-        self.progressBar = QtWidgets.QProgressBar(self.centralwidget)
-        self.progressBar.setGeometry(QtCore.QRect(350, 50, 241, 191))
-        self.progressBar.setProperty("value", 24)
-        self.progressBar.setObjectName("progressBar")
         self.line = QtWidgets.QFrame(self.centralwidget)
         self.line.setGeometry(QtCore.QRect(50, 270, 852, 3))
         self.line.setStyleSheet("background-color:#666666;\n"
@@ -24,6 +22,18 @@ class Ui_Statistic(object):
         self.line.setFrameShape(QtWidgets.QFrame.HLine)
         self.line.setFrameShadow(QtWidgets.QFrame.Sunken)
         self.line.setObjectName("line")
+        self.progress_bar = QRoundProgressBar(self.centralwidget)
+        self.progress_bar.setGeometry(QtCore.QRect(350,50,241,191))
+        self.progress_bar.setBarStyle(QRoundProgressBar.BarStyle.DONUT)
+        self.palette = QPalette()
+        self.brush = QBrush(QColor(138,43,226))
+        self.brush.setStyle(Qt.SolidPattern)
+        self.palette.setBrush(QPalette.Active,QPalette.Highlight, self.brush)
+        self.progress_bar.setPalette(self.palette)
+        self.progress_bar.show()
+        self.progress_bar.setValue(0)
+        self.progress_bar.setStyleSheet("background-color:#0D0D0D;"
+        "color: #414040;")
         self.all_task = QtWidgets.QLabel(self.centralwidget)
         self.all_task.setGeometry(QtCore.QRect(50, 280, 301, 41))
         font = QtGui.QFont()
