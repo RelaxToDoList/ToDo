@@ -6,6 +6,8 @@
 
 2.Устанавливаем PyQt5 через pip "pip install PyQt5"
 
+3. Устанавливаем QRoundProgressBar  через pip "pip install qroundprogressbar"
+
 Работа с базой данных:
 
 Все функции находятся в файле "DBfunctions.py"
