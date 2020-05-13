@@ -1,8 +1,11 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
+from PyQt5.QtCore import Qt
+from PyQt5.QtGui import QBrush, QColor, QPalette
 import Choose_Theme
 from PyQt5.QtCore    import *
 from PyQt5.QtGui     import *
 from PyQt5.QtWidgets import *
+from qroundprogressbar import QRoundProgressBar
 class Ui_Core(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
@@ -18,11 +21,6 @@ class Ui_Core(object):
 "        }\n"
 "")
         self.centralwidget.setObjectName("centralwidget")
-        self.progress = QtWidgets.QProgressBar(self)
-        self.progress.setGeometry(130,410,141,64)
-        self.progress.setStyleSheet("border: 15px;"
-        "color: ;")
-        self.progress.setValue(50)
         self.tableWidget = QtWidgets.QTableWidget(self.centralwidget)
         self.tableWidget.setObjectName("tableWidget")
         self.tableWidget.setGeometry(380,141,700,335)
@@ -38,6 +36,18 @@ class Ui_Core(object):
         self.tableWidget.setColumnWidth(0,50)
         self.tableWidget.setColumnWidth(1,300)
         self.tableWidget.setColumnWidth(2,200)
+        self.progress = QRoundProgressBar(self.centralwidget)
+        self.progress.setGeometry(QtCore.QRect(125,410,141,100))
+        self.progress.setBarStyle(QRoundProgressBar.BarStyle.DONUT)
+        self.palette = QPalette()
+        self.brush = QBrush(QColor(138,43,226))
+        self.brush.setStyle(Qt.SolidPattern)
+        self.palette.setBrush(QPalette.Active,QPalette.Highlight, self.brush)
+        self.progress.setPalette(self.palette)
+        self.progress.show()
+        self.progress.setValue(0)
+        self.progress.setStyleSheet("background-color:#333333;"
+        "color: #414040;")
         self.radio_monday = QtWidgets.QRadioButton(self.centralwidget)
         self.radio_monday.setGeometry(QtCore.QRect(90, 167, 150, 50))
         self.radio_monday.setObjectName("radio_monday")
@@ -273,6 +283,7 @@ class Ui_Core(object):
         self.notification_but.raise_()
         self.Data.raise_()
         self.FirstName.raise_()
+        self.progress.raise_()
         self.day.raise_()
         self.SecondName.raise_()
         self.Avatar.raise_()
@@ -281,7 +292,6 @@ class Ui_Core(object):
         self.did.raise_()
         self.tableWidget.raise_()
         self.graphicsView.raise_()
-        self.progress.raise_()
         self.settings_popup.raise_()
         self.settings_but_open.raise_()
         self.line_enter.raise_()
