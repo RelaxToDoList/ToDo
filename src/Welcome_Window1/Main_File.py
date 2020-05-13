@@ -14,9 +14,17 @@ class Statistic_Menu(QtWidgets.QMainWindow, Ui_Statistic):
         super(Statistic_Menu,self).__init__(parent)
         self.setupUi(self)
         self.check_theme()
+        self.completed = 20
+        self.failed = 5
+        self.check_statistic()
         self.settings_but.clicked.connect(self.popup_window_open)
         self.mainwindow_button.clicked.connect(self.mainWindow)
         self.statistic_button.clicked.connect(self.statisticMenu)
+
+    def check_statistic(self):
+        statistic = self.completed + self.failed
+
+        self.progress_bar.setValue((self.completed/statistic)*100)
     def mainWindow(self):
         self.previous = Fifth_Window()
         self.close()
@@ -54,6 +62,9 @@ class Fifth_Window(QtWidgets.QMainWindow, Ui_Core):
     def __init__(self,parent = None):
         super(Fifth_Window, self).__init__(parent)
         self.setupUi(self)
+        self.completed = 20
+        self.failed = 5
+        self.check_statistic()
         self.check_theme_person()
         self.check_box.clicked.connect(self.check_box_checked)
         self.Settings_but.clicked.connect(self.settings_but_clicked)
@@ -64,6 +75,9 @@ class Fifth_Window(QtWidgets.QMainWindow, Ui_Core):
         self.left_button.clicked.connect(self.left_button_popup_window_open)
         self.statistic_button.clicked.connect(self.statisticMenu)
         self.okey.clicked.connect(self.Add_Task)
+    def check_statistic(self):
+        statistic = self.completed + self.failed
+        self.progress.setValue((self.completed/statistic)*100)
     def statisticMenu(self):
         self.next = Statistic_Menu()
         self.next.show()
