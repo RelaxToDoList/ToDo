@@ -61,7 +61,7 @@ class Ui_Choose_Theme(object):
         self.Light = QtWidgets.QLabel(self.centralwidget)
         self.Light.setGeometry(QtCore.QRect(230, 220, 61, 31))
         self.Light.setStyleSheet("color: #363636;\n"
-"font-size: 24px;\n"
+"font-size: 22px;\n"
 "font-weight: bold;\n"
 "font-family: Calibri, Candara, Segoe, \"Segoe UI\", Optima, Arial, sans-serif;\n"
 "font-style: normal;")
@@ -73,9 +73,9 @@ class Ui_Choose_Theme(object):
 "")
         self.Dark_border_up.setObjectName("Dark_border_up")
         self.Dark = QtWidgets.QLabel(self.centralwidget)
-        self.Dark.setGeometry(QtCore.QRect(640, 220, 51, 31))
+        self.Dark.setGeometry(QtCore.QRect(640, 220, 60, 31))
         self.Dark.setStyleSheet("color: #D7D7D7;\n"
-"font-size: 24px;\n"
+"font-size: 22px;\n"
 "font-weight: bold;\n"
 "font-family: Calibri, Candara, Segoe, \"Segoe UI\", Optima, Arial, sans-serif;\n"
 "font-style: normal;")
