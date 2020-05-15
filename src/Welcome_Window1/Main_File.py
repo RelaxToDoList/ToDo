@@ -124,6 +124,7 @@ class Fifth_Window(QtWidgets.QMainWindow, Ui_Core):
         self.left_button.clicked.connect(self.left_button_popup_window_open)
         self.statistic_button.clicked.connect(self.statisticMenu)
         self.okey.clicked.connect(self.Add_Task)
+        self.plus_button.clicked.connect(self.Output_Task) #Написал это, чтобы проверить работоспособность
     def check_statistic(self):
         statistic = self.completed + self.failed
         self.progress.setValue((self.completed/statistic)*100)
@@ -141,7 +142,14 @@ class Fifth_Window(QtWidgets.QMainWindow, Ui_Core):
         DBfunctions.write_in_db_tasks(task)
         self.line_enter.clear()
         self.addWidgetss(text_task)
-
+    def Output_Task(self):
+        conn = sqlite3.connect("Data_base/DataBase.db")
+        cursor = conn.cursor()
+        cursor.execute("SELECT Task_text FROM tasks")
+        task_db = cursor.fetchall()
+        self.addWidgetssDB(task_db)
+        print(task_db) #Написал это, чтобы удостовериться во взятии данных из базы
+        conn.close()
 class Fourth_Window(QtWidgets.QMainWindow, Ui_Choose_Theme): ## Window of theme choosing
     def __init__(self, parent = None):
         super(Fourth_Window, self).__init__(parent)
@@ -159,7 +167,6 @@ class Third_Window(QtWidgets.QMainWindow, Ui_Welcome): ## Window of Welcoming us
         self.setupUi(self)
         self.usersname.setText(DBfunctions.read_db('First', 'user', 'User_ID', User_ID))
         self.Letsgobutton_2.clicked.connect(self.nextWindow)
-
     def nextWindow(self):
         self.close()
         self.next = Fourth_Window()

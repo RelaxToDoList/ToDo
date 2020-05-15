@@ -612,6 +612,18 @@ class Ui_Core(object):
             self.check_box.setIcon(QtGui.QIcon("icons/Checkbox_Light.png"))
             self.check_box.clicked.connect(self.check_box_unchecked)
 
+    def addWidgetssDB(self,task_db):  # Not real. Just for seeing
+        row = self.tableWidget.rowCount()
+        self.tableWidget.insertRow(row)
+        row = row - 9
+        time2 = 0
+        item = QTableWidgetItem(deal_text)
+        time = QTableWidgetItem(f"Remaining Time: {time2}")
+        self.tableWidget.setCellWidget(row,0,self.check_box)
+        self.tableWidget.setItem(row,1,item)
+        self.tableWidget.setItem(row,2,time)
+        row = row + 1
+        self.tableWidget.setCellWidget(row,0,self.plus_button)
 
     def addWidgetss(self,text_task):  # Not real. Just for seeing
         row = self.tableWidget.rowCount()
