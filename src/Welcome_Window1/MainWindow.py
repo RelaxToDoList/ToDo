@@ -625,15 +625,15 @@ class Ui_Core(object):
         row = row + 1
         self.tableWidget.setCellWidget(row,0,self.plus_button)
 
-    def addWidgetss(self,text_task):  # Not real. Just for seeing
+    def addWidgetss(self,text_task, str1, str2):  # Not real. Just for seeing
         row = self.tableWidget.rowCount()
         self.tableWidget.insertRow(row)
-        row = row - 9
+        row = row - str1
         time2 = 0
         item = QTableWidgetItem(text_task)
-        time = QTableWidgetItem(f"Remaining Time: {time2}")
+        time = QTableWidgetItem("Remaining Time: {time2}")
         self.tableWidget.setCellWidget(row,0,self.check_box)
         self.tableWidget.setItem(row,1,item)
         self.tableWidget.setItem(row,2,time)
-        row = row + 1
+        row = row + str2
         self.tableWidget.setCellWidget(row,0,self.plus_button)

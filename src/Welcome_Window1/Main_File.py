@@ -11,6 +11,7 @@ import os.path
 import DBfunctions
 import sqlite3
 import random
+
 class Statistic_Menu(QtWidgets.QMainWindow, Ui_Statistic):
     def __init__(self,parent = None):
         super(Statistic_Menu,self).__init__(parent)
@@ -111,6 +112,8 @@ class Fifth_Window(QtWidgets.QMainWindow, Ui_Core):
         self.setupUi(self)
         self.completed = 20
         self.failed = 5
+        self.str1 = 10
+        self.str2 = 1
         self.check_statistic()
         self.check_theme_person()
         self.check_box.clicked.connect(self.check_box_checked)
@@ -124,7 +127,6 @@ class Fifth_Window(QtWidgets.QMainWindow, Ui_Core):
         self.left_button.clicked.connect(self.left_button_popup_window_open)
         self.statistic_button.clicked.connect(self.statisticMenu)
         self.okey.clicked.connect(self.Add_Task)
-        self.plus_button.clicked.connect(self.Output_Task) #Написал это, чтобы проверить работоспособность
     def check_statistic(self):
         statistic = self.completed + self.failed
         self.progress.setValue((self.completed/statistic)*100)
@@ -141,15 +143,18 @@ class Fifth_Window(QtWidgets.QMainWindow, Ui_Core):
         task = [None, None, None, text_task, User_ID]
         DBfunctions.write_in_db_tasks(task)
         self.line_enter.clear()
-        self.addWidgetss(text_task)
-    def Output_Task(self):
-        conn = sqlite3.connect("Data_base/DataBase.db")
-        cursor = conn.cursor()
-        cursor.execute("SELECT Task_text FROM tasks")
-        task_db = cursor.fetchall()
-        self.addWidgetssDB(task_db)
-        print(task_db) #Написал это, чтобы удостовериться во взятии данных из базы
-        conn.close()
+        self.str1 = self.str1 - 1
+        if self.str1 < 4:
+            self.str2 = self.str2 + 1
+        self.addWidgetss(text_task, self.str1, self.str2)
+#    def Output_Task(self):
+#        conn = sqlite3.connect("Data_base/DataBase.db")
+#        cursor = conn.cursor()
+#        cursor.execute("SELECT Task_text FROM tasks")
+#        task_db = cursor.fetchall()
+#        self.addWidgetssDB(task_db)
+#        print(task_db) #Написал это, чтобы удостовериться во взятии данных из базы
+#        conn.close()
 class Fourth_Window(QtWidgets.QMainWindow, Ui_Choose_Theme): ## Window of theme choosing
     def __init__(self, parent = None):
         super(Fourth_Window, self).__init__(parent)
