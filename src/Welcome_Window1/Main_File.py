@@ -11,6 +11,7 @@ import os.path
 import DBfunctions
 import sqlite3
 import random
+import datetime
 
 class Statistic_Menu(QtWidgets.QMainWindow, Ui_Statistic):
     def __init__(self,parent = None):
@@ -110,6 +111,23 @@ class Fifth_Window(QtWidgets.QMainWindow, Ui_Core):
     def __init__(self,parent = None):
         super(Fifth_Window, self).__init__(parent)
         self.setupUi(self)
+        time = datetime.datetime.today()
+        self.setupUi(self)
+        self.Data.setText(time.strftime("%A, %d %B"))
+        # if time == 0:
+        #     self.Data.setText("Monday")
+        # if time == 1:
+        #     self.Data.setText("Tuesday")
+        # if time == 2:
+        #     self.Data.setText("Wednesday")
+        # if time == 3:
+        #     self.Data.setText("Thursday")
+        # if time == 4:
+        #     self.Data.setText("Friday")
+        # if time == 5:
+        #     self.Data.setText("Saturday")
+        # if time == 6:
+        #     self.data.setText("Sunday")
         self.completed = 20
         self.failed = 5
         self.str1 = 10
@@ -139,6 +157,10 @@ class Fifth_Window(QtWidgets.QMainWindow, Ui_Core):
         self.next.show()
         self.close()
     def Add_Task(self):
+        time = datetime.datetime.today()
+        time_deadline = time + datetime.timedelta(days = 1)
+        time_deadline_time = time_deadline-time
+        time_deadline_time = (time_deadline_time.total_seconds())/3600
         text_task = self.line_enter.text()
         task = [None, None, None, text_task, User_ID]
         DBfunctions.write_in_db_tasks(task)
@@ -146,7 +168,7 @@ class Fifth_Window(QtWidgets.QMainWindow, Ui_Core):
         self.str1 = self.str1 - 1
         if self.str1 < 4:
             self.str2 = self.str2 + 1
-        self.addWidgetss(text_task, self.str1, self.str2)
+        self.addWidgetss(text_task, self.str1, self.str2,time_deadline_time)
 #    def Output_Task(self):
 #        conn = sqlite3.connect("Data_base/DataBase.db")
 #        cursor = conn.cursor()
