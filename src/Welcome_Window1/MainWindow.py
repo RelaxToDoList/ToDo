@@ -6,6 +6,7 @@ from PyQt5.QtCore    import *
 from PyQt5.QtGui     import *
 from PyQt5.QtWidgets import *
 from qroundprogressbar import QRoundProgressBar
+import random
 class Ui_Core(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
@@ -184,7 +185,7 @@ class Ui_Core(object):
         self.Settings_but.setText("")
         self.Settings_but.setObjectName("Settings_but")
         self.daily_add_button = QtWidgets.QToolButton(self.centralwidget)
-        self.daily_add_button.setGeometry(QtCore.QRect(70,99,25,20))
+        self.daily_add_button.setGeometry(QtCore.QRect(70,99,50,50))
         self.daily_add_button.setObjectName("daily_add_button")
         self.statistic_button = QtWidgets.QToolButton(self.centralwidget)
         self.statistic_button.setGeometry(QtCore.QRect(660,100,35,35))
@@ -206,7 +207,7 @@ class Ui_Core(object):
 "font-style:normal;")
         self.day.setObjectName("day")
         self.Data = QtWidgets.QLabel(self.centralwidget)
-        self.Data.setGeometry(QtCore.QRect(400, 50, 70, 31))
+        self.Data.setGeometry(QtCore.QRect(400, 50, 150, 31))
         self.Data.setStyleSheet("color:#949494;"
         "font-size:16px;")
         self.Data.setObjectName("Data")
@@ -450,7 +451,7 @@ class Ui_Core(object):
             "color:white;\n"
             "font-weight:bold;\n"
             "font-family: Calibri, Candara, Segoe, \\Segoe UI\\, Optima, Arial, sans-serif;"
-            "font-size:20px;"
+            "font-size:16px;"
             "selection-background-color:#D7D7D7;"
             "border: none;}"
             "QTableWidget:item {"
@@ -467,6 +468,7 @@ class Ui_Core(object):
             "font-family: Calibri, Candara, Segoe, \\Segoe UI\\, Optima, Arial, sans-serif;")
             self.graphicsView.setStyleSheet("background-color:#666666;"
             "border-radius:15px;")
+            self.check_box.setIcon(QtGui.QIcon("icons/Empty_Box_Light.png"))
             self.deal_text.setStyleSheet("color:white;\n"
     "font-weight:bold;\n"
     "font-family: Calibri, Candara, Segoe, \\Segoe UI\\, Optima, Arial, sans-serif;"
@@ -503,7 +505,7 @@ class Ui_Core(object):
             "color:white;\n"
             "font-weight:bold;\n"
             "font-family: Calibri, Candara, Segoe, \\Segoe UI\\, Optima, Arial, sans-serif;"
-            "font-size:20px;"
+            "font-size:16px;"
             "selection-background-color:#0D0D0D;"
             "border: none;}"
             "QTableWidget:item {"
@@ -607,33 +609,38 @@ class Ui_Core(object):
     def check_box_checked(self):
         if Choose_Theme.theme == 0:
             self.check_box.setIcon(QtGui.QIcon("icons/Checkbox_Dark.png"))
-            self.check_box.clicked.connect(self.check_box_unchecked)
         else:
             self.check_box.setIcon(QtGui.QIcon("icons/Checkbox_Light.png"))
-            self.check_box.clicked.connect(self.check_box_unchecked)
 
-    def addWidgetssDB(self,task_db):  # Not real. Just for seeing
-        row = self.tableWidget.rowCount()
-        self.tableWidget.insertRow(row)
-        row = row - 9
-        time2 = 0
-        item = QTableWidgetItem(deal_text)
-        time = QTableWidgetItem(f"Remaining Time: {time2}")
-        self.tableWidget.setCellWidget(row,0,self.check_box)
-        self.tableWidget.setItem(row,1,item)
-        self.tableWidget.setItem(row,2,time)
-        row = row + 1
-        self.tableWidget.setCellWidget(row,0,self.plus_button)
+    def addtaskfromfile(self):
+        taskfile = open("tasks/tasks.txt","r", encoding ='utf-8')
+        row = random.randint(0,17)
+        lines = taskfile.readlines()[row]
+        lines = str(lines)
+        self.add_task_random(lines)
 
-    def addWidgetss(self,text_task, str1, str2):  # Not real. Just for seeing
+    # def addWidgetssDB(self,task_db):  # Not real. Just for seeing
+    #     row = self.tableWidget.rowCount()
+    #     self.tableWidget.insertRow(row)
+    #     row = row - 9
+    #     time2 = 0
+    #     item = QTableWidgetItem(deal_text)
+    #     time = QTableWidgetItem(f"Remaining Time: {time2}")
+    #     self.tableWidget.setCellWidget(row,0,self.check_box)
+    #     self.tableWidget.setItem(row,1,item)
+    #     self.tableWidget.setItem(row,2,time)
+    #     row = row + 1
+    #     self.tableWidget.setCellWidget(row,0,self.plus_button)
+
+    def addWidgetss(self,text_task, str1, str2,time_deadline_time):  # Not real. Just for seeing
         row = self.tableWidget.rowCount()
         self.tableWidget.insertRow(row)
         row = row - str1
-        time2 = 0
+        time = QTableWidgetItem(time_deadline_time)
+        object = self.check_box
         item = QTableWidgetItem(text_task)
-        time = QTableWidgetItem("Remaining Time: {time2}")
-        self.tableWidget.setCellWidget(row,0,self.check_box)
+        self.tableWidget.setCellWidget(row,0,object)
         self.tableWidget.setItem(row,1,item)
-        self.tableWidget.setItem(row,2,time)
+        self.tableWidget.setItem(row,2,QTableWidgetItem(f"Remaining time: {time_deadline_time} hours"))
         row = row + str2
         self.tableWidget.setCellWidget(row,0,self.plus_button)
