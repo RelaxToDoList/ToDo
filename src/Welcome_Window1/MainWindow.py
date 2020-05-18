@@ -206,7 +206,7 @@ class Ui_Core(object):
 "font-style:normal;")
         self.day.setObjectName("day")
         self.Data = QtWidgets.QLabel(self.centralwidget)
-        self.Data.setGeometry(QtCore.QRect(400, 50, 70, 31))
+        self.Data.setGeometry(QtCore.QRect(400, 50, 150, 31))
         self.Data.setStyleSheet("color:#949494;"
         "font-size:16px;")
         self.Data.setObjectName("Data")
@@ -503,7 +503,7 @@ class Ui_Core(object):
             "color:white;\n"
             "font-weight:bold;\n"
             "font-family: Calibri, Candara, Segoe, \\Segoe UI\\, Optima, Arial, sans-serif;"
-            "font-size:20px;"
+            "font-size:16px;"
             "selection-background-color:#0D0D0D;"
             "border: none;}"
             "QTableWidget:item {"
@@ -607,10 +607,8 @@ class Ui_Core(object):
     def check_box_checked(self):
         if Choose_Theme.theme == 0:
             self.check_box.setIcon(QtGui.QIcon("icons/Checkbox_Dark.png"))
-            self.check_box.clicked.connect(self.check_box_unchecked)
         else:
             self.check_box.setIcon(QtGui.QIcon("icons/Checkbox_Light.png"))
-            self.check_box.clicked.connect(self.check_box_unchecked)
 
     def addWidgetssDB(self,task_db):  # Not real. Just for seeing
         row = self.tableWidget.rowCount()
@@ -625,15 +623,15 @@ class Ui_Core(object):
         row = row + 1
         self.tableWidget.setCellWidget(row,0,self.plus_button)
 
-    def addWidgetss(self,text_task, str1, str2):  # Not real. Just for seeing
+    def addWidgetss(self,text_task, str1, str2,time_deadline_time):  # Not real. Just for seeing
         row = self.tableWidget.rowCount()
         self.tableWidget.insertRow(row)
         row = row - str1
-        time2 = 0
+        time = QTableWidgetItem(time_deadline_time)
+        object = self.check_box
         item = QTableWidgetItem(text_task)
-        time = QTableWidgetItem("Remaining Time: {time2}")
-        self.tableWidget.setCellWidget(row,0,self.check_box)
+        self.tableWidget.setCellWidget(row,0,object)
         self.tableWidget.setItem(row,1,item)
-        self.tableWidget.setItem(row,2,time)
+        self.tableWidget.setItem(row,2,QTableWidgetItem(f"Remaining time {time_deadline_time} hours"))
         row = row + str2
         self.tableWidget.setCellWidget(row,0,self.plus_button)
