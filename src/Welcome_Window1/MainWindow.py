@@ -619,20 +619,7 @@ class Ui_Core(object):
         lines = str(lines)
         self.add_task_random(lines)
 
-    # def addWidgetssDB(self,task_db):  # Not real. Just for seeing
-    #     row = self.tableWidget.rowCount()
-    #     self.tableWidget.insertRow(row)
-    #     row = row - 9
-    #     time2 = 0
-    #     item = QTableWidgetItem(deal_text)
-    #     time = QTableWidgetItem(f"Remaining Time: {time2}")
-    #     self.tableWidget.setCellWidget(row,0,self.check_box)
-    #     self.tableWidget.setItem(row,1,item)
-    #     self.tableWidget.setItem(row,2,time)
-    #     row = row + 1
-    #     self.tableWidget.setCellWidget(row,0,self.plus_button)
-
-    def addWidgetss(self,text_task, str1, str2,time_deadline_time):  # Not real. Just for seeing
+    def addWidgetss(self,text_task,str1,str2,time_deadline_time):
         row = self.tableWidget.rowCount()
         self.tableWidget.insertRow(row)
         row = row - str1
@@ -644,3 +631,16 @@ class Ui_Core(object):
         self.tableWidget.setItem(row,2,QTableWidgetItem(f"Remaining time: {time_deadline_time} hours"))
         row = row + str2
         self.tableWidget.setCellWidget(row,0,self.plus_button)
+    def Reading_Tasks(self,TaskNT,str1,str2,time_deadline_time):
+        row = self.tableWidget.rowCount()
+        self.tableWidget.insertRow(row)
+        row = row - str1
+        time = QTableWidgetItem(time_deadline_time)
+        object = self.check_box
+        item = QTableWidgetItem(TaskNT)
+        self.tableWidget.setCellWidget(row,0,object)
+        self.tableWidget.setItem(row,1,item)
+        self.tableWidget.setItem(row,2,QTableWidgetItem(f"Remaining time: {time_deadline_time} hours"))
+        row = row + str2
+        self.tableWidget.setCellWidget(row,0,self.plus_button)
+

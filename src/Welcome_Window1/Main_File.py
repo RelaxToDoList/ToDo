@@ -1,5 +1,6 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtWidgets import QMainWindow, QApplication, QFileDialog
+from PyQt5.QtCore import QTimer
 from Welcome1 import Ui_MainWindow
 from Introduction import Ui_Welcome
 from Signin import Ui_Sign
@@ -132,6 +133,7 @@ class Fifth_Window(QtWidgets.QMainWindow, Ui_Core):
         self.left_button.clicked.connect(self.left_button_popup_window_open)
         self.statistic_button.clicked.connect(self.statisticMenu)
         self.okey.clicked.connect(self.Add_Task)
+        self.plus_button.clicked.connect(self.Output_Task)
     def check_statistic(self):
         statistic = self.completed + self.failed
         self.progress.setValue((self.completed/statistic)*100)
@@ -156,6 +158,26 @@ class Fifth_Window(QtWidgets.QMainWindow, Ui_Core):
         if self.str1 < 4:
             self.str2 = self.str2 + 1
         self.addWidgetss(text_task, self.str1, self.str2,time_deadline_time)
+    def Output_Task(self):
+        time = datetime.datetime.today()
+        time_deadline = time + datetime.timedelta(days = 1)
+        time_deadline_time = time_deadline-time
+        time_deadline_time = (time_deadline_time.total_seconds())/3600
+        User = DBfunctions.read_db('User_ID', 'user', 'First', first_name)
+        conn = sqlite3.connect("Data_base/DataBase.db")
+        cursor = conn.cursor()
+        cursor.execute("SELECT Task_text FROM tasks WHERE User_ID = :User", {"User": User})
+        TaskDB = cursor.fetchall()
+        self.line_enter.clear()
+        for i in range(0,len(TaskDB),1):
+            Task = TaskDB[i]
+            TaskNT = Task[0]
+            self.str1 = self.str1 - 1
+            if self.str1 < 4:
+                self.str2 = self.str2 + 1
+            self.Reading_Tasks(TaskNT, self.str1, self.str2,time_deadline_time)
+            print(TaskNT)
+        conn.close()
     def add_task_random(self,text_task): #adding task from left_button_popup_window
         print(text_task)
         time = datetime.datetime.today()
@@ -168,14 +190,7 @@ class Fifth_Window(QtWidgets.QMainWindow, Ui_Core):
         if self.str1 < 4:
             self.str2 = self.str2 + 1
         self.addWidgetss(text_task, self.str1, self.str2,time_deadline_time)
-#    def Output_Task(self):
-#        conn = sqlite3.connect("Data_base/DataBase.db")
-#        cursor = conn.cursor()
-#        cursor.execute("SELECT Task_text FROM tasks")
-#        task_db = cursor.fetchall()
-#        self.addWidgetssDB(task_db)
-#        print(task_db) #Написал это, чтобы удостовериться во взятии данных из базы
-#        conn.close()
+
 class Fourth_Window(QtWidgets.QMainWindow, Ui_Choose_Theme): ## Window of theme choosing
     def __init__(self, parent = None):
         super(Fourth_Window, self).__init__(parent)
