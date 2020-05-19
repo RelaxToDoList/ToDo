@@ -71,7 +71,7 @@ class Ui_Core(object):
         self.radio_sunday.setGeometry(QtCore.QRect(85,407,150,50))
         self.radio_sunday.setObjectName("radio_sunday")
         self.label_task_prog = QtWidgets.QLabel(self.centralwidget)
-        self.label_task_prog.setGeometry(QtCore.QRect(10,94,90,25))
+        self.label_task_prog.setGeometry(QtCore.QRect(10,94,300,50))
         self.label_task_prog.setObjectName("label_task_prog")
         self.label_task_prog.setStyleSheet("color: white;"
         "font-size:20px;")
@@ -117,7 +117,7 @@ class Ui_Core(object):
         "font-size:21px;"
         "font-weight:bold;")
         self.label_daily_task = QtWidgets.QLabel(self.centralwidget)
-        self.label_daily_task.setGeometry(QtCore.QRect(10,44,200,50))
+        self.label_daily_task.setGeometry(QtCore.QRect(10,44,145,50))
         self.label_daily_task.setObjectName("label_daily_task")
         self.label_daily_task.setStyleSheet("color: black;"
         "font-size:21px; "
@@ -185,7 +185,7 @@ class Ui_Core(object):
         self.Settings_but.setText("")
         self.Settings_but.setObjectName("Settings_but")
         self.daily_add_button = QtWidgets.QToolButton(self.centralwidget)
-        self.daily_add_button.setGeometry(QtCore.QRect(70,99,50,50))
+        self.daily_add_button.setGeometry(QtCore.QRect(110,45,100,50))
         self.daily_add_button.setObjectName("daily_add_button")
         self.statistic_button = QtWidgets.QToolButton(self.centralwidget)
         self.statistic_button.setGeometry(QtCore.QRect(660,100,35,35))
@@ -523,6 +523,7 @@ class Ui_Core(object):
         self.radio_saturday.show()
         self.radio_sunday.show()
         self.radio_monday.show()
+        self.daily_add_button.show()
         self.label_monday.show()
         self.label_tuesday.show()
         self.label_wednesday.show()
@@ -532,12 +533,13 @@ class Ui_Core(object):
         self.label_sunday.show()
         self.todo_list_week.show()
         self.label_task_prog.show()
-        self.daily_add_button.show()
         self.left_button_popup_window.show()
         self.label_daily_task.show()
         self.left_button.clicked.connect(self.left_button_popup_window_close)
         self.left_button.clicked.connect(self.add_task_button_unclicked)
         self.left_button.clicked.connect(self.close_window)
+        self.addtaskfromfile()
+        self.daily_add_button.show()
     def left_button_popup_window_close(self):
         self.radio_tuesday.hide()
         self.radio_wednesday.hide()
@@ -614,10 +616,12 @@ class Ui_Core(object):
 
     def addtaskfromfile(self):
         taskfile = open("tasks/tasks.txt","r", encoding ='utf-8')
-        row = random.randint(0,17)
+        row = random.randint(0,21)
         lines = taskfile.readlines()[row]
         lines = str(lines)
-        self.add_task_random(lines)
+        self.label_task_prog.setText(lines)
+        self.daily_add_button.clicked.connect(lambda: self.add_task_random(lines))
+
 
     def addWidgetss(self,text_task,str1,str2,time_deadline_time):
         row = self.tableWidget.rowCount()
@@ -643,4 +647,3 @@ class Ui_Core(object):
         self.tableWidget.setItem(row,2,QTableWidgetItem(f"Remaining time: {time_deadline_time} hours"))
         row = row + str2
         self.tableWidget.setCellWidget(row,0,self.plus_button)
-
