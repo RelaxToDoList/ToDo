@@ -152,7 +152,7 @@ class Fifth_Window(QtWidgets.QMainWindow, Ui_Core):
         time_deadline_time = time_deadline-time
         time_deadline_time = (time_deadline_time.total_seconds())/3600
         text_task = self.line_enter.text()
-        task = [None, None, None, text_task, User_ID]
+        task = [None, None, str(time), text_task, User_ID]
         DBfunctions.write_in_db_tasks(task)
         self.line_enter.clear()
         self.str1 = self.str1 - 1
@@ -179,12 +179,11 @@ class Fifth_Window(QtWidgets.QMainWindow, Ui_Core):
             self.Reading_Tasks(TaskNT, self.str1, self.str2,time_deadline_time)
         conn.close()
     def add_task_random(self,text_task): #adding task from left_button_popup_window
-        print(text_task)
         time = datetime.datetime.today()
         time_deadline = time + datetime.timedelta(days = 1)
         time_deadline_time = time_deadline-time
         time_deadline_time = (time_deadline_time.total_seconds())/3600
-        task = [None, None, None, text_task, User_ID]
+        task = [None, None, str(time), text_task, User_ID]
         DBfunctions.write_in_db_tasks(task)
         self.str1 = self.str1 - 1
         if self.str1 < 4:
