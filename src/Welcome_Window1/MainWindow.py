@@ -239,10 +239,46 @@ class Ui_Core(object):
         self.gridLayout_2.setSizeConstraint(QtWidgets.QLayout.SetNoConstraint)
         self.gridLayout_2.setContentsMargins(0, 0, 0, 0)
         self.gridLayout_2.setObjectName("gridLayout_2")
-        self.check_box = QtWidgets.QToolButton(self.centralwidget)
-        self.check_box.setIconSize(QtCore.QSize(27,27))
-        self.check_box.setStyleSheet("border:none")
-        self.check_box.setObjectName("check_box")
+        self.check_box1 = QtWidgets.QToolButton(self.centralwidget)
+        self.check_box1.setIconSize(QtCore.QSize(27,27))
+        self.check_box1.setStyleSheet("border:none")
+        self.check_box1.setObjectName("check_box1")
+        self.check_box2 = QtWidgets.QToolButton(self.centralwidget)
+        self.check_box2.setIconSize(QtCore.QSize(27,27))
+        self.check_box2.setStyleSheet("border:none")
+        self.check_box2.setObjectName("check_box2")
+        self.check_box3 = QtWidgets.QToolButton(self.centralwidget)
+        self.check_box3.setIconSize(QtCore.QSize(27,27))
+        self.check_box3.setStyleSheet("border:none")
+        self.check_box3.setObjectName("check_box3")
+        self.check_box4 = QtWidgets.QToolButton(self.centralwidget)
+        self.check_box4.setIconSize(QtCore.QSize(27,27))
+        self.check_box4.setStyleSheet("border:none")
+        self.check_box4.setObjectName("check_box4")
+        self.check_box5 = QtWidgets.QToolButton(self.centralwidget)
+        self.check_box5.setIconSize(QtCore.QSize(27,27))
+        self.check_box5.setStyleSheet("border:none")
+        self.check_box5.setObjectName("check_box5")
+        self.check_box6 = QtWidgets.QToolButton(self.centralwidget)
+        self.check_box6.setIconSize(QtCore.QSize(27,27))
+        self.check_box6.setStyleSheet("border:none")
+        self.check_box6.setObjectName("check_box6")
+        self.check_box7 = QtWidgets.QToolButton(self.centralwidget)
+        self.check_box7.setIconSize(QtCore.QSize(27,27))
+        self.check_box7.setStyleSheet("border:none")
+        self.check_box7.setObjectName("check_box7")
+        self.check_box8 = QtWidgets.QToolButton(self.centralwidget)
+        self.check_box8.setIconSize(QtCore.QSize(27,27))
+        self.check_box8.setStyleSheet("border:none")
+        self.check_box8.setObjectName("check_box8")
+        self.check_box9 = QtWidgets.QToolButton(self.centralwidget)
+        self.check_box9.setIconSize(QtCore.QSize(27,27))
+        self.check_box9.setStyleSheet("border:none")
+        self.check_box9.setObjectName("check_box8")
+        self.check_box10 = QtWidgets.QToolButton(self.centralwidget)
+        self.check_box10.setIconSize(QtCore.QSize(27,27))
+        self.check_box10.setStyleSheet("border:none")
+        self.check_box10.setObjectName("check_box10")
         self.deal_text = QtWidgets.QLabel(self.gridLayoutWidget)
         self.deal_text.setText("Your Task")
         self.deal_text.setObjectName("deal_text")
@@ -365,7 +401,16 @@ class Ui_Core(object):
         self.FirstName.setText(_translate("MainWindow", "FirstName"))
         self.SecondName.setText(_translate("MainWindow", "SecondName"))
         self.label_2.setText(_translate("MainWindow", "TextLabel"))
-        self.check_box.setText(_translate("MainWindow", "..."))
+        self.check_box1.setText(_translate("MainWindow", "..."))
+        self.check_box2.setText(_translate("MainWindow", "..."))
+        self.check_box3.setText(_translate("MainWindow", "..."))
+        self.check_box4.setText(_translate("MainWindow", "..."))
+        self.check_box5.setText(_translate("MainWindow", "..."))
+        self.check_box6.setText(_translate("MainWindow", "..."))
+        self.check_box7.setText(_translate("MainWindow", "..."))
+        self.check_box8.setText(_translate("MainWindow", "..."))
+        self.check_box9.setText(_translate("MainWindow", "..."))
+        self.check_box10.setText(_translate("MainWindow", "..."))
         self.deal_text.setText(_translate("MainWindow", "Your task"))
         self.remaining_time.setText(_translate("MainWindow", "Remaining_Time"))
         self.notification_single_but.setText(_translate("MainWindow", "..."))
@@ -408,7 +453,16 @@ class Ui_Core(object):
             "font-size:12px;"
             "border:none;"
             "font-weight: bold;")
-            self.check_box.setIcon(QtGui.QIcon("icons/Empty_Box_Light.png"))
+            self.check_box1.setIcon(QtGui.QIcon("icons/Empty_Box_Light.png"))
+            self.check_box2.setIcon(QtGui.QIcon("icons/Empty_Box_Light.png"))
+            self.check_box3.setIcon(QtGui.QIcon("icons/Empty_Box_Light.png"))
+            self.check_box4.setIcon(QtGui.QIcon("icons/Empty_Box_Light.png"))
+            self.check_box5.setIcon(QtGui.QIcon("icons/Empty_Box_Light.png"))
+            self.check_box6.setIcon(QtGui.QIcon("icons/Empty_Box_Light.png"))
+            self.check_box7.setIcon(QtGui.QIcon("icons/Empty_Box_Light.png"))
+            self.check_box8.setIcon(QtGui.QIcon("icons/Empty_Box_Light.png"))
+            self.check_box9.setIcon(QtGui.QIcon("icons/Empty_Box_Light.png"))
+            self.check_box10.setIcon(QtGui.QIcon("icons/Empty_Box_Light.png"))
             self.deal_text.setStyleSheet("color:#161616;\n"
             "font-weight:bold;\n"
             "font-family: Calibri, Candara, Segoe, \\Segoe UI\\, Optima, Arial, sans-serif;"
@@ -470,12 +524,30 @@ class Ui_Core(object):
             "font-family: Calibri, Candara, Segoe, \\Segoe UI\\, Optima, Arial, sans-serif;")
             self.graphicsView.setStyleSheet("background-color:#666666;"
             "border-radius:15px;")
-            self.check_box.setIcon(QtGui.QIcon("icons/Empty_Box_Dark.png"))
+            self.check_box1.setIcon(QtGui.QIcon("icons/Empty_Box_Dark.png"))
+            self.check_box2.setIcon(QtGui.QIcon("icons/Empty_Box_Dark.png"))
+            self.check_box3.setIcon(QtGui.QIcon("icons/Empty_Box_Dark.png"))
+            self.check_box4.setIcon(QtGui.QIcon("icons/Empty_Box_Dark.png"))
+            self.check_box5.setIcon(QtGui.QIcon("icons/Empty_Box_Dark.png"))
+            self.check_box6.setIcon(QtGui.QIcon("icons/Empty_Box_Dark.png"))
+            self.check_box7.setIcon(QtGui.QIcon("icons/Empty_Box_Dark.png"))
+            self.check_box8.setIcon(QtGui.QIcon("icons/Empty_Box_Dark.png"))
+            self.check_box9.setIcon(QtGui.QIcon("icons/Empty_Box_Dark.png"))
+            self.check_box10.setIcon(QtGui.QIcon("icons/Empty_Box_Dark.png"))
             self.deal_text.setStyleSheet("color:white;\n"
     "font-weight:bold;\n"
     "font-family: Calibri, Candara, Segoe, \\Segoe UI\\, Optima, Arial, sans-serif;"
     "font-size:16px;")
-            self.check_box.setIcon(QtGui.QIcon("icons/Empty_Box_Dark.png"))
+            self.check_box1.setIcon(QtGui.QIcon("icons/Empty_Box_Dark.png"))
+            self.check_box2.setIcon(QtGui.QIcon("icons/Empty_Box_Dark.png"))
+            self.check_box3.setIcon(QtGui.QIcon("icons/Empty_Box_Dark.png"))
+            self.check_box4.setIcon(QtGui.QIcon("icons/Empty_Box_Dark.png"))
+            self.check_box5.setIcon(QtGui.QIcon("icons/Empty_Box_Dark.png"))
+            self.check_box6.setIcon(QtGui.QIcon("icons/Empty_Box_Dark.png"))
+            self.check_box7.setIcon(QtGui.QIcon("icons/Empty_Box_Dark.png"))
+            self.check_box8.setIcon(QtGui.QIcon("icons/Empty_Box_Dark.png"))
+            self.check_box9.setIcon(QtGui.QIcon("icons/Empty_Box_Dark.png"))
+            self.check_box10.setIcon(QtGui.QIcon("icons/Empty_Box_Dark.png")) 
             self.SecondName.setStyleSheet("color: #FFFFFF;\n"
     "font-size: 20px;\n"
     "font-family: Calibri, Candara, Segoe, \"Segoe UI\", Optima, Arial, sans-serif;\n"
@@ -587,6 +659,7 @@ class Ui_Core(object):
         self.plus_button.clicked.connect(self.left_button_popup_window_close)
         self.plus_button.clicked.connect(self.add_task_button_unclicked)
         self.okey.clicked.connect(self.add_task_button_unclicked)
+
     def settings_but_clicked(self):
         self.statistic_label.show()
         self.statistic_button.show()
@@ -598,6 +671,7 @@ class Ui_Core(object):
         self.Settings_but.clicked.connect(self.close_window)
         self.Settings_but.clicked.connect(self.left_button_popup_window_close)
         self.Settings_but.clicked.connect(self.add_task_button_unclicked)
+
     def close_window(self):
         self.statistic_label.hide()
         self.statistic_button.hide()
@@ -605,19 +679,127 @@ class Ui_Core(object):
         self.settings_but_open.hide()
         self.account_label.hide()
         self.Settings_but.clicked.connect(self.settings_but_clicked)
-    def check_box_unchecked(self):
+
+    def check_box_unchecked1(self):
         if Choose_Theme.theme == 0:
-            self.check_box.setIcon(QtGui.QIcon("icons/Empty_Box_Dark.png"))
-            self.check_box.clicked.connect(self.check_box_checked)
+            self.check_box1.setIcon(QtGui.QIcon("icons/Empty_Box_Dark.png"))
+            self.check_box1.clicked.connect(self.check_box_checked1)
         else:
-            self.check_box.setIcon(QtGui.QIcon("icons/Empty_Box_Light.png"))
-            self.check_box.clicked.connect(self.check_box_checked)
+            self.check_box1.setIcon(QtGui.QIcon("icons/Empty_Box_Light.png"))
+            self.check_box1.clicked.connect(self.check_box_checked1)
+    def check_box_checked1(self):
+        if Choose_Theme.theme == 0:
+            self.check_box1.setIcon(QtGui.QIcon("icons/Checkbox_Light.png"))
+        else:
+            self.check_box1.setIcon(QtGui.QIcon("icons/Checkbox_Dark.png"))
+    def check_box_unchecked2(self):
+        if Choose_Theme.theme == 0:
+            self.check_box2.setIcon(QtGui.QIcon("icons/Empty_Box_Dark.png"))
+            self.check_box2.clicked.connect(self.check_box_checked2)
+        else:
+            self.check_box2.setIcon(QtGui.QIcon("icons/Empty_Box_Light.png"))
+            self.check_box2.clicked.connect(self.check_box_checked2)
     def check_box_checked(self):
         if Choose_Theme.theme == 0:
-            self.check_box.setIcon(QtGui.QIcon("icons/Checkbox_Light.png"))
+            self.check_box2.setIcon(QtGui.QIcon("icons/Checkbox_Light.png"))
         else:
-            self.check_box.setIcon(QtGui.QIcon("icons/Checkbox_Dark.png"))
-
+            self.check_box2.setIcon(QtGui.QIcon("icons/Checkbox_Dark.png"))
+    def check_box_unchecked3(self):
+        if Choose_Theme.theme == 0:
+            self.check_box3.setIcon(QtGui.QIcon("icons/Empty_Box_Dark.png"))
+            self.check_box3.clicked.connect(self.check_box_checked3)
+        else:
+            self.check_box3.setIcon(QtGui.QIcon("icons/Empty_Box_Light.png"))
+            self.check_box3.clicked.connect(self.check_box_checked3)
+    def check_box_checked(self):
+        if Choose_Theme.theme == 0:
+            self.check_box3.setIcon(QtGui.QIcon("icons/Checkbox_Light.png"))
+        else:
+            self.check_box3.setIcon(QtGui.QIcon("icons/Checkbox_Dark.png"))
+    def check_box_unchecked4(self):
+        if Choose_Theme.theme == 0:
+            self.check_box4.setIcon(QtGui.QIcon("icons/Empty_Box_Dark.png"))
+            self.check_box4.clicked.connect(self.check_box_checked4)
+        else:
+            self.check_box4.setIcon(QtGui.QIcon("icons/Empty_Box_Light.png"))
+            self.check_box4.clicked.connect(self.check_box_checked4)
+    def check_box_checked(self):
+        if Choose_Theme.theme == 0:
+            self.check_box4.setIcon(QtGui.QIcon("icons/Checkbox_Light.png"))
+        else:
+            self.check_box4.setIcon(QtGui.QIcon("icons/Checkbox_Dark.png"))
+    def check_box_unchecked5(self):
+        if Choose_Theme.theme == 0:
+            self.check_box5.setIcon(QtGui.QIcon("icons/Empty_Box_Dark.png"))
+            self.check_box5.clicked.connect(self.check_box_checked5)
+        else:
+            self.check_box5.setIcon(QtGui.QIcon("icons/Empty_Box_Light.png"))
+            self.check_box5.clicked.connect(self.check_box_checked5)
+    def check_box_checked(self):
+        if Choose_Theme.theme == 0:
+            self.check_box5.setIcon(QtGui.QIcon("icons/Checkbox_Light.png"))
+        else:
+            self.check_box5.setIcon(QtGui.QIcon("icons/Checkbox_Dark.png"))
+    def check_box_unchecked6(self):
+        if Choose_Theme.theme == 0:
+            self.check_box6.setIcon(QtGui.QIcon("icons/Empty_Box_Dark.png"))
+            self.check_box6.clicked.connect(self.check_box_checked6)
+        else:
+            self.check_box6.setIcon(QtGui.QIcon("icons/Empty_Box_Light.png"))
+            self.check_box6.clicked.connect(self.check_box_checked6)
+    def check_box_checked(self):
+        if Choose_Theme.theme == 0:
+            self.check_box6.setIcon(QtGui.QIcon("icons/Checkbox_Light.png"))
+        else:
+            self.check_box6.setIcon(QtGui.QIcon("icons/Checkbox_Dark.png"))
+    def check_box_unchecked7(self):
+        if Choose_Theme.theme == 0:
+            self.check_box7.setIcon(QtGui.QIcon("icons/Empty_Box_Dark.png"))
+            self.check_box7.clicked.connect(self.check_box_checked7)
+        else:
+            self.check_box7.setIcon(QtGui.QIcon("icons/Empty_Box_Light.png"))
+            self.check_box7.clicked.connect(self.check_box_checked7)
+    def check_box_checked(self):
+        if Choose_Theme.theme == 0:
+            self.check_box7.setIcon(QtGui.QIcon("icons/Checkbox_Light.png"))
+        else:
+            self.check_box7.setIcon(QtGui.QIcon("icons/Checkbox_Dark.png"))
+    def check_box_unchecked8(self):
+        if Choose_Theme.theme == 0:
+            self.check_box8.setIcon(QtGui.QIcon("icons/Empty_Box_Dark.png"))
+            self.check_box8.clicked.connect(self.check_box_checked8)
+        else:
+            self.check_box8.setIcon(QtGui.QIcon("icons/Empty_Box_Light.png"))
+            self.check_box8.clicked.connect(self.check_box_checked8)
+    def check_box_checked(self):
+        if Choose_Theme.theme == 0:
+            self.check_box8.setIcon(QtGui.QIcon("icons/Checkbox_Light.png"))
+        else:
+            self.check_box8.setIcon(QtGui.QIcon("icons/Checkbox_Dark.png"))
+    def check_box_unchecked9(self):
+        if Choose_Theme.theme == 0:
+            self.check_box9.setIcon(QtGui.QIcon("icons/Empty_Box_Dark.png"))
+            self.check_box9.clicked.connect(self.check_box_checked9)
+        else:
+            self.check_box9.setIcon(QtGui.QIcon("icons/Empty_Box_Light.png"))
+            self.check_box9.clicked.connect(self.check_box_checked9)
+    def check_box_checked9(self):
+        if Choose_Theme.theme == 0:
+            self.check_box9.setIcon(QtGui.QIcon("icons/Checkbox_Light.png"))
+        else:
+            self.check_box9.setIcon(QtGui.QIcon("icons/Checkbox_Dark.png"))
+    def check_box_unchecked10(self):
+        if Choose_Theme.theme == 0:
+            self.check_box10.setIcon(QtGui.QIcon("icons/Empty_Box_Dark.png"))
+            self.check_box10.clicked.connect(self.check_box_checked10)
+        else:
+            self.check_box10.setIcon(QtGui.QIcon("icons/Empty_Box_Light.png"))
+            self.check_box10.clicked.connect(self.check_box_checked10)
+    def check_box_checked10(self):
+        if Choose_Theme.theme == 0:
+            self.check_box10.setIcon(QtGui.QIcon("icons/Checkbox_Light.png"))
+        else:
+            self.check_box10.setIcon(QtGui.QIcon("icons/Checkbox_Dark.png"))
     def addtaskfromfile(self):
         taskfile = open("tasks/tasks.txt","r", encoding ='utf-8')
         row = random.randint(0,21)
@@ -625,15 +807,33 @@ class Ui_Core(object):
         lines = str(lines)
         self.label_task_prog.setText(lines)
         self.daily_add_button.clicked.connect(lambda: self.add_task_random(lines))
-
     def addWidgetss(self,text_task,str1,str2,time_deadline_time):
         row = self.tableWidget.rowCount()
         self.tableWidget.insertRow(row)
         row = row - str1
         time = QTableWidgetItem(time_deadline_time)
         object = self.check_box
+        object1 = self.check_box1
+        object2 = self.check_box2
+        object3 = self.check_box3
+        object4 = self.check_box4
+        object5 = self.check_box5
+        object6 = self.check_box6
+        object7 = self.check_box7
+        object8 = self.check_box8
+        object9 = self.check_box9
+        object10 = self.check_box10
         item = QTableWidgetItem(text_task)
-        self.tableWidget.setCellWidget(row,0,object)
+        self.tableWidget.setCellWidget(row,0,object1)
+        self.tableWidget.setCellWidget(row,0,object2)
+        self.tableWidget.setCellWidget(row,0,object3)
+        self.tableWidget.setCellWidget(row,0,object4)
+        self.tableWidget.setCellWidget(row,0,object5)
+        self.tableWidget.setCellWidget(row,0,object6)
+        self.tableWidget.setCellWidget(row,0,object7)
+        self.tableWidget.setCellWidget(row,0,object8)
+        self.tableWidget.setCellWidget(row,0,object9)
+        self.tableWidget.setCellWidget(row,0,object10)
         self.tableWidget.setItem(row,1,item)
         self.tableWidget.setItem(row,2,QTableWidgetItem(f"Remaining time: {time_deadline_time} hours"))
         row = row + str2
@@ -643,9 +843,27 @@ class Ui_Core(object):
         self.tableWidget.insertRow(row)
         row = row - str1
         time = QTableWidgetItem(time_deadline_time)
-        object = self.check_box
+        object1 = self.check_box1
+        object2 = self.check_box2
+        object3 = self.check_box3
+        object4 = self.check_box4
+        object5 = self.check_box5
+        object6 = self.check_box6
+        object7 = self.check_box7
+        object8 = self.check_box8
+        object9 = self.check_box9
+        object10 = self.check_box10
         item = QTableWidgetItem(TaskNT)
-        self.tableWidget.setCellWidget(row,0,object)
+        self.tableWidget.setCellWidget(row,0,object1)
+        self.tableWidget.setCellWidget(row,0,object2)
+        self.tableWidget.setCellWidget(row,0,object3)
+        self.tableWidget.setCellWidget(row,0,object4)
+        self.tableWidget.setCellWidget(row,0,object5)
+        self.tableWidget.setCellWidget(row,0,object6)
+        self.tableWidget.setCellWidget(row,0,object7)
+        self.tableWidget.setCellWidget(row,0,object8)
+        self.tableWidget.setCellWidget(row,0,object9)
+        self.tableWidget.setCellWidget(row,0,object10)
         self.tableWidget.setItem(row,1,item)
         self.tableWidget.setItem(row,2,QTableWidgetItem(f"Remaining time: {time_deadline_time} hours"))
         row = row + str2
