@@ -408,7 +408,7 @@ class Ui_Core(object):
             "font-size:12px;"
             "border:none;"
             "font-weight: bold;")
-            self.check_box.setIcon(QtGui.QIcon("icons/Empty_Box_Dark.png"))
+            self.check_box.setIcon(QtGui.QIcon("icons/Empty_Box_Light.png"))
             self.deal_text.setStyleSheet("color:#161616;\n"
             "font-weight:bold;\n"
             "font-family: Calibri, Candara, Segoe, \\Segoe UI\\, Optima, Arial, sans-serif;"
@@ -461,6 +461,8 @@ class Ui_Core(object):
             #"QTableView:item {"
         #    "border-bottom: 2px solid white;}"
             )
+            self.progress.setStyleSheet("background-color:#FFFFFF;"
+            "color: black;")
         else:
             self.add_task.setStyleSheet("color: #949494;"
             "font-size:14px;")
@@ -468,7 +470,7 @@ class Ui_Core(object):
             "font-family: Calibri, Candara, Segoe, \\Segoe UI\\, Optima, Arial, sans-serif;")
             self.graphicsView.setStyleSheet("background-color:#666666;"
             "border-radius:15px;")
-            self.check_box.setIcon(QtGui.QIcon("icons/Empty_Box_Light.png"))
+            self.check_box.setIcon(QtGui.QIcon("icons/Empty_Box_Dark.png"))
             self.deal_text.setStyleSheet("color:white;\n"
     "font-weight:bold;\n"
     "font-family: Calibri, Candara, Segoe, \\Segoe UI\\, Optima, Arial, sans-serif;"
@@ -491,6 +493,8 @@ class Ui_Core(object):
             "font-size:12px;"
             "border:none;"
             "font-weight: bold;")
+            self.progress.setStyleSheet("background-color:#333333;"
+            "color: #414040;")
             self.Settings_but.setIcon(QtGui.QIcon("icons/icon_gear_dark.png"))
             self.left_button.setIcon(QtGui.QIcon("icons/icon_list.png"))
             self.label.setPixmap(QtGui.QPixmap("icons/icon_background.png"))
@@ -610,9 +614,9 @@ class Ui_Core(object):
             self.check_box.clicked.connect(self.check_box_checked)
     def check_box_checked(self):
         if Choose_Theme.theme == 0:
-            self.check_box.setIcon(QtGui.QIcon("icons/Checkbox_Dark.png"))
-        else:
             self.check_box.setIcon(QtGui.QIcon("icons/Checkbox_Light.png"))
+        else:
+            self.check_box.setIcon(QtGui.QIcon("icons/Checkbox_Dark.png"))
 
     def addtaskfromfile(self):
         taskfile = open("tasks/tasks.txt","r", encoding ='utf-8')
@@ -621,7 +625,6 @@ class Ui_Core(object):
         lines = str(lines)
         self.label_task_prog.setText(lines)
         self.daily_add_button.clicked.connect(lambda: self.add_task_random(lines))
-
 
     def addWidgetss(self,text_task,str1,str2,time_deadline_time):
         row = self.tableWidget.rowCount()

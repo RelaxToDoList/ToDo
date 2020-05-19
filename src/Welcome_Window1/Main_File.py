@@ -121,7 +121,6 @@ class Fifth_Window(QtWidgets.QMainWindow, Ui_Core):
         self.str2 = 1
         self.check_statistic()
         self.check_theme_person()
-        self.daily_add_button.clicked.connect(self.addtaskfromfile)
         self.check_box.clicked.connect(self.check_box_checked)
         self.Settings_but.clicked.connect(self.settings_but_clicked)
         self.settings_but_open.clicked.connect(self.nextWindow)
@@ -133,7 +132,7 @@ class Fifth_Window(QtWidgets.QMainWindow, Ui_Core):
         self.left_button.clicked.connect(self.left_button_popup_window_open)
         self.statistic_button.clicked.connect(self.statisticMenu)
         self.okey.clicked.connect(self.Add_Task)
-        self.plus_button.clicked.connect(self.Output_Task)
+        self.Output_Task()
     def check_statistic(self):
         statistic = self.completed + self.failed
         self.progress.setValue((self.completed/statistic)*100)
@@ -146,6 +145,8 @@ class Fifth_Window(QtWidgets.QMainWindow, Ui_Core):
         self.next.show()
         self.close()
     def Add_Task(self):
+        if self.line_enter.text() == '':
+            return
         time = datetime.datetime.today()
         time_deadline = time + datetime.timedelta(days = 1)
         time_deadline_time = time_deadline-time
@@ -176,7 +177,6 @@ class Fifth_Window(QtWidgets.QMainWindow, Ui_Core):
             if self.str1 < 4:
                 self.str2 = self.str2 + 1
             self.Reading_Tasks(TaskNT, self.str1, self.str2,time_deadline_time)
-            print(TaskNT)
         conn.close()
     def add_task_random(self,text_task): #adding task from left_button_popup_window
         print(text_task)
@@ -229,8 +229,6 @@ class Second_Window(QtWidgets.QMainWindow, Ui_Sign): ##Window of signing in
         first_name = self.InputFirst.text()
         global last_name
         last_name = self.InputSecond.text()
-        print(self.InputFirst.text())
-        print(self.InputSecond.text())
         if not first_name:
             self.error()
             return
