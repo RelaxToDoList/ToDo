@@ -720,7 +720,7 @@ class Ui_Core(object):
         else:
             self.check_box2.setIcon(QtGui.QIcon("icons/Empty_Box_Light.png"))
             self.check_box2.clicked.connect(self.check_box_checked2)
-    def check_box_checked(self):
+    def check_box_checked2(self):
         if Choose_Theme.theme == 0:
             self.check_box2.setIcon(QtGui.QIcon("icons/Checkbox_Light.png"))
         else:
@@ -732,7 +732,7 @@ class Ui_Core(object):
         else:
             self.check_box3.setIcon(QtGui.QIcon("icons/Empty_Box_Light.png"))
             self.check_box3.clicked.connect(self.check_box_checked3)
-    def check_box_checked(self):
+    def check_box_checked3(self):
         if Choose_Theme.theme == 0:
             self.check_box3.setIcon(QtGui.QIcon("icons/Checkbox_Light.png"))
         else:
@@ -744,7 +744,7 @@ class Ui_Core(object):
         else:
             self.check_box4.setIcon(QtGui.QIcon("icons/Empty_Box_Light.png"))
             self.check_box4.clicked.connect(self.check_box_checked4)
-    def check_box_checked(self):
+    def check_box_checked4(self):
         if Choose_Theme.theme == 0:
             self.check_box4.setIcon(QtGui.QIcon("icons/Checkbox_Light.png"))
         else:
@@ -756,7 +756,7 @@ class Ui_Core(object):
         else:
             self.check_box5.setIcon(QtGui.QIcon("icons/Empty_Box_Light.png"))
             self.check_box5.clicked.connect(self.check_box_checked5)
-    def check_box_checked(self):
+    def check_box_checked5(self):
         if Choose_Theme.theme == 0:
             self.check_box5.setIcon(QtGui.QIcon("icons/Checkbox_Light.png"))
         else:
@@ -768,7 +768,7 @@ class Ui_Core(object):
         else:
             self.check_box6.setIcon(QtGui.QIcon("icons/Empty_Box_Light.png"))
             self.check_box6.clicked.connect(self.check_box_checked6)
-    def check_box_checked(self):
+    def check_box_checked6(self):
         if Choose_Theme.theme == 0:
             self.check_box6.setIcon(QtGui.QIcon("icons/Checkbox_Light.png"))
         else:
@@ -780,7 +780,7 @@ class Ui_Core(object):
         else:
             self.check_box7.setIcon(QtGui.QIcon("icons/Empty_Box_Light.png"))
             self.check_box7.clicked.connect(self.check_box_checked7)
-    def check_box_checked(self):
+    def check_box_checked7(self):
         if Choose_Theme.theme == 0:
             self.check_box7.setIcon(QtGui.QIcon("icons/Checkbox_Light.png"))
         else:
@@ -792,7 +792,7 @@ class Ui_Core(object):
         else:
             self.check_box8.setIcon(QtGui.QIcon("icons/Empty_Box_Light.png"))
             self.check_box8.clicked.connect(self.check_box_checked8)
-    def check_box_checked(self):
+    def check_box_checked8(self):
         if Choose_Theme.theme == 0:
             self.check_box8.setIcon(QtGui.QIcon("icons/Checkbox_Light.png"))
         else:
@@ -833,7 +833,6 @@ class Ui_Core(object):
         self.tableWidget.insertRow(row)
         row = row - str1
         time = QTableWidgetItem(time_deadline_time)
-        object = self.check_box
         object1 = self.check_box1
         object2 = self.check_box2
         object3 = self.check_box3
@@ -845,16 +844,16 @@ class Ui_Core(object):
         object9 = self.check_box9
         object10 = self.check_box10
         item = QTableWidgetItem(text_task)
-        self.tableWidget.setCellWidget(row,0,object1)
-        self.tableWidget.setCellWidget(row,0,object2)
-        self.tableWidget.setCellWidget(row,0,object3)
-        self.tableWidget.setCellWidget(row,0,object4)
-        self.tableWidget.setCellWidget(row,0,object5)
-        self.tableWidget.setCellWidget(row,0,object6)
-        self.tableWidget.setCellWidget(row,0,object7)
-        self.tableWidget.setCellWidget(row,0,object8)
-        self.tableWidget.setCellWidget(row,0,object9)
-        self.tableWidget.setCellWidget(row,0,object10)
+        self.tableWidget.setCellWidget(1,0,object1)
+        self.tableWidget.setCellWidget(3,0,object2)
+        self.tableWidget.setCellWidget(5,0,object3)
+        self.tableWidget.setCellWidget(7,0,object4)
+        self.tableWidget.setCellWidget(9,0,object5)
+        self.tableWidget.setCellWidget(11,0,object6)
+        self.tableWidget.setCellWidget(13,0,object7)
+        self.tableWidget.setCellWidget(15,0,object8)
+        self.tableWidget.setCellWidget(17,0,object9)
+        self.tableWidget.setCellWidget(19,0,object10)
         self.tableWidget.setItem(row,1,item)
         self.tableWidget.setItem(row,2,QTableWidgetItem(f"Remaining time: {time_deadline_time} hours"))
         row = row + str2
@@ -875,16 +874,16 @@ class Ui_Core(object):
         object9 = self.check_box9
         object10 = self.check_box10
         item = QTableWidgetItem(TaskNT)
-        self.tableWidget.setCellWidget(row,0,object1)
-        self.tableWidget.setCellWidget(row,0,object2)
-        self.tableWidget.setCellWidget(row,0,object3)
-        self.tableWidget.setCellWidget(row,0,object4)
-        self.tableWidget.setCellWidget(row,0,object5)
-        self.tableWidget.setCellWidget(row,0,object6)
-        self.tableWidget.setCellWidget(row,0,object7)
-        self.tableWidget.setCellWidget(row,0,object8)
-        self.tableWidget.setCellWidget(row,0,object9)
-        self.tableWidget.setCellWidget(row,0,object10)
+        self.tableWidget.setCellWidget(1,0,object1)
+        self.tableWidget.setCellWidget(3,0,object2)
+        self.tableWidget.setCellWidget(5,0,object3)
+        self.tableWidget.setCellWidget(7,0,object4)
+        self.tableWidget.setCellWidget(9,0,object5)
+        self.tableWidget.setCellWidget(11,0,object6)
+        self.tableWidget.setCellWidget(13,0,object7)
+        self.tableWidget.setCellWidget(15,0,object8)
+        self.tableWidget.setCellWidget(17,0,object9)
+        self.tableWidget.setCellWidget(19,0,object10)
         self.tableWidget.setItem(row,1,item)
         self.tableWidget.setItem(row,2,QTableWidgetItem(f"Remaining time: {time_deadline_time} hours"))
         row = row + str2
