@@ -141,7 +141,16 @@ class Fifth_Window(QtWidgets.QMainWindow, Ui_Core):
         self.left_button.clicked.connect(self.left_button_popup_window_open)
         self.statistic_button.clicked.connect(self.statisticMenu)
         self.okey.clicked.connect(self.Add_Task)
+        self.logout_button.clicked.connect(self.logout_to_signin)
         self.Output_Task()
+    def logout_to_signin(self):
+        self.next = Second_Window()
+        self.next.show()
+        if os.path.exists('./Data_base/pict_user.png'):
+            os.remove('./Data_base/pict_user.png')
+        else:
+            pass
+        self.close()
     def check_statistic(self):
         statistic = self.completed + self.failed
         self.progress.setValue((self.completed/statistic)*100)
@@ -161,7 +170,7 @@ class Fifth_Window(QtWidgets.QMainWindow, Ui_Core):
         time_deadline_time = time_deadline-time
         time_deadline_time = (time_deadline_time.total_seconds())/3600
         text_task = self.line_enter.text()
-        task = [None, None, None, text_task, User_ID]
+        task = [None, None, str(datetime.date.today()), str(time_deadline_time), text_task, User_ID]
         DBfunctions.write_in_db_tasks(task)
         self.line_enter.clear()
         self.str1 = self.str1 - 1
@@ -188,12 +197,11 @@ class Fifth_Window(QtWidgets.QMainWindow, Ui_Core):
             self.Reading_Tasks(TaskNT, self.str1, self.str2,time_deadline_time)
         conn.close()
     def add_task_random(self,text_task): #adding task from left_button_popup_window
-        print(text_task)
         time = datetime.datetime.today()
         time_deadline = time + datetime.timedelta(days = 1)
         time_deadline_time = time_deadline-time
         time_deadline_time = (time_deadline_time.total_seconds())/3600
-        task = [None, None, None, text_task, User_ID]
+        task = [None, None, str(datetime.date.today()), str(time_deadline_time), text_task, User_ID]
         DBfunctions.write_in_db_tasks(task)
         self.str1 = self.str1 - 1
         if self.str1 < 4:
@@ -212,9 +220,20 @@ class Fourth_Window(QtWidgets.QMainWindow, Ui_Choose_Theme): ## Window of theme 
         self.next.show()
 
 class Third_Window(QtWidgets.QMainWindow, Ui_Welcome): ## Window of Welcoming user
+    def check_tasks(self):
+        today = datetime.date.today()
+        if DBfunctions.read_db('count(Num_Task)', 'tasks', 'User_ID', User_ID) == 0:
+            return
+        elif str(today) == str(DBfunctions.read_db('Date', 'tasks', 'User_ID', User_ID)):
+            return
+        else:
+            date = DBfunctions.read_db('Date', 'tasks', 'User_ID', User_ID)
+            DBfunctions.delete_record('tasks', 'Date', str(date))
+
     def __init__(self, parent = None):
         super(Third_Window, self).__init__(parent)
         self.setupUi(self)
+        self.check_tasks()
         self.usersname.setText(DBfunctions.read_db('First', 'user', 'User_ID', User_ID))
         self.Letsgobutton_2.clicked.connect(self.nextWindow)
     def nextWindow(self):
@@ -270,7 +289,6 @@ class First_Window(QtWidgets.QMainWindow,Ui_MainWindow): ## Window Start
         super(First_Window,self).__init__(parent)
         self.setupUi(self)
         self.pushButton.clicked.connect(self.nextWindow)
-
     def nextWindow(self):
         self.close()
         self.first = First_Window()

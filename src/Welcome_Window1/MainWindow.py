@@ -187,6 +187,17 @@ class Ui_Core(object):
         self.daily_add_button = QtWidgets.QToolButton(self.centralwidget)
         self.daily_add_button.setGeometry(QtCore.QRect(110,45,100,50))
         self.daily_add_button.setObjectName("daily_add_button")
+        self.logout_label = QtWidgets.QLabel(self.centralwidget)
+        self.logout_label.setGeometry(QtCore.QRect(710,420,50,30))
+        self.logout_label.setStyleSheet("font-weight: bold;"
+        "font-size:14px;"
+        "color: #000000;")
+        self.logout_button = QtWidgets.QToolButton(self.centralwidget)
+        self.logout_button.setGeometry(QtCore.QRect(660,420,35,35))
+        self.logout_button.setIcon(QtGui.QIcon("icons/icon_logout.png"))
+        self.logout_button.setIconSize(QtCore.QSize(35,35))
+        self.logout_button.setStyleSheet("border:none;")
+        self.logout_button.setObjectName("logout_button")
         self.statistic_button = QtWidgets.QToolButton(self.centralwidget)
         self.statistic_button.setGeometry(QtCore.QRect(660,100,35,35))
         self.statistic_button.setObjectName("statistic_button")
@@ -330,6 +341,10 @@ class Ui_Core(object):
         self.tableWidget.raise_()
         self.graphicsView.raise_()
         self.settings_popup.raise_()
+        self.logout_button.raise_()
+        self.logout_label.raise_()
+        self.logout_label.hide()
+        self.logout_button.hide()
         self.settings_but_open.raise_()
         self.line_enter.raise_()
         self.account_label.raise_()
@@ -429,6 +444,8 @@ class Ui_Core(object):
         self.label_saturday.setText(_translate("MainWindow","Saturday"))
         self.label_sunday.setText(_translate("MainWindow","Sunday"))
         self.statistic_label.setText(_translate("MainWindow","Statistic"))
+        self.logout_button.setText(_translate("MainWindow","Log_Out"))
+        self.logout_label.setText(_translate("MainWindow","Log out"))
 
     def check_theme_person(self):
         if Choose_Theme.theme == 0:
@@ -661,6 +678,8 @@ class Ui_Core(object):
         self.okey.clicked.connect(self.add_task_button_unclicked)
 
     def settings_but_clicked(self):
+        self.logout_label.show()
+        self.logout_button.show()
         self.statistic_label.show()
         self.statistic_button.show()
         self.settings_popup.show()
@@ -673,6 +692,8 @@ class Ui_Core(object):
         self.Settings_but.clicked.connect(self.add_task_button_unclicked)
 
     def close_window(self):
+        self.logout_label.hide()
+        self.logout_button.hide()
         self.statistic_label.hide()
         self.statistic_button.hide()
         self.settings_popup.hide()
