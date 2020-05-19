@@ -13,7 +13,7 @@ def create_db():
 	con.commit()
 
 	cur.execute('CREATE TABLE IF NOT EXISTS tasks(Num_Task INTEGER UNIQUE PRIMARY KEY AUTOINCREMENT, '
-												 'Status_Task INTEGER, '
+												 'Status_task INTEGER, '
 												 'Date TEXT, '
 												 'Time TEXT, '
 												 'Task_text TEXT NOT NULL, '
