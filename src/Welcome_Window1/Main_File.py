@@ -132,7 +132,16 @@ class Fifth_Window(QtWidgets.QMainWindow, Ui_Core):
         self.left_button.clicked.connect(self.left_button_popup_window_open)
         self.statistic_button.clicked.connect(self.statisticMenu)
         self.okey.clicked.connect(self.Add_Task)
+        self.logout_button.clicked.connect(self.logout_to_signin)
         self.Output_Task()
+    def logout_to_signin(self):
+        self.next = Second_Window()
+        self.next.show()
+        if os.path.exists('./Data_base/pict_user.png'):
+            os.remove('./Data_base/pict_user.png')
+        else:
+            pass
+        self.close()
     def check_statistic(self):
         statistic = self.completed + self.failed
         self.progress.setValue((self.completed/statistic)*100)

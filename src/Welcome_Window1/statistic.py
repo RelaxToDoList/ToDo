@@ -173,6 +173,8 @@ class Ui_Statistic(object):
 
     def check_theme(self):
         if Choose_Theme.theme == 0:
+            self.progress_bar.setStyleSheet("background-color:#D7D7D7;"
+            "color: black;")
             self.background.setPixmap(QtGui.QPixmap("icons/background_settings_light.png"))
             self.background.setScaledContents(True)
             self.settings_but.setIcon(QtGui.QIcon("icons/icon_gear.png"))
