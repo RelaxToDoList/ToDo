@@ -25,7 +25,7 @@ class Ui_Core(object):
         self.tableWidget = QtWidgets.QTableWidget(self.centralwidget)
         self.tableWidget.setObjectName("tableWidget")
         self.tableWidget.setGeometry(380,141,700,335)
-        self.tableWidget.setShowGrid(False)
+        #self.tableWidget.setShowGrid(False)
         self.tableWidget.verticalHeader().hide()
         self.tableWidget.horizontalHeader().hide()
         self.tableWidget.setRowCount(10)
@@ -564,7 +564,7 @@ class Ui_Core(object):
             self.check_box7.setIcon(QtGui.QIcon("icons/Empty_Box_Dark.png"))
             self.check_box8.setIcon(QtGui.QIcon("icons/Empty_Box_Dark.png"))
             self.check_box9.setIcon(QtGui.QIcon("icons/Empty_Box_Dark.png"))
-            self.check_box10.setIcon(QtGui.QIcon("icons/Empty_Box_Dark.png")) 
+            self.check_box10.setIcon(QtGui.QIcon("icons/Empty_Box_Dark.png"))
             self.SecondName.setStyleSheet("color: #FFFFFF;\n"
     "font-size: 20px;\n"
     "font-family: Calibri, Candara, Segoe, \"Segoe UI\", Optima, Arial, sans-serif;\n"
@@ -700,126 +700,72 @@ class Ui_Core(object):
         self.account_label.hide()
         self.Settings_but.clicked.connect(self.settings_but_clicked)
 
-    def check_box_unchecked1(self):
-        if Choose_Theme.theme == 0:
-            self.check_box1.setIcon(QtGui.QIcon("icons/Empty_Box_Dark.png"))
-            self.check_box1.clicked.connect(self.check_box_checked1)
-        else:
-            self.check_box1.setIcon(QtGui.QIcon("icons/Empty_Box_Light.png"))
-            self.check_box1.clicked.connect(self.check_box_checked1)
     def check_box_checked1(self):
         if Choose_Theme.theme == 0:
             self.check_box1.setIcon(QtGui.QIcon("icons/Checkbox_Light.png"))
+            self.adding_complete()
         else:
             self.check_box1.setIcon(QtGui.QIcon("icons/Checkbox_Dark.png"))
-    def check_box_unchecked2(self):
-        if Choose_Theme.theme == 0:
-            self.check_box2.setIcon(QtGui.QIcon("icons/Empty_Box_Dark.png"))
-            self.check_box2.clicked.connect(self.check_box_checked2)
-        else:
-            self.check_box2.setIcon(QtGui.QIcon("icons/Empty_Box_Light.png"))
-            self.check_box2.clicked.connect(self.check_box_checked2)
+            self.adding_complete()
     def check_box_checked2(self):
         if Choose_Theme.theme == 0:
             self.check_box2.setIcon(QtGui.QIcon("icons/Checkbox_Light.png"))
+            self.adding_complete()
         else:
             self.check_box2.setIcon(QtGui.QIcon("icons/Checkbox_Dark.png"))
-    def check_box_unchecked3(self):
-        if Choose_Theme.theme == 0:
-            self.check_box3.setIcon(QtGui.QIcon("icons/Empty_Box_Dark.png"))
-            self.check_box3.clicked.connect(self.check_box_checked3)
-        else:
-            self.check_box3.setIcon(QtGui.QIcon("icons/Empty_Box_Light.png"))
-            self.check_box3.clicked.connect(self.check_box_checked3)
+            self.adding_complete()
     def check_box_checked3(self):
         if Choose_Theme.theme == 0:
             self.check_box3.setIcon(QtGui.QIcon("icons/Checkbox_Light.png"))
+            self.adding_complete()
         else:
             self.check_box3.setIcon(QtGui.QIcon("icons/Checkbox_Dark.png"))
-    def check_box_unchecked4(self):
-        if Choose_Theme.theme == 0:
-            self.check_box4.setIcon(QtGui.QIcon("icons/Empty_Box_Dark.png"))
-            self.check_box4.clicked.connect(self.check_box_checked4)
-        else:
-            self.check_box4.setIcon(QtGui.QIcon("icons/Empty_Box_Light.png"))
-            self.check_box4.clicked.connect(self.check_box_checked4)
     def check_box_checked4(self):
         if Choose_Theme.theme == 0:
             self.check_box4.setIcon(QtGui.QIcon("icons/Checkbox_Light.png"))
         else:
             self.check_box4.setIcon(QtGui.QIcon("icons/Checkbox_Dark.png"))
-    def check_box_unchecked5(self):
-        if Choose_Theme.theme == 0:
-            self.check_box5.setIcon(QtGui.QIcon("icons/Empty_Box_Dark.png"))
-            self.check_box5.clicked.connect(self.check_box_checked5)
-        else:
-            self.check_box5.setIcon(QtGui.QIcon("icons/Empty_Box_Light.png"))
-            self.check_box5.clicked.connect(self.check_box_checked5)
+            self.adding_complete()
     def check_box_checked5(self):
         if Choose_Theme.theme == 0:
             self.check_box5.setIcon(QtGui.QIcon("icons/Checkbox_Light.png"))
+            self.adding_complete()
         else:
             self.check_box5.setIcon(QtGui.QIcon("icons/Checkbox_Dark.png"))
-    def check_box_unchecked6(self):
-        if Choose_Theme.theme == 0:
-            self.check_box6.setIcon(QtGui.QIcon("icons/Empty_Box_Dark.png"))
-            self.check_box6.clicked.connect(self.check_box_checked6)
-        else:
-            self.check_box6.setIcon(QtGui.QIcon("icons/Empty_Box_Light.png"))
-            self.check_box6.clicked.connect(self.check_box_checked6)
+            self.adding_complete()
     def check_box_checked6(self):
         if Choose_Theme.theme == 0:
             self.check_box6.setIcon(QtGui.QIcon("icons/Checkbox_Light.png"))
         else:
             self.check_box6.setIcon(QtGui.QIcon("icons/Checkbox_Dark.png"))
-    def check_box_unchecked7(self):
-        if Choose_Theme.theme == 0:
-            self.check_box7.setIcon(QtGui.QIcon("icons/Empty_Box_Dark.png"))
-            self.check_box7.clicked.connect(self.check_box_checked7)
-        else:
-            self.check_box7.setIcon(QtGui.QIcon("icons/Empty_Box_Light.png"))
-            self.check_box7.clicked.connect(self.check_box_checked7)
     def check_box_checked7(self):
         if Choose_Theme.theme == 0:
             self.check_box7.setIcon(QtGui.QIcon("icons/Checkbox_Light.png"))
+            self.adding_complete()
         else:
             self.check_box7.setIcon(QtGui.QIcon("icons/Checkbox_Dark.png"))
-    def check_box_unchecked8(self):
-        if Choose_Theme.theme == 0:
-            self.check_box8.setIcon(QtGui.QIcon("icons/Empty_Box_Dark.png"))
-            self.check_box8.clicked.connect(self.check_box_checked8)
-        else:
-            self.check_box8.setIcon(QtGui.QIcon("icons/Empty_Box_Light.png"))
-            self.check_box8.clicked.connect(self.check_box_checked8)
+            self.adding_complete()
     def check_box_checked8(self):
         if Choose_Theme.theme == 0:
             self.check_box8.setIcon(QtGui.QIcon("icons/Checkbox_Light.png"))
+            self.adding_complete()
         else:
             self.check_box8.setIcon(QtGui.QIcon("icons/Checkbox_Dark.png"))
-    def check_box_unchecked9(self):
-        if Choose_Theme.theme == 0:
-            self.check_box9.setIcon(QtGui.QIcon("icons/Empty_Box_Dark.png"))
-            self.check_box9.clicked.connect(self.check_box_checked9)
-        else:
-            self.check_box9.setIcon(QtGui.QIcon("icons/Empty_Box_Light.png"))
-            self.check_box9.clicked.connect(self.check_box_checked9)
+            self.adding_complete()
     def check_box_checked9(self):
         if Choose_Theme.theme == 0:
             self.check_box9.setIcon(QtGui.QIcon("icons/Checkbox_Light.png"))
+            self.adding_complete()
         else:
             self.check_box9.setIcon(QtGui.QIcon("icons/Checkbox_Dark.png"))
-    def check_box_unchecked10(self):
-        if Choose_Theme.theme == 0:
-            self.check_box10.setIcon(QtGui.QIcon("icons/Empty_Box_Dark.png"))
-            self.check_box10.clicked.connect(self.check_box_checked10)
-        else:
-            self.check_box10.setIcon(QtGui.QIcon("icons/Empty_Box_Light.png"))
-            self.check_box10.clicked.connect(self.check_box_checked10)
+            self.adding_complete()
     def check_box_checked10(self):
         if Choose_Theme.theme == 0:
             self.check_box10.setIcon(QtGui.QIcon("icons/Checkbox_Light.png"))
+            self.adding_complete()
         else:
             self.check_box10.setIcon(QtGui.QIcon("icons/Checkbox_Dark.png"))
+            self.adding_complete()
     def addtaskfromfile(self):
         taskfile = open("tasks/tasks.txt","r", encoding ='utf-8')
         row = random.randint(0,21)
@@ -843,16 +789,26 @@ class Ui_Core(object):
         object9 = self.check_box9
         object10 = self.check_box10
         item = QTableWidgetItem(text_task)
-        self.tableWidget.setCellWidget(1,0,object1)
-        self.tableWidget.setCellWidget(3,0,object2)
-        self.tableWidget.setCellWidget(5,0,object3)
-        self.tableWidget.setCellWidget(7,0,object4)
-        self.tableWidget.setCellWidget(9,0,object5)
-        self.tableWidget.setCellWidget(11,0,object6)
-        self.tableWidget.setCellWidget(13,0,object7)
-        self.tableWidget.setCellWidget(15,0,object8)
-        self.tableWidget.setCellWidget(17,0,object9)
-        self.tableWidget.setCellWidget(19,0,object10)
+        if row == 0:
+            self.tableWidget.setCellWidget(row,0,object1)
+        if row == 1:
+            self.tableWidget.setCellWidget(row,0,object2)
+        if row == 2:
+            self.tableWidget.setCellWidget(row,0,object3)
+        if row == 3:
+            self.tableWidget.setCellWidget(row,0,object4)
+        if row == 4:
+            self.tableWidget.setCellWidget(row,0,object5)
+        if row == 5:
+            self.tableWidget.setCellWidget(row,0,object6)
+        if row == 6:
+            self.tableWidget.setCellWidget(row,0,object7)
+        if row == 7:
+            self.tableWidget.setCellWidget(row,0,object8)
+        if row == 8:
+            self.tableWidget.setCellWidget(row,0,object9)
+        if row == 9:
+            self.tableWidget.setCellWidget(row,0,object10)
         self.tableWidget.setItem(row,1,item)
         self.tableWidget.setItem(row,2,QTableWidgetItem(f"Remaining time: {time_deadline_time} hours"))
         row = row + str2
@@ -873,16 +829,26 @@ class Ui_Core(object):
         object9 = self.check_box9
         object10 = self.check_box10
         item = QTableWidgetItem(TaskNT)
-        self.tableWidget.setCellWidget(1,0,object1)
-        self.tableWidget.setCellWidget(3,0,object2)
-        self.tableWidget.setCellWidget(5,0,object3)
-        self.tableWidget.setCellWidget(7,0,object4)
-        self.tableWidget.setCellWidget(9,0,object5)
-        self.tableWidget.setCellWidget(11,0,object6)
-        self.tableWidget.setCellWidget(13,0,object7)
-        self.tableWidget.setCellWidget(15,0,object8)
-        self.tableWidget.setCellWidget(17,0,object9)
-        self.tableWidget.setCellWidget(19,0,object10)
+        if row == 0:
+            self.tableWidget.setCellWidget(row,0,object1)
+        if row == 1:
+            self.tableWidget.setCellWidget(row,0,object2)
+        if row == 2:
+            self.tableWidget.setCellWidget(row,0,object3)
+        if row == 3:
+            self.tableWidget.setCellWidget(row,0,object4)
+        if row == 4:
+            self.tableWidget.setCellWidget(row,0,object5)
+        if row == 5:
+            self.tableWidget.setCellWidget(row,0,object6)
+        if row == 6:
+            self.tableWidget.setCellWidget(row,0,object7)
+        if row == 7:
+            self.tableWidget.setCellWidget(row,0,object8)
+        if row == 8:
+            self.tableWidget.setCellWidget(row,0,object9)
+        if row == 9:
+            self.tableWidget.setCellWidget(row,0,object10)
         self.tableWidget.setItem(row,1,item)
         self.tableWidget.setItem(row,2,QTableWidgetItem(f"Remaining time: {time_deadline_time} hours"))
         row = row + str2
