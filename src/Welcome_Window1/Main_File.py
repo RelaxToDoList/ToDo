@@ -122,8 +122,6 @@ class Fifth_Window(QtWidgets.QMainWindow, Ui_Core):
         else:
             self.position = DBfunctions.read_position_task(User_ID)
             self.position = int(self.position)
-        self.str1 = 10
-        self.str2 = 1
         self.check_statistic()
         self.check_theme_person()
         self.check_box1.clicked.connect(self.check_box_checked1)
@@ -220,10 +218,7 @@ class Fifth_Window(QtWidgets.QMainWindow, Ui_Core):
         DBfunctions.write_in_db_tasks(task)
         self.adding_fail()
         self.line_enter.clear()
-        self.str1 = self.str1 - 1
-        if self.str1 < 4:
-            self.str2 = self.str2 + 1
-        self.addWidgetss(text_task, self.str1, self.str2,time_deadline_time)
+        self.addWidgetss(text_task,time_deadline_time)
 
     def Output_Task(self):
         time = datetime.datetime.today()
@@ -239,10 +234,7 @@ class Fifth_Window(QtWidgets.QMainWindow, Ui_Core):
         for i in range(0,len(TaskDB),1):
             Task = TaskDB[i]
             TaskNT = Task[0]
-            self.str1 = self.str1 - 1
-            if self.str1 < 4:
-                self.str2 = self.str2 + 1
-            self.Reading_Tasks(TaskNT, self.str1, self.str2,time_deadline_time)
+            self.Reading_Tasks(TaskNT,time_deadline_time)
         conn.close()
     def add_task_random(self,text_task): #adding task from left_button_popup_window
         self.position = self.position + 1
@@ -253,10 +245,7 @@ class Fifth_Window(QtWidgets.QMainWindow, Ui_Core):
         task = [None, 0, str(datetime.date.today()), str(time_deadline_time), text_task, User_ID]
         DBfunctions.write_in_db_tasks(task)
         self.adding_fail()
-        self.str1 = self.str1 - 1
-        if self.str1 < 4:
-            self.str2 = self.str2 + 1
-        self.addWidgetss(text_task, self.str1, self.str2,time_deadline_time)
+        self.addWidgetss(text_task,time_deadline_time)
 
 class Fourth_Window(QtWidgets.QMainWindow, Ui_Choose_Theme): ## Window of theme choosing
     def __init__(self, parent = None):

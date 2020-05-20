@@ -28,7 +28,7 @@ class Ui_Core(object):
         self.tableWidget.setShowGrid(False)
         self.tableWidget.verticalHeader().hide()
         self.tableWidget.horizontalHeader().hide()
-        self.tableWidget.setRowCount(10)
+        self.tableWidget.setRowCount(1)
         self.tableWidget.setColumnCount(3)
         self.tableWidget.resizeColumnsToContents()
         self.tableWidget.setFocusPolicy(Qt.NoFocus)
@@ -787,10 +787,9 @@ class Ui_Core(object):
         lines = str(lines)
         self.label_task_prog.setText(lines)
         self.daily_add_button.clicked.connect(lambda: self.add_task_random(lines))
-    def addWidgetss(self,text_task,str1,str2,time_deadline_time):
+    def addWidgetss(self,text_task,time_deadline_time):
         row = self.tableWidget.rowCount()
         self.tableWidget.insertRow(row)
-        row = row - str1
         time = QTableWidgetItem(time_deadline_time)
         object1 = self.check_box1
         object2 = self.check_box2
@@ -802,35 +801,33 @@ class Ui_Core(object):
         object8 = self.check_box8
         object9 = self.check_box9
         object10 = self.check_box10
+        if row == 1:
+            self.tableWidget.setCellWidget(1,0,object1)
+        if row == 2:
+            self.tableWidget.setCellWidget(2,0,object2)
+        if row == 3:
+            self.tableWidget.setCellWidget(3,0,object3)
+        if row == 4:
+            self.tableWidget.setCellWidget(4,0,object4)
+        if row == 5:
+            self.tableWidget.setCellWidget(5,0,object5)
+        if row == 6:
+            self.tableWidget.setCellWidget(6,0,object6)
+        if row == 7:
+            self.tableWidget.setCellWidget(7,0,object7)
+        if row == 8:
+            self.tableWidget.setCellWidget(8,0,object8)
+        if row == 9:
+            self.tableWidget.setCellWidget(9,0,object9)
+        if row == 10:
+            self.tableWidget.setCellWidget(10,0,object10)
         item = QTableWidgetItem(text_task)
-        if row == 0:
-            self.tableWidget.setCellWidget(row,0,object1)
-        if row == 1:
-            self.tableWidget.setCellWidget(row,0,object2)
-        if row == 2:
-            self.tableWidget.setCellWidget(row,0,object3)
-        if row == 3:
-            self.tableWidget.setCellWidget(row,0,object4)
-        if row == 4:
-            self.tableWidget.setCellWidget(row,0,object5)
-        if row == 5:
-            self.tableWidget.setCellWidget(row,0,object6)
-        if row == 6:
-            self.tableWidget.setCellWidget(row,0,object7)
-        if row == 7:
-            self.tableWidget.setCellWidget(row,0,object8)
-        if row == 8:
-            self.tableWidget.setCellWidget(row,0,object9)
-        if row == 9:
-            self.tableWidget.setCellWidget(row,0,object10)
         self.tableWidget.setItem(row,1,item)
         self.tableWidget.setItem(row,2,QTableWidgetItem(f"Remaining time: {time_deadline_time} hours"))
-        row = row + str2
-        self.tableWidget.setCellWidget(row,0,self.plus_button)
-    def Reading_Tasks(self,TaskNT,str1,str2,time_deadline_time):
+        self.tableWidget.setCellWidget(row + 1,0,self.plus_button)
+    def Reading_Tasks(self,TaskNT,time_deadline_time):
         row = self.tableWidget.rowCount()
         self.tableWidget.insertRow(row)
-        row = row - str1
         time = QTableWidgetItem(time_deadline_time)
         object1 = self.check_box1
         object2 = self.check_box2
@@ -842,28 +839,28 @@ class Ui_Core(object):
         object8 = self.check_box8
         object9 = self.check_box9
         object10 = self.check_box10
-        item = QTableWidgetItem(TaskNT)
-        if row == 0:
-            self.tableWidget.setCellWidget(row,0,object1)
         if row == 1:
-            self.tableWidget.setCellWidget(row,0,object2)
+            self.tableWidget.setCellWidget(1,0,object1)
         if row == 2:
-            self.tableWidget.setCellWidget(row,0,object3)
+            self.tableWidget.setCellWidget(2,0,object2)
         if row == 3:
-            self.tableWidget.setCellWidget(row,0,object4)
+            self.tableWidget.setCellWidget(3,0,object3)
         if row == 4:
-            self.tableWidget.setCellWidget(row,0,object5)
+            self.tableWidget.setCellWidget(4,0,object4)
         if row == 5:
-            self.tableWidget.setCellWidget(row,0,object6)
+            self.tableWidget.setCellWidget(5,0,object5)
         if row == 6:
-            self.tableWidget.setCellWidget(row,0,object7)
+            self.tableWidget.setCellWidget(6,0,object6)
         if row == 7:
-            self.tableWidget.setCellWidget(row,0,object8)
+            self.tableWidget.setCellWidget(7,0,object7)
         if row == 8:
-            self.tableWidget.setCellWidget(row,0,object9)
+            self.tableWidget.setCellWidget(8,0,object8)
         if row == 9:
-            self.tableWidget.setCellWidget(row,0,object10)
+            self.tableWidget.setCellWidget(9,0,object9)
+        if row == 10:
+            self.tableWidget.setCellWidget(10,0,object10)
+        item = QTableWidgetItem(TaskNT)
         self.tableWidget.setItem(row,1,item)
         self.tableWidget.setItem(row,2,QTableWidgetItem(f"Remaining time: {time_deadline_time} hours"))
-        row = row + str2
-        self.tableWidget.setCellWidget(row,0,self.plus_button)
+        self.tableWidget.setCellWidget(row + 1,0,self.plus_button)
+
