@@ -169,6 +169,25 @@ class Fifth_Window(QtWidgets.QMainWindow, Ui_Core):
         self.next.show()
         self.close()
 
+    def adding_complete(self):
+        completed = DBfunctions.read_db('Completed','week_pb')
+        failed = DBfunctions.read_db('Failed','week_pb')
+        f = failed - 1
+        comp = completed + 1
+        DBfunctions.write_in_db_pb('Failed', f,'week_pb',User_ID)
+        DBfunctions.write_in_db_pb('Completed', comp,'week_pb',User_ID)
+        failed = 0
+        f = 0
+        failed = DBfunctions.read_db('Failed','daily_pb')
+        f = failed - 1
+        DBfunctions.write_in_db_pb('Failed',f,'daily_pb',User_ID)
+        completed = 0
+        comp = 0
+        completed = DBfunctions.read_db('Completed','daily_pb')
+        comp = completed + 1
+        DBfunctions.write_in_db_pb('Completed', comp,'daily_pb', User_ID)
+        self.check_statistic()
+
     def adding_fail(self):
         failed = DBfunctions.read_db('Failed', 'week_pb')
         f = failed + 1
@@ -178,6 +197,7 @@ class Fifth_Window(QtWidgets.QMainWindow, Ui_Core):
         failed = DBfunctions.read_db('Failed', 'daily_pb')
         f = failed + 1
         DBfunctions.write_in_db_pb('Failed', f, 'daily_pb', User_ID)
+        self.check_statistic()
     def Add_Task(self):
         if self.line_enter.text() == '':
             return
@@ -255,8 +275,8 @@ class Third_Window(QtWidgets.QMainWindow, Ui_Welcome): ## Window of Welcoming us
         elif str(today) == str(DBfunctions.read_db('Date', 'tasks', 'User_ID', User_ID)):
             return
         else:
-            DBfunctions.write_in_db_pb('Completed', 0, User_ID)
-            DBfunctions.write_in_db_pb('Failed', 0, User_ID)
+            DBfunctions.write_in_db_pb('Completed', 0,'daily_pb', User_ID)
+            DBfunctions.write_in_db_pb('Failed', 0,'daily_pb', User_ID)
 
     def __init__(self, parent = None):
         super(Third_Window, self).__init__(parent)
