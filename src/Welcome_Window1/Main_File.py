@@ -133,6 +133,7 @@ class Fifth_Window(QtWidgets.QMainWindow, Ui_Core):
         self.statistic_button.clicked.connect(self.statisticMenu)
         self.okey.clicked.connect(self.Add_Task)
         self.logout_button.clicked.connect(self.logout_to_signin)
+        self.addtaskfromfile()
         self.Output_Task()
     def logout_to_signin(self):
         self.next = Second_Window()

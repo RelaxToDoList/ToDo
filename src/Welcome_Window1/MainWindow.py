@@ -559,7 +559,6 @@ class Ui_Core(object):
         self.left_button.clicked.connect(self.left_button_popup_window_close)
         self.left_button.clicked.connect(self.add_task_button_unclicked)
         self.left_button.clicked.connect(self.close_window)
-        self.addtaskfromfile()
         self.daily_add_button.show()
     def left_button_popup_window_close(self):
         self.radio_tuesday.hide()
