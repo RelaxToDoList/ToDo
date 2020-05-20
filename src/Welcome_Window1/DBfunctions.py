@@ -1,15 +1,15 @@
 import sqlite3
 
-def str_compare(str1, table):
+def str_compare(str1, table, column):
 	con = sqlite3.connect('./Data_base/DataBase.db')
 	cur = con.cursor()
-	query = 'SELECT First FROM '+table
+	query = 'SELECT '+column+' FROM '+table
 	cur.execute(query)
 	data = cur.fetchall()
 	str1.lower()
 	str2 = ''
-	for i in range(int(read_db('count(User_ID)', 'user'))):
-		for line in data[i]:
+	for i in range(int(read_db('count(User_ID)', table))):
+		for line in str(data[i]):
 			str2 = line + str2
 		str2.lower()
 		if str1 == str2:
@@ -79,6 +79,43 @@ def write_in_db_user(records):
 	con.commit()
 	cur.close()
 	con.close()
+
+def write_in_db_pb(column, record, table, User_ID):
+	con = sqlite3.connect('./Data_base/DataBase.db')
+	cur = con.cursor()
+	if record == 0:
+		if column == 'Completed':
+			query = 'UPDATE daily_pb SET '+column+'='+str(record)+' WHERE '+'User_ID'+" = '"+str(User_ID)+"'"
+			cur.execute(query)
+		else:
+			query = 'UPDATE daily_pb SET '+column+'='+str(record)+' WHERE '+'User_ID'+" = '"+str(User_ID)+"'"
+			cur.execute(query)
+	else:
+		if column == 'Completed':
+			query = 'UPDATE '+table+' SET '+column+'='+str(record)+' WHERE '+'User_ID'+" = '"+str(User_ID)+"'"
+			cur.execute(query)
+		else:
+			cw = read_db('Completed', 'week_pb')
+			query = 'UPDATE '+table+' SET '+column+'='+str(record)+' WHERE '+'User_ID'+" = '"+str(User_ID)+"'"
+			cur.execute(query)
+	con.commit()
+	cur.close()
+	con.close()
+
+def create_in_db_pb(User_ID):
+	con = sqlite3.connect('./Data_base/DataBase.db')
+	cur = con.cursor()
+	query = 'INSERT INTO week_pb VALUES (?, ?, ?)'
+	records = [0, 0, User_ID]
+	cur.execute(query, records)
+	con.commit()
+	query = 'INSERT INTO daily_pb VALUES (?, ?, ?)'
+	records = [0, 0, User_ID]
+	cur.execute(query, records)
+	con.commit()
+	cur.close()
+	con.close()
+
 
 def pict_export(User_ID):
     pict_binary = read_db('Image', 'user', 'User_ID', User_ID)
