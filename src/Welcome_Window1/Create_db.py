@@ -27,6 +27,30 @@ def create_db():
 												  'FOREIGN KEY(Num_Task) REFERENCES tasks(Num_Task) ON DELETE CASCADE)')
 	con.commit()
 
+	# cur.execute('CREATE TABLE IF NOT EXISTS week_pb(User_ID INTEGER UNIQUE PRIMARY KEY, '
+	# 											   'FOREIGN KEY(User_ID) REFERENCES tasks(User_ID) ON DELETE CASCADE, '
+	# 											   'Completed INTEGER, '
+	# 											   'Failed INTEGER)')
+	# con.commit()
+
+	# cur.execute('CREATE TABLE IF NOT EXISTS daily_pb(User_ID INTEGER UNIQUE PRIMARY KEY, '
+	# 											    'FOREIGN KEY(User_ID) REFERENCES tasks(User_ID) ON DELETE CASCADE, '
+	# 											    'Completed INTEGER, '
+	# 											    'Failed INTEGER)')
+	# con.commit()
+
+	cur.execute('CREATE TABLE IF NOT EXISTS week_pb(Completed INTEGER, '
+												   'Failed INTEGER, '
+												   'User_ID INTEGER UNIQUE PRIMARY KEY, '
+												   'FOREIGN KEY(User_ID) REFERENCES tasks(User_ID) ON DELETE CASCADE)')
+	con.commit()
+
+	cur.execute('CREATE TABLE IF NOT EXISTS daily_pb(Completed INTEGER, '
+												    'Failed INTEGER, '
+												    'User_ID INTEGER UNIQUE PRIMARY KEY, '
+												    'FOREIGN KEY(User_ID) REFERENCES tasks(User_ID) ON DELETE CASCADE)')
+	con.commit()
+
 	cur.close()
 	con.close()
 
