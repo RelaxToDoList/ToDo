@@ -85,10 +85,10 @@ def write_in_db_pb(column, record, table, User_ID):
 	cur = con.cursor()
 	if record == 0:
 		if column == 'Completed':
-			query = 'UPDATE daily_pb SET '+column+'='+str(record)+' WHERE '+'User_ID'+" = '"+str(User_ID)+"'"
+			query = 'UPDATE ' +table+' SET '+column+'='+str(record)+' WHERE '+'User_ID'+" = '"+str(User_ID)+"'"
 			cur.execute(query)
 		else:
-			query = 'UPDATE daily_pb SET '+column+'='+str(record)+' WHERE '+'User_ID'+" = '"+str(User_ID)+"'"
+			query = 'UPDATE ' +table+' SET '+column+'='+str(record)+' WHERE '+'User_ID'+" = '"+str(User_ID)+"'"
 			cur.execute(query)
 	else:
 		if column == 'Completed':
