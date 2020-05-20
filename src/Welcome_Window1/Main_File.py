@@ -117,6 +117,11 @@ class Fifth_Window(QtWidgets.QMainWindow, Ui_Core):
         time = datetime.datetime.today()
         self.setupUi(self)
         self.Data.setText(time.strftime("%A, %d %B"))
+        if DBfunctions.read_db('count(Num_Task)', 'tasks') == 0:
+            self.position = 0
+        else:
+            self.position = DBfunctions.read_position_task(User_ID)
+            self.position = int(self.position)
         self.str1 = 10
         self.str2 = 1
         self.check_statistic()
@@ -169,18 +174,21 @@ class Fifth_Window(QtWidgets.QMainWindow, Ui_Core):
         self.next.show()
         self.close()
 
-    def adding_complete(self):
+    def adding_complete(self,position):
+        DBfunctions.update_record('tasks','Status_task',1,'Num_Task',position)
         completed = DBfunctions.read_db('Completed','week_pb')
         failed = DBfunctions.read_db('Failed','week_pb')
-        f = failed - 1
+        if failed != 0:
+            f = failed - 1
+            DBfunctions.write_in_db_pb('Failed', f,'week_pb',User_ID)
         comp = completed + 1
-        DBfunctions.write_in_db_pb('Failed', f,'week_pb',User_ID)
         DBfunctions.write_in_db_pb('Completed', comp,'week_pb',User_ID)
         failed = 0
         f = 0
         failed = DBfunctions.read_db('Failed','daily_pb')
-        f = failed - 1
-        DBfunctions.write_in_db_pb('Failed',f,'daily_pb',User_ID)
+        if failed != 0:
+            f = failed - 1
+            DBfunctions.write_in_db_pb('Failed',f,'daily_pb',User_ID)
         completed = 0
         comp = 0
         completed = DBfunctions.read_db('Completed','daily_pb')
@@ -198,7 +206,9 @@ class Fifth_Window(QtWidgets.QMainWindow, Ui_Core):
         f = failed + 1
         DBfunctions.write_in_db_pb('Failed', f, 'daily_pb', User_ID)
         self.check_statistic()
+
     def Add_Task(self):
+        self.position = self.position + 1
         if self.line_enter.text() == '':
             return
         time = datetime.datetime.today()
@@ -206,7 +216,7 @@ class Fifth_Window(QtWidgets.QMainWindow, Ui_Core):
         time_deadline_time = time_deadline-time
         time_deadline_time = (time_deadline_time.total_seconds())/3600
         text_task = self.line_enter.text()
-        task = [None, None, str(datetime.date.today()), str(time_deadline_time), text_task, User_ID]
+        task = [self.position, 0, str(datetime.date.today()), str(time_deadline_time), text_task, User_ID]
         DBfunctions.write_in_db_tasks(task)
         self.adding_fail()
         self.line_enter.clear()
@@ -214,6 +224,7 @@ class Fifth_Window(QtWidgets.QMainWindow, Ui_Core):
         if self.str1 < 4:
             self.str2 = self.str2 + 1
         self.addWidgetss(text_task, self.str1, self.str2,time_deadline_time)
+
     def Output_Task(self):
         time = datetime.datetime.today()
         time_deadline = time + datetime.timedelta(days = 1)
@@ -234,11 +245,12 @@ class Fifth_Window(QtWidgets.QMainWindow, Ui_Core):
             self.Reading_Tasks(TaskNT, self.str1, self.str2,time_deadline_time)
         conn.close()
     def add_task_random(self,text_task): #adding task from left_button_popup_window
+        self.position = self.position + 1
         time = datetime.datetime.today()
         time_deadline = time + datetime.timedelta(days = 1)
         time_deadline_time = time_deadline-time
         time_deadline_time = (time_deadline_time.total_seconds())/3600
-        task = [None, None, str(datetime.date.today()), str(time_deadline_time), text_task, User_ID]
+        task = [None, 0, str(datetime.date.today()), str(time_deadline_time), text_task, User_ID]
         DBfunctions.write_in_db_tasks(task)
         self.adding_fail()
         self.str1 = self.str1 - 1
@@ -294,7 +306,7 @@ class Second_Window(QtWidgets.QMainWindow, Ui_Sign): ##Window of signing in
     def create_pb(self):
         if DBfunctions.read_db('count(User_ID)', 'week_pb') == 0:
             DBfunctions.create_in_db_pb(User_ID)
-        elif DBfunctions.str_compare(str(User_ID), 'week_pb', 'User_ID') == 0:
+        elif DBfunctions.str_compare_int(str(User_ID)) == 0:
             DBfunctions.create_in_db_pb(User_ID)
         else:
             return
@@ -302,7 +314,7 @@ class Second_Window(QtWidgets.QMainWindow, Ui_Sign): ##Window of signing in
     def check_signin(self):
         if DBfunctions.read_db('count(User_ID)', 'user') == 0:
             return 0
-        elif DBfunctions.str_compare(first_name, 'user', 'First') == 0:
+        elif DBfunctions.str_compare_str(first_name) == 0:
             return 0
         else:
             global User_ID
