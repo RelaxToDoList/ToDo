@@ -12,7 +12,7 @@ def create_db():
 												'Image BLOB)')
 	con.commit()
 
-	cur.execute('CREATE TABLE IF NOT EXISTS tasks(Num_Task INTEGER UNIQUE PRIMARY KEY AUTOINCREMENT, '
+	cur.execute('CREATE TABLE IF NOT EXISTS tasks(Num_Task INTEGER UNIQUE PRIMARY KEY NOT NULL, '
 												 'Status_task INTEGER, '
 												 'Date TEXT, '
 												 'Time TEXT, '
