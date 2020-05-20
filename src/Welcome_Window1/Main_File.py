@@ -5,6 +5,7 @@ from Welcome1 import Ui_MainWindow
 from Introduction import Ui_Welcome
 from Signin import Ui_Sign
 from Choose_Theme import Ui_Choose_Theme
+import Choose_Theme
 from MainWindow import Ui_Core
 from Settings import Ui_Settings
 from statistic import Ui_Statistic
@@ -148,6 +149,7 @@ class Fifth_Window(QtWidgets.QMainWindow, Ui_Core):
         self.logout_button.clicked.connect(self.logout_to_signin)
         self.addtaskfromfile()
         self.Output_Task()
+
     def logout_to_signin(self):
         self.next = Second_Window()
         self.next.show()
@@ -159,6 +161,8 @@ class Fifth_Window(QtWidgets.QMainWindow, Ui_Core):
     def check_statistic(self):
         completed_d = DBfunctions.read_db('Completed', 'daily_pb')
         failed_d = DBfunctions.read_db('Failed', 'daily_pb')
+        self.label_have_to_do.setText(str(failed_d))
+        self.label_did.setText(str(completed_d))
         statistic = completed_d + failed_d
         if statistic == 0:
             statistic = 1
@@ -180,6 +184,7 @@ class Fifth_Window(QtWidgets.QMainWindow, Ui_Core):
             f = failed - 1
             DBfunctions.write_in_db_pb('Failed', f,'week_pb',User_ID)
         comp = completed + 1
+        self.label_did.setText(str(comp))
         DBfunctions.write_in_db_pb('Completed', comp,'week_pb',User_ID)
         failed = 0
         f = 0
@@ -187,10 +192,12 @@ class Fifth_Window(QtWidgets.QMainWindow, Ui_Core):
         if failed != 0:
             f = failed - 1
             DBfunctions.write_in_db_pb('Failed',f,'daily_pb',User_ID)
+            self.label_have_to_do.setText(str(f))
         completed = 0
         comp = 0
         completed = DBfunctions.read_db('Completed','daily_pb')
         comp = completed + 1
+        self.label_did.setText(str(comp))
         DBfunctions.write_in_db_pb('Completed', comp,'daily_pb', User_ID)
         self.check_statistic()
 
@@ -231,13 +238,93 @@ class Fifth_Window(QtWidgets.QMainWindow, Ui_Core):
         cursor.execute("SELECT Task_text FROM tasks WHERE User_ID = :User", {"User": User})
         TaskDB = cursor.fetchall()
         self.line_enter.clear()
+        #self.check_status_task()
         for i in range(0,len(TaskDB),1):
             Task = TaskDB[i]
             TaskNT = Task[0]
             self.Reading_Tasks(TaskNT,time_deadline_time)
         conn.close()
+    # def check_status_task(self):
+    #     User = DBfunctions.read_db('User_ID','user','First',first_name)
+    #     conn = sqlite3.connect("Data_base/DataBase.db")
+    #     cursor = conn.cursor()
+    #     cursor.execute('SELECT Status_task FROM tasks WHERE User_ID = :User',{'User':User})
+    #     status = cursor.fetchall()
+    #     cursor.execute('SELECT Num_Task FROM tasks WHERE User_ID = :User',{'User':User})
+    #     position = cursor.fetchall()
+    #     for stat in status:
+    #         if stat == (1,):
+    #             for pos in position:
+    #                     if pos == (1,):
+    #                         print(f"first{stat}")
+    #                         print(f"first{pos}")
+    #                         self.check_box1.disconnect()
+    #                         if Choose_Theme.theme == 0:
+    #                             self.check_box1.setIcon(QtGui.QIcon("icons/Checkbox_Light.png"))
+    #                         else:
+    #                             self.check_box1.setIcon(QtGui.QIcon("icons/Checkbox_Dark.png"))
+    #                     if pos == (2,):
+    #                         print(f"second{stat}")
+    #                         print(f"second{pos}")
+    #                         self.check_box2.disconnect()
+    #                         if Choose_Theme.theme == 0:
+    #                             self.check_box2.setIcon(QtGui.QIcon("icons/Checkbox_Light.png"))
+    #                         else:
+    #                             self.check_box2.setIcon(QtGui.QIcon("icons/Checkbox_Dark.png"))
+    #                     if pos == (3,):
+    #                         self.check_box3.disconnect()
+    #                         if Choose_Theme.theme == 0:
+    #                             self.check_box3.setIcon(QtGui.QIcon("icons/Checkbox_Light.png"))
+    #                         else:
+    #                             self.check_box3.setIcon(QtGui.QIcon("icons/Checkbox_Dark.png"))
+    #                     if pos == (4,):
+    #                         self.check_box4.disconnect()
+    #                         if Choose_Theme.theme == 0:
+    #                             self.check_box4.setIcon(QtGui.QIcon("icons/Checkbox_Light.png"))
+    #                         else:
+    #                             self.check_box4.setIcon(QtGui.QIcon("icons/Checkbox_Dark.png"))
+    #                     if pos == (5,):
+    #                         self.check_box5.disconnect()
+    #                         if Choose_Theme.theme == 0:
+    #                             self.check_box5.setIcon(QtGui.QIcon("icons/Checkbox_Light.png"))
+    #                         else:
+    #                             self.check_box5.setIcon(QtGui.QIcon("icons/Checkbox_Dark.png"))
+    #                     if pos == (6,):
+    #                         self.check_box6.disconnect()
+    #                         if Choose_Theme.theme == 0:
+    #                             self.check_box6.setIcon(QtGui.QIcon("icons/Checkbox_Light.png"))
+    #                         else:
+    #                             self.check_box6.setIcon(QtGui.QIcon("icons/Checkbox_Dark.png"))
+    #                     if pos == (7,):
+    #                         self.check_box7.disconnect()
+    #                         if Choose_Theme.theme == 0:
+    #                             self.check_box7.setIcon(QtGui.QIcon("icons/Checkbox_Light.png"))
+    #                         else:
+    #                             self.check_box7.setIcon(QtGui.QIcon("icons/Checkbox_Dark.png"))
+    #                     if pos == (8,):
+    #                         self.check_box8.disconnect()
+    #                         if Choose_Theme.theme == 0:
+    #                             self.check_box8.setIcon(QtGui.QIcon("icons/Checkbox_Light.png"))
+    #                         else:
+    #                             self.check_box8.setIcon(QtGui.QIcon("icons/Checkbox_Dark.png"))
+    #                     if pos == (9,):
+    #                         self.check_box9.disconnect()
+    #                         if Choose_Theme.theme == 0:
+    #                             self.check_box9.setIcon(QtGui.QIcon("icons/Checkbox_Light.png"))
+    #                         else:
+    #                             self.check_box9.setIcon(QtGui.QIcon("icons/Checkbox_Dark.png"))
+    #                     if pos == (10,):
+    #                         self.check_box10.disconnect()
+    #                         if Choose_Theme.theme == 0:
+    #                             self.check_box10.setIcon(QtGui.QIcon("icons/Checkbox_Light.png"))
+    #                         else:
+    #                             self.check_box10.setIcon(QtGui.QIcon("icons/Checkbox_Dark.png"))
+    #             else:
+    #                 pass
+
     def add_task_random(self,text_task): #adding task from left_button_popup_window
         self.position = self.position + 1
+        self.daily_add_button.disconnect()
         time = datetime.datetime.today()
         time_deadline = time + datetime.timedelta(days = 1)
         time_deadline_time = time_deadline-time
