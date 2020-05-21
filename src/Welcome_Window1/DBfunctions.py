@@ -161,8 +161,9 @@ def read_position_task(User_ID):
 	query = 'SELECT Num_Task FROM tasks WHERE '+id_column+" = '"+str(User_ID)+"'"#+' ORDER BY DESC'
 	cur.execute(query)
 	data = cur.fetchall()
-	# print(data)
-	i = int(read_db('count(User_ID)', 'tasks'))
+	i = int(read_db('count(User_ID)', 'tasks', 'User_ID',User_ID))
+	if i == 0:
+		return 0
 	str1 = ''
 	for line in list(map(str,data[i-1])):
 		str1 = line + str1

@@ -14,7 +14,6 @@ import DBfunctions
 import sqlite3
 import random
 import datetime
-import gc
 
 class Statistic_Menu(QtWidgets.QMainWindow, Ui_Statistic):
     def __init__(self,parent = None):
@@ -40,14 +39,11 @@ class Statistic_Menu(QtWidgets.QMainWindow, Ui_Statistic):
     def mainWindow(self):
         self.previous = Fifth_Window()
         self.close()
-        gc.collect()
-        print(gc.isenabled)
         self.previous.show()
     def statisticMenu(self):
         self.statistic = Settings_Menu()
         self.close()
         self.statistic.show()
-        gc.collect()
 
 class Settings_Menu(QtWidgets.QMainWindow, Ui_Settings):
     def choose_picture_dialog_open(self):
@@ -104,12 +100,10 @@ class Settings_Menu(QtWidgets.QMainWindow, Ui_Settings):
         self.back = Fifth_Window()
         self.close()
         self.back.show()
-        gc.collect()
     def statistic_menu(self):
         self.back = Statistic_Menu()
         self.close()
         self.back.show()
-        gc.collect()
 class Fifth_Window(QtWidgets.QMainWindow, Ui_Core):
     def show_first_last(self):
         self.FirstName.setText(DBfunctions.read_db('First', 'user', 'User_ID', User_ID))
@@ -166,7 +160,6 @@ class Fifth_Window(QtWidgets.QMainWindow, Ui_Core):
             os.remove('./Data_base/pict_user.png')
         else:
             pass
-        gc.collect()
         self.close()
     def check_statistic(self):
         completed_d = DBfunctions.read_db('Completed', 'daily_pb')
@@ -180,12 +173,10 @@ class Fifth_Window(QtWidgets.QMainWindow, Ui_Core):
     def statisticMenu(self):
         self.next = Statistic_Menu()
         self.next.show()
-        gc.collect()
         self.close()
     def nextWindow(self):
         self.next = Settings_Menu()
         self.next.show()
-        gc.collect()
         self.close()
 
     def adding_complete(self,position):
@@ -521,7 +512,7 @@ class Second_Window(QtWidgets.QMainWindow, Ui_Sign): ##Window of signing in
         else:
             return
 
-    def check_signin(self):
+    def check_signin(self,first_name):
         if DBfunctions.read_db('count(User_ID)', 'user') == 0:
             return 0
         elif DBfunctions.str_compare_str(first_name) == 0:
@@ -536,6 +527,7 @@ class Second_Window(QtWidgets.QMainWindow, Ui_Sign): ##Window of signing in
         first_name = self.InputFirst.text()
         global last_name
         last_name = self.InputSecond.text()
+        name = first_name
         if not first_name:
             self.error()
             return
@@ -543,7 +535,7 @@ class Second_Window(QtWidgets.QMainWindow, Ui_Sign): ##Window of signing in
             self.error()
             return
         else:
-            if self.check_signin() == 1:
+            if self.check_signin(name) == 1:
                 self.nextWindow()
             else:
                 global User_ID
