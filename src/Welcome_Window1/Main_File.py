@@ -238,89 +238,212 @@ class Fifth_Window(QtWidgets.QMainWindow, Ui_Core):
         cursor.execute("SELECT Task_text FROM tasks WHERE User_ID = :User", {"User": User})
         TaskDB = cursor.fetchall()
         self.line_enter.clear()
-        #self.check_status_task()
+        self.check_status_task()
         for i in range(0,len(TaskDB),1):
             Task = TaskDB[i]
             TaskNT = Task[0]
             self.Reading_Tasks(TaskNT,time_deadline_time)
         conn.close()
-    # def check_status_task(self):
-    #     User = DBfunctions.read_db('User_ID','user','First',first_name)
-    #     conn = sqlite3.connect("Data_base/DataBase.db")
-    #     cursor = conn.cursor()
-    #     cursor.execute('SELECT Status_task FROM tasks WHERE User_ID = :User',{'User':User})
-    #     status = cursor.fetchall()
-    #     cursor.execute('SELECT Num_Task FROM tasks WHERE User_ID = :User',{'User':User})
-    #     position = cursor.fetchall()
-    #     for stat in status:
-    #         if stat == (1,):
-    #             for pos in position:
-    #                     if pos == (1,):
-    #                         print(f"first{stat}")
-    #                         print(f"first{pos}")
-    #                         self.check_box1.disconnect()
-    #                         if Choose_Theme.theme == 0:
-    #                             self.check_box1.setIcon(QtGui.QIcon("icons/Checkbox_Light.png"))
-    #                         else:
-    #                             self.check_box1.setIcon(QtGui.QIcon("icons/Checkbox_Dark.png"))
-    #                     if pos == (2,):
-    #                         print(f"second{stat}")
-    #                         print(f"second{pos}")
-    #                         self.check_box2.disconnect()
-    #                         if Choose_Theme.theme == 0:
-    #                             self.check_box2.setIcon(QtGui.QIcon("icons/Checkbox_Light.png"))
-    #                         else:
-    #                             self.check_box2.setIcon(QtGui.QIcon("icons/Checkbox_Dark.png"))
-    #                     if pos == (3,):
-    #                         self.check_box3.disconnect()
-    #                         if Choose_Theme.theme == 0:
-    #                             self.check_box3.setIcon(QtGui.QIcon("icons/Checkbox_Light.png"))
-    #                         else:
-    #                             self.check_box3.setIcon(QtGui.QIcon("icons/Checkbox_Dark.png"))
-    #                     if pos == (4,):
-    #                         self.check_box4.disconnect()
-    #                         if Choose_Theme.theme == 0:
-    #                             self.check_box4.setIcon(QtGui.QIcon("icons/Checkbox_Light.png"))
-    #                         else:
-    #                             self.check_box4.setIcon(QtGui.QIcon("icons/Checkbox_Dark.png"))
-    #                     if pos == (5,):
-    #                         self.check_box5.disconnect()
-    #                         if Choose_Theme.theme == 0:
-    #                             self.check_box5.setIcon(QtGui.QIcon("icons/Checkbox_Light.png"))
-    #                         else:
-    #                             self.check_box5.setIcon(QtGui.QIcon("icons/Checkbox_Dark.png"))
-    #                     if pos == (6,):
-    #                         self.check_box6.disconnect()
-    #                         if Choose_Theme.theme == 0:
-    #                             self.check_box6.setIcon(QtGui.QIcon("icons/Checkbox_Light.png"))
-    #                         else:
-    #                             self.check_box6.setIcon(QtGui.QIcon("icons/Checkbox_Dark.png"))
-    #                     if pos == (7,):
-    #                         self.check_box7.disconnect()
-    #                         if Choose_Theme.theme == 0:
-    #                             self.check_box7.setIcon(QtGui.QIcon("icons/Checkbox_Light.png"))
-    #                         else:
-    #                             self.check_box7.setIcon(QtGui.QIcon("icons/Checkbox_Dark.png"))
-    #                     if pos == (8,):
-    #                         self.check_box8.disconnect()
-    #                         if Choose_Theme.theme == 0:
-    #                             self.check_box8.setIcon(QtGui.QIcon("icons/Checkbox_Light.png"))
-    #                         else:
-    #                             self.check_box8.setIcon(QtGui.QIcon("icons/Checkbox_Dark.png"))
-    #                     if pos == (9,):
-    #                         self.check_box9.disconnect()
-    #                         if Choose_Theme.theme == 0:
-    #                             self.check_box9.setIcon(QtGui.QIcon("icons/Checkbox_Light.png"))
-    #                         else:
-    #                             self.check_box9.setIcon(QtGui.QIcon("icons/Checkbox_Dark.png"))
-    #                     if pos == (10,):
-    #                         self.check_box10.disconnect()
-    #                         if Choose_Theme.theme == 0:
-    #                             self.check_box10.setIcon(QtGui.QIcon("icons/Checkbox_Light.png"))
-    #                         else:
-    #                             self.check_box10.setIcon(QtGui.QIcon("icons/Checkbox_Dark.png"))
-    #             else:
-    #                 pass
+
+    def check_status_task(self):
+        User = DBfunctions.read_db('User_ID','user','First',first_name)
+        conn = sqlite3.connect("Data_base/DataBase.db")
+        cursor = conn.cursor()
+        cursor.execute('SELECT Status_task FROM tasks WHERE User_ID = :User',{'User':User})
+        status = cursor.fetchall()
+        cursor.execute('SELECT Num_Task FROM tasks WHERE User_ID = :User',{'User':User})
+        position = cursor.fetchall()
+        if not position:
+            return
+        print(len(position))
+        if len(position) == 1:
+            if status[0] == (1,):
+                self.check_box_checked_1_interface()
+        if len(position) == 2:
+            if status[0] == (1,):
+                self.check_box_checked_1_interface()
+            if status[1] == (1,):
+                self.check_box_checked_2_interface()
+        if len(position) == 3:
+            if status[0] == (1,):
+                self.check_box_checked_1_interface()
+            if status[1] == (1,):
+                self.check_box_checked_2_interface()
+            if status[2] ==(1,):
+                self.check_box_checked_3_interface()
+        if len(position) == 4:
+            if status[0] == (1,):
+                self.check_box_checked_1_interface()
+            if status[1] == (1,):
+                self.check_box_checked_2_interface()
+            if status[2] ==(1,):
+                self.check_box_checked_3_interface()
+            if status[3] == (1,):
+                self.check_box_checked_4_interface()
+
+        if len(position) == 5:
+            if status[0] == (1,):
+                self.check_box_checked_1_interface()
+            if status[1] == (1,):
+                self.check_box_checked_2_interface()
+            if status[2] ==(1,):
+                self.check_box_checked_3_interface()
+            if status[3] == (1,):
+                self.check_box_checked_4_interface()
+            if status[4] == (1,):
+                self.check_box_checked_5_interface()
+
+        if len(position) == 6:
+            if status[0] == (1,):
+                self.check_box_checked_1_interface()
+            if status[1] == (1,):
+                self.check_box_checked_2_interface()
+            if status[2] ==(1,):
+                self.check_box_checked_3_interface()
+            if status[3] == (1,):
+                self.check_box_checked_4_interface()
+            if status[4] == (1,):
+                self.check_box_checked_5_interface()
+            if status[5] == (1,):
+                self.check_box_checked_6_interface()
+
+        if len(position) == 7:
+            if status[0] == (1,):
+                self.check_box_checked_1_interface()
+            if status[1] == (1,):
+                self.check_box_checked_2_interface()
+            if status[2] ==(1,):
+                self.check_box_checked_3_interface()
+            if status[3] == (1,):
+                self.check_box_checked_4_interface()
+            if status[4] == (1,):
+                self.check_box_checked_5_interface()
+            if status[5] == (1,):
+                self.check_box_checked_6_interface()
+            if status[6] == (1,):
+                self.check_box_checked_7_interface()
+
+        if len(position) == 8:
+            if status[0] == (1,):
+                self.check_box_checked_1_interface()
+            if status[1] == (1,):
+                self.check_box_checked_2_interface()
+            if status[2] ==(1,):
+                self.check_box_checked_3_interface()
+            if status[3] == (1,):
+                self.check_box_checked_4_interface()
+            if status[4] == (1,):
+                self.check_box_checked_5_interface()
+            if status[5] == (1,):
+                self.check_box_checked_6_interface()
+            if status[6] == (1,):
+                self.check_box_checked_7_interface()
+            if status[7] == (1,):
+                self.check_box_checked_8_interface()
+
+        if len(position) == 9:
+            if status[0] == (1,):
+                self.check_box_checked_1_interface()
+            if status[1] == (1,):
+                self.check_box_checked_2_interface()
+            if status[2] ==(1,):
+                self.check_box_checked_3_interface()
+            if status[3] == (1,):
+                self.check_box_checked_4_interface()
+            if status[4] == (1,):
+                self.check_box_checked_5_interface()
+            if status[5] == (1,):
+                self.check_box_checked_6_interface()
+            if status[6] == (1,):
+                self.check_box_checked_7_interface()
+            if status[7] == (1,):
+                self.check_box_checked_8_interface()
+            if status[8] == (1,):
+                self.check_box_checked_9_interface()
+
+        if len(position) == 10:
+            if status[0] == (1,):
+                self.check_box_checked_1_interface()
+            if status[1] == (1,):
+                self.check_box_checked_2_interface()
+            if status[2] ==(1,):
+                self.check_box_checked_3_interface()
+            if status[3] == (1,):
+                self.check_box_checked_4_interface()
+            if status[4] == (1,):
+                self.check_box_checked_5_interface()
+            if status[5] == (1,):
+                self.check_box_checked_6_interface()
+            if status[6] == (1,):
+                self.check_box_checked_7_interface()
+            if status[7] == (1,):
+                self.check_box_checked_8_interface()
+            if status[8] == (1,):
+                self.check_box_checked_9_interface()
+            if status[9] == (1,):
+                self.check_box_checked_10_interface()
+
+    def check_box_checked_1_interface(self):
+        self.check_box1.disconnect()
+        if Choose_Theme.theme == 0:
+            self.check_box1.setIcon(QtGui.QIcon("icons/Checkbox_Light.png"))
+        else:
+            self.check_box1.setIcon(QtGui.QIcon("icons/Checkbox_Dark.png"))
+
+    def check_box_checked_2_interface(self):
+        self.check_box2.disconnect()
+        if Choose_Theme.theme == 0:
+            self.check_box2.setIcon(QtGui.QIcon("icons/Checkbox_Light.png"))
+        else:
+            self.check_box2.setIcon(QtGui.QIcon("icons/Checkbox_Dark.png"))
+    def check_box_checked_3_interface(self):
+        self.check_box3.disconnect()
+        if Choose_Theme.theme == 0:
+            self.check_box3.setIcon(QtGui.QIcon("icons/Checkbox_Light.png"))
+        else:
+            self.check_box3.setIcon(QtGui.QIcon("icons/Checkbox_Dark.png"))
+    def check_box_checked_4_interface(self):
+        self.check_box4.disconnect()
+        if Choose_Theme.theme == 0:
+            self.check_box4.setIcon(QtGui.QIcon("icons/Checkbox_Light.png"))
+        else:
+            self.check_box4.setIcon(QtGui.QIcon("icons/Checkbox_Dark.png"))
+    def check_box_checked_5_interface(self):
+        self.check_box5.disconnect()
+        if Choose_Theme.theme == 0:
+            self.check_box5.setIcon(QtGui.QIcon("icons/Checkbox_Light.png"))
+        else:
+            self.check_box5.setIcon(QtGui.QIcon("icons/Checkbox_Dark.png"))
+    def check_box_checked_6_interface(self):
+        self.check_box6.disconnect()
+        if Choose_Theme.theme == 0:
+            self.check_box6.setIcon(QtGui.QIcon("icons/Checkbox_Light.png"))
+        else:
+            self.check_box6.setIcon(QtGui.QIcon("icons/Checkbox_Dark.png"))
+    def check_box_checked_7_interface(self):
+        self.check_box7.disconnect()
+        if Choose_Theme.theme == 0:
+            self.check_box7.setIcon(QtGui.QIcon("icons/Checkbox_Light.png"))
+        else:
+            self.check_box7.setIcon(QtGui.QIcon("icons/Checkbox_Dark.png"))
+    def check_box_checked_8_interface(self):
+        self.check_box8.disconnect()
+        if Choose_Theme.theme == 0:
+            self.check_box8.setIcon(QtGui.QIcon("icons/Checkbox_Light.png"))
+        else:
+            self.check_box8.setIcon(QtGui.QIcon("icons/Checkbox_Dark.png"))
+    def check_box_checked_9_interface(self):
+        self.check_box9.disconnect()
+        if Choose_Theme.theme == 0:
+            self.check_box9.setIcon(QtGui.QIcon("icons/Checkbox_Light.png"))
+        else:
+            self.check_box9.setIcon(QtGui.QIcon("icons/Checkbox_Dark.png"))
+    def check_box_checked_10_interface(self):
+        self.check_box10.disconnect()
+        if Choose_Theme.theme == 0:
+            self.check_box10.setIcon(QtGui.QIcon("icons/Checkbox_Light.png"))
+        else:
+            self.check_box10.setIcon(QtGui.QIcon("icons/Checkbox_Dark.png"))
 
     def add_task_random(self,text_task): #adding task from left_button_popup_window
         self.position = self.position + 1
