@@ -14,6 +14,7 @@ import DBfunctions
 import sqlite3
 import random
 import datetime
+import gc
 
 class Statistic_Menu(QtWidgets.QMainWindow, Ui_Statistic):
     def __init__(self,parent = None):
@@ -33,14 +34,20 @@ class Statistic_Menu(QtWidgets.QMainWindow, Ui_Statistic):
         if statistic == 0:
             statistic = 1
         self.progress_bar.setValue((completed_w/statistic)*100)
+        self.number_all.setText(str(completed_w+failed_w))
+        self.completted_number.setText(str(completed_w))
+        self.failed_number.setText(str(failed_w))
     def mainWindow(self):
         self.previous = Fifth_Window()
         self.close()
+        gc.collect()
+        print(gc.isenabled)
         self.previous.show()
     def statisticMenu(self):
         self.statistic = Settings_Menu()
         self.close()
         self.statistic.show()
+        gc.collect()
 
 class Settings_Menu(QtWidgets.QMainWindow, Ui_Settings):
     def choose_picture_dialog_open(self):
@@ -97,10 +104,12 @@ class Settings_Menu(QtWidgets.QMainWindow, Ui_Settings):
         self.back = Fifth_Window()
         self.close()
         self.back.show()
+        gc.collect()
     def statistic_menu(self):
         self.back = Statistic_Menu()
         self.close()
         self.back.show()
+        gc.collect()
 class Fifth_Window(QtWidgets.QMainWindow, Ui_Core):
     def show_first_last(self):
         self.FirstName.setText(DBfunctions.read_db('First', 'user', 'User_ID', User_ID))
@@ -157,6 +166,7 @@ class Fifth_Window(QtWidgets.QMainWindow, Ui_Core):
             os.remove('./Data_base/pict_user.png')
         else:
             pass
+        gc.collect()
         self.close()
     def check_statistic(self):
         completed_d = DBfunctions.read_db('Completed', 'daily_pb')
@@ -170,10 +180,12 @@ class Fifth_Window(QtWidgets.QMainWindow, Ui_Core):
     def statisticMenu(self):
         self.next = Statistic_Menu()
         self.next.show()
+        gc.collect()
         self.close()
     def nextWindow(self):
         self.next = Settings_Menu()
         self.next.show()
+        gc.collect()
         self.close()
 
     def adding_complete(self,position):
@@ -255,7 +267,6 @@ class Fifth_Window(QtWidgets.QMainWindow, Ui_Core):
         position = cursor.fetchall()
         if not position:
             return
-        print(len(position))
         if len(position) == 1:
             if status[0] == (1,):
                 self.check_box_checked_1_interface()
@@ -388,62 +399,62 @@ class Fifth_Window(QtWidgets.QMainWindow, Ui_Core):
         if Choose_Theme.theme == 0:
             self.check_box1.setIcon(QtGui.QIcon("icons/Checkbox_Light.png"))
         else:
-            self.check_box1.setIcon(QtGui.QIcon("icons/Checkbox_Dark.png"))
+            self.check_box1.setIcon(QtGui.QIcon("icons/Сheckbox_Dark.png"))
 
     def check_box_checked_2_interface(self):
         self.check_box2.disconnect()
         if Choose_Theme.theme == 0:
             self.check_box2.setIcon(QtGui.QIcon("icons/Checkbox_Light.png"))
         else:
-            self.check_box2.setIcon(QtGui.QIcon("icons/Checkbox_Dark.png"))
+            self.check_box2.setIcon(QtGui.QIcon("icons/Сheckbox_Dark.png"))
     def check_box_checked_3_interface(self):
         self.check_box3.disconnect()
         if Choose_Theme.theme == 0:
             self.check_box3.setIcon(QtGui.QIcon("icons/Checkbox_Light.png"))
         else:
-            self.check_box3.setIcon(QtGui.QIcon("icons/Checkbox_Dark.png"))
+            self.check_box3.setIcon(QtGui.QIcon("icons/Сheckbox_Dark.png"))
     def check_box_checked_4_interface(self):
         self.check_box4.disconnect()
         if Choose_Theme.theme == 0:
             self.check_box4.setIcon(QtGui.QIcon("icons/Checkbox_Light.png"))
         else:
-            self.check_box4.setIcon(QtGui.QIcon("icons/Checkbox_Dark.png"))
+            self.check_box4.setIcon(QtGui.QIcon("icons/Сheckbox_Dark.png"))
     def check_box_checked_5_interface(self):
         self.check_box5.disconnect()
         if Choose_Theme.theme == 0:
             self.check_box5.setIcon(QtGui.QIcon("icons/Checkbox_Light.png"))
         else:
-            self.check_box5.setIcon(QtGui.QIcon("icons/Checkbox_Dark.png"))
+            self.check_box5.setIcon(QtGui.QIcon("icons/Сheckbox_Dark.png"))
     def check_box_checked_6_interface(self):
         self.check_box6.disconnect()
         if Choose_Theme.theme == 0:
             self.check_box6.setIcon(QtGui.QIcon("icons/Checkbox_Light.png"))
         else:
-            self.check_box6.setIcon(QtGui.QIcon("icons/Checkbox_Dark.png"))
+            self.check_box6.setIcon(QtGui.QIcon("icons/Сheckbox_Dark.png"))
     def check_box_checked_7_interface(self):
         self.check_box7.disconnect()
         if Choose_Theme.theme == 0:
             self.check_box7.setIcon(QtGui.QIcon("icons/Checkbox_Light.png"))
         else:
-            self.check_box7.setIcon(QtGui.QIcon("icons/Checkbox_Dark.png"))
+            self.check_box7.setIcon(QtGui.QIcon("icons/Сheckbox_Dark.png"))
     def check_box_checked_8_interface(self):
         self.check_box8.disconnect()
         if Choose_Theme.theme == 0:
             self.check_box8.setIcon(QtGui.QIcon("icons/Checkbox_Light.png"))
         else:
-            self.check_box8.setIcon(QtGui.QIcon("icons/Checkbox_Dark.png"))
+            self.check_box8.setIcon(QtGui.QIcon("icons/Сheckbox_Dark.png"))
     def check_box_checked_9_interface(self):
         self.check_box9.disconnect()
         if Choose_Theme.theme == 0:
             self.check_box9.setIcon(QtGui.QIcon("icons/Checkbox_Light.png"))
         else:
-            self.check_box9.setIcon(QtGui.QIcon("icons/Checkbox_Dark.png"))
+            self.check_box9.setIcon(QtGui.QIcon("icons/Сheckbox_Dark.png"))
     def check_box_checked_10_interface(self):
         self.check_box10.disconnect()
         if Choose_Theme.theme == 0:
             self.check_box10.setIcon(QtGui.QIcon("icons/Checkbox_Light.png"))
         else:
-            self.check_box10.setIcon(QtGui.QIcon("icons/Checkbox_Dark.png"))
+            self.check_box10.setIcon(QtGui.QIcon("icons/Сheckbox_Dark.png"))
 
     def add_task_random(self,text_task): #adding task from left_button_popup_window
         self.position = self.position + 1
