@@ -5,6 +5,7 @@ from Welcome1 import Ui_MainWindow
 from Introduction import Ui_Welcome
 from Signin import Ui_Sign
 from Choose_Theme import Ui_Choose_Theme
+import Choose_Theme
 from MainWindow import Ui_Core
 from Settings import Ui_Settings
 from statistic import Ui_Statistic
@@ -117,8 +118,11 @@ class Fifth_Window(QtWidgets.QMainWindow, Ui_Core):
         time = datetime.datetime.today()
         self.setupUi(self)
         self.Data.setText(time.strftime("%A, %d %B"))
-        self.str1 = 10
-        self.str2 = 1
+        if DBfunctions.read_db('count(Num_Task)', 'tasks') == 0:
+            self.position = 0
+        else:
+            self.position = DBfunctions.read_position_task(User_ID)
+            self.position = int(self.position)
         self.check_statistic()
         self.check_theme_person()
         self.check_box1.clicked.connect(self.check_box_checked1)
@@ -145,6 +149,7 @@ class Fifth_Window(QtWidgets.QMainWindow, Ui_Core):
         self.logout_button.clicked.connect(self.logout_to_signin)
         self.addtaskfromfile()
         self.Output_Task()
+
     def logout_to_signin(self):
         self.next = Second_Window()
         self.next.show()
@@ -156,6 +161,8 @@ class Fifth_Window(QtWidgets.QMainWindow, Ui_Core):
     def check_statistic(self):
         completed_d = DBfunctions.read_db('Completed', 'daily_pb')
         failed_d = DBfunctions.read_db('Failed', 'daily_pb')
+        self.label_have_to_do.setText(str(failed_d))
+        self.label_did.setText(str(completed_d))
         statistic = completed_d + failed_d
         if statistic == 0:
             statistic = 1
@@ -169,6 +176,31 @@ class Fifth_Window(QtWidgets.QMainWindow, Ui_Core):
         self.next.show()
         self.close()
 
+    def adding_complete(self,position):
+        DBfunctions.update_record('tasks','Status_task',1,'Num_Task',position)
+        completed = DBfunctions.read_db('Completed','week_pb')
+        failed = DBfunctions.read_db('Failed','week_pb')
+        if failed != 0:
+            f = failed - 1
+            DBfunctions.write_in_db_pb('Failed', f,'week_pb',User_ID)
+        comp = completed + 1
+        self.label_did.setText(str(comp))
+        DBfunctions.write_in_db_pb('Completed', comp,'week_pb',User_ID)
+        failed = 0
+        f = 0
+        failed = DBfunctions.read_db('Failed','daily_pb')
+        if failed != 0:
+            f = failed - 1
+            DBfunctions.write_in_db_pb('Failed',f,'daily_pb',User_ID)
+            self.label_have_to_do.setText(str(f))
+        completed = 0
+        comp = 0
+        completed = DBfunctions.read_db('Completed','daily_pb')
+        comp = completed + 1
+        self.label_did.setText(str(comp))
+        DBfunctions.write_in_db_pb('Completed', comp,'daily_pb', User_ID)
+        self.check_statistic()
+
     def adding_fail(self):
         failed = DBfunctions.read_db('Failed', 'week_pb')
         f = failed + 1
@@ -178,7 +210,10 @@ class Fifth_Window(QtWidgets.QMainWindow, Ui_Core):
         failed = DBfunctions.read_db('Failed', 'daily_pb')
         f = failed + 1
         DBfunctions.write_in_db_pb('Failed', f, 'daily_pb', User_ID)
+        self.check_statistic()
+
     def Add_Task(self):
+        self.position = self.position + 1
         if self.line_enter.text() == '':
             return
         time = datetime.datetime.today()
@@ -186,14 +221,12 @@ class Fifth_Window(QtWidgets.QMainWindow, Ui_Core):
         time_deadline_time = time_deadline-time
         time_deadline_time = (time_deadline_time.total_seconds())/3600
         text_task = self.line_enter.text()
-        task = [None, None, str(datetime.date.today()), str(time_deadline_time), text_task, User_ID]
+        task = [self.position, 0, str(datetime.date.today()), str(time_deadline_time), text_task, User_ID]
         DBfunctions.write_in_db_tasks(task)
         self.adding_fail()
         self.line_enter.clear()
-        self.str1 = self.str1 - 1
-        if self.str1 < 4:
-            self.str2 = self.str2 + 1
-        self.addWidgetss(text_task, self.str1, self.str2,time_deadline_time)
+        self.addWidgetss(text_task,time_deadline_time)
+
     def Output_Task(self):
         time = datetime.datetime.today()
         time_deadline = time + datetime.timedelta(days = 1)
@@ -205,26 +238,224 @@ class Fifth_Window(QtWidgets.QMainWindow, Ui_Core):
         cursor.execute("SELECT Task_text FROM tasks WHERE User_ID = :User", {"User": User})
         TaskDB = cursor.fetchall()
         self.line_enter.clear()
+        self.check_status_task()
         for i in range(0,len(TaskDB),1):
             Task = TaskDB[i]
             TaskNT = Task[0]
-            self.str1 = self.str1 - 1
-            if self.str1 < 4:
-                self.str2 = self.str2 + 1
-            self.Reading_Tasks(TaskNT, self.str1, self.str2,time_deadline_time)
+            self.Reading_Tasks(TaskNT,time_deadline_time)
         conn.close()
+
+    def check_status_task(self):
+        User = DBfunctions.read_db('User_ID','user','First',first_name)
+        conn = sqlite3.connect("Data_base/DataBase.db")
+        cursor = conn.cursor()
+        cursor.execute('SELECT Status_task FROM tasks WHERE User_ID = :User',{'User':User})
+        status = cursor.fetchall()
+        cursor.execute('SELECT Num_Task FROM tasks WHERE User_ID = :User',{'User':User})
+        position = cursor.fetchall()
+        if not position:
+            return
+        print(len(position))
+        if len(position) == 1:
+            if status[0] == (1,):
+                self.check_box_checked_1_interface()
+        if len(position) == 2:
+            if status[0] == (1,):
+                self.check_box_checked_1_interface()
+            if status[1] == (1,):
+                self.check_box_checked_2_interface()
+        if len(position) == 3:
+            if status[0] == (1,):
+                self.check_box_checked_1_interface()
+            if status[1] == (1,):
+                self.check_box_checked_2_interface()
+            if status[2] ==(1,):
+                self.check_box_checked_3_interface()
+        if len(position) == 4:
+            if status[0] == (1,):
+                self.check_box_checked_1_interface()
+            if status[1] == (1,):
+                self.check_box_checked_2_interface()
+            if status[2] ==(1,):
+                self.check_box_checked_3_interface()
+            if status[3] == (1,):
+                self.check_box_checked_4_interface()
+
+        if len(position) == 5:
+            if status[0] == (1,):
+                self.check_box_checked_1_interface()
+            if status[1] == (1,):
+                self.check_box_checked_2_interface()
+            if status[2] ==(1,):
+                self.check_box_checked_3_interface()
+            if status[3] == (1,):
+                self.check_box_checked_4_interface()
+            if status[4] == (1,):
+                self.check_box_checked_5_interface()
+
+        if len(position) == 6:
+            if status[0] == (1,):
+                self.check_box_checked_1_interface()
+            if status[1] == (1,):
+                self.check_box_checked_2_interface()
+            if status[2] ==(1,):
+                self.check_box_checked_3_interface()
+            if status[3] == (1,):
+                self.check_box_checked_4_interface()
+            if status[4] == (1,):
+                self.check_box_checked_5_interface()
+            if status[5] == (1,):
+                self.check_box_checked_6_interface()
+
+        if len(position) == 7:
+            if status[0] == (1,):
+                self.check_box_checked_1_interface()
+            if status[1] == (1,):
+                self.check_box_checked_2_interface()
+            if status[2] ==(1,):
+                self.check_box_checked_3_interface()
+            if status[3] == (1,):
+                self.check_box_checked_4_interface()
+            if status[4] == (1,):
+                self.check_box_checked_5_interface()
+            if status[5] == (1,):
+                self.check_box_checked_6_interface()
+            if status[6] == (1,):
+                self.check_box_checked_7_interface()
+
+        if len(position) == 8:
+            if status[0] == (1,):
+                self.check_box_checked_1_interface()
+            if status[1] == (1,):
+                self.check_box_checked_2_interface()
+            if status[2] ==(1,):
+                self.check_box_checked_3_interface()
+            if status[3] == (1,):
+                self.check_box_checked_4_interface()
+            if status[4] == (1,):
+                self.check_box_checked_5_interface()
+            if status[5] == (1,):
+                self.check_box_checked_6_interface()
+            if status[6] == (1,):
+                self.check_box_checked_7_interface()
+            if status[7] == (1,):
+                self.check_box_checked_8_interface()
+
+        if len(position) == 9:
+            if status[0] == (1,):
+                self.check_box_checked_1_interface()
+            if status[1] == (1,):
+                self.check_box_checked_2_interface()
+            if status[2] ==(1,):
+                self.check_box_checked_3_interface()
+            if status[3] == (1,):
+                self.check_box_checked_4_interface()
+            if status[4] == (1,):
+                self.check_box_checked_5_interface()
+            if status[5] == (1,):
+                self.check_box_checked_6_interface()
+            if status[6] == (1,):
+                self.check_box_checked_7_interface()
+            if status[7] == (1,):
+                self.check_box_checked_8_interface()
+            if status[8] == (1,):
+                self.check_box_checked_9_interface()
+
+        if len(position) == 10:
+            if status[0] == (1,):
+                self.check_box_checked_1_interface()
+            if status[1] == (1,):
+                self.check_box_checked_2_interface()
+            if status[2] ==(1,):
+                self.check_box_checked_3_interface()
+            if status[3] == (1,):
+                self.check_box_checked_4_interface()
+            if status[4] == (1,):
+                self.check_box_checked_5_interface()
+            if status[5] == (1,):
+                self.check_box_checked_6_interface()
+            if status[6] == (1,):
+                self.check_box_checked_7_interface()
+            if status[7] == (1,):
+                self.check_box_checked_8_interface()
+            if status[8] == (1,):
+                self.check_box_checked_9_interface()
+            if status[9] == (1,):
+                self.check_box_checked_10_interface()
+
+    def check_box_checked_1_interface(self):
+        self.check_box1.disconnect()
+        if Choose_Theme.theme == 0:
+            self.check_box1.setIcon(QtGui.QIcon("icons/Checkbox_Light.png"))
+        else:
+            self.check_box1.setIcon(QtGui.QIcon("icons/Checkbox_Dark.png"))
+
+    def check_box_checked_2_interface(self):
+        self.check_box2.disconnect()
+        if Choose_Theme.theme == 0:
+            self.check_box2.setIcon(QtGui.QIcon("icons/Checkbox_Light.png"))
+        else:
+            self.check_box2.setIcon(QtGui.QIcon("icons/Checkbox_Dark.png"))
+    def check_box_checked_3_interface(self):
+        self.check_box3.disconnect()
+        if Choose_Theme.theme == 0:
+            self.check_box3.setIcon(QtGui.QIcon("icons/Checkbox_Light.png"))
+        else:
+            self.check_box3.setIcon(QtGui.QIcon("icons/Checkbox_Dark.png"))
+    def check_box_checked_4_interface(self):
+        self.check_box4.disconnect()
+        if Choose_Theme.theme == 0:
+            self.check_box4.setIcon(QtGui.QIcon("icons/Checkbox_Light.png"))
+        else:
+            self.check_box4.setIcon(QtGui.QIcon("icons/Checkbox_Dark.png"))
+    def check_box_checked_5_interface(self):
+        self.check_box5.disconnect()
+        if Choose_Theme.theme == 0:
+            self.check_box5.setIcon(QtGui.QIcon("icons/Checkbox_Light.png"))
+        else:
+            self.check_box5.setIcon(QtGui.QIcon("icons/Checkbox_Dark.png"))
+    def check_box_checked_6_interface(self):
+        self.check_box6.disconnect()
+        if Choose_Theme.theme == 0:
+            self.check_box6.setIcon(QtGui.QIcon("icons/Checkbox_Light.png"))
+        else:
+            self.check_box6.setIcon(QtGui.QIcon("icons/Checkbox_Dark.png"))
+    def check_box_checked_7_interface(self):
+        self.check_box7.disconnect()
+        if Choose_Theme.theme == 0:
+            self.check_box7.setIcon(QtGui.QIcon("icons/Checkbox_Light.png"))
+        else:
+            self.check_box7.setIcon(QtGui.QIcon("icons/Checkbox_Dark.png"))
+    def check_box_checked_8_interface(self):
+        self.check_box8.disconnect()
+        if Choose_Theme.theme == 0:
+            self.check_box8.setIcon(QtGui.QIcon("icons/Checkbox_Light.png"))
+        else:
+            self.check_box8.setIcon(QtGui.QIcon("icons/Checkbox_Dark.png"))
+    def check_box_checked_9_interface(self):
+        self.check_box9.disconnect()
+        if Choose_Theme.theme == 0:
+            self.check_box9.setIcon(QtGui.QIcon("icons/Checkbox_Light.png"))
+        else:
+            self.check_box9.setIcon(QtGui.QIcon("icons/Checkbox_Dark.png"))
+    def check_box_checked_10_interface(self):
+        self.check_box10.disconnect()
+        if Choose_Theme.theme == 0:
+            self.check_box10.setIcon(QtGui.QIcon("icons/Checkbox_Light.png"))
+        else:
+            self.check_box10.setIcon(QtGui.QIcon("icons/Checkbox_Dark.png"))
+
     def add_task_random(self,text_task): #adding task from left_button_popup_window
+        self.position = self.position + 1
+        self.daily_add_button.disconnect()
         time = datetime.datetime.today()
         time_deadline = time + datetime.timedelta(days = 1)
         time_deadline_time = time_deadline-time
         time_deadline_time = (time_deadline_time.total_seconds())/3600
-        task = [None, None, str(datetime.date.today()), str(time_deadline_time), text_task, User_ID]
+        task = [None, 0, str(datetime.date.today()), str(time_deadline_time), text_task, User_ID]
         DBfunctions.write_in_db_tasks(task)
         self.adding_fail()
-        self.str1 = self.str1 - 1
-        if self.str1 < 4:
-            self.str2 = self.str2 + 1
-        self.addWidgetss(text_task, self.str1, self.str2,time_deadline_time)
+        self.addWidgetss(text_task,time_deadline_time)
 
 class Fourth_Window(QtWidgets.QMainWindow, Ui_Choose_Theme): ## Window of theme choosing
     def __init__(self, parent = None):
@@ -255,8 +486,8 @@ class Third_Window(QtWidgets.QMainWindow, Ui_Welcome): ## Window of Welcoming us
         elif str(today) == str(DBfunctions.read_db('Date', 'tasks', 'User_ID', User_ID)):
             return
         else:
-            DBfunctions.write_in_db_pb('Completed', 0, User_ID)
-            DBfunctions.write_in_db_pb('Failed', 0, User_ID)
+            DBfunctions.write_in_db_pb('Completed', 0,'daily_pb', User_ID)
+            DBfunctions.write_in_db_pb('Failed', 0,'daily_pb', User_ID)
 
     def __init__(self, parent = None):
         super(Third_Window, self).__init__(parent)
@@ -274,7 +505,7 @@ class Second_Window(QtWidgets.QMainWindow, Ui_Sign): ##Window of signing in
     def create_pb(self):
         if DBfunctions.read_db('count(User_ID)', 'week_pb') == 0:
             DBfunctions.create_in_db_pb(User_ID)
-        elif DBfunctions.str_compare(str(User_ID), 'week_pb', 'User_ID') == 0:
+        elif DBfunctions.str_compare_int(str(User_ID)) == 0:
             DBfunctions.create_in_db_pb(User_ID)
         else:
             return
@@ -282,7 +513,7 @@ class Second_Window(QtWidgets.QMainWindow, Ui_Sign): ##Window of signing in
     def check_signin(self):
         if DBfunctions.read_db('count(User_ID)', 'user') == 0:
             return 0
-        elif DBfunctions.str_compare(first_name, 'user', 'First') == 0:
+        elif DBfunctions.str_compare_str(first_name) == 0:
             return 0
         else:
             global User_ID

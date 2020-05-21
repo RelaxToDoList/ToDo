@@ -28,7 +28,7 @@ class Ui_Core(object):
         self.tableWidget.setShowGrid(False)
         self.tableWidget.verticalHeader().hide()
         self.tableWidget.horizontalHeader().hide()
-        self.tableWidget.setRowCount(10)
+        self.tableWidget.setRowCount(1)
         self.tableWidget.setColumnCount(3)
         self.tableWidget.resizeColumnsToContents()
         self.tableWidget.setFocusPolicy(Qt.NoFocus)
@@ -49,67 +49,21 @@ class Ui_Core(object):
         self.progress.setValue(0)
         self.progress.setStyleSheet("background-color:#333333;"
         "color: #414040;")
-        self.radio_monday = QtWidgets.QRadioButton(self.centralwidget)
-        self.radio_monday.setGeometry(QtCore.QRect(90, 167, 150, 50))
-        self.radio_monday.setObjectName("radio_monday")
-        self.radio_tuesday = QtWidgets.QRadioButton(self.centralwidget)
-        self.radio_tuesday.setGeometry(QtCore.QRect(90,207,150,50))
-        self.radio_tuesday.setObjectName("radio_tuesday")
-        self.radio_wednesday = QtWidgets.QRadioButton(self.centralwidget)
-        self.radio_wednesday.setGeometry(QtCore.QRect(115,247,150,50))
-        self.radio_wednesday.setObjectName("radio_wednesday")
-        self.radio_thursday = QtWidgets.QRadioButton(self.centralwidget)
-        self.radio_thursday.setGeometry(QtCore.QRect(100,287,150,50))
-        self.radio_thursday.setObjectName("radio_thursday")
-        self.radio_friday = QtWidgets.QRadioButton(self.centralwidget)
-        self.radio_friday.setGeometry(QtCore.QRect(70,327,150,50))
-        self.radio_friday.setObjectName("radio_friday")
-        self.radio_saturday = QtWidgets.QRadioButton(self.centralwidget)
-        self.radio_saturday.setGeometry(QtCore.QRect(90,367,150,50))
-        self.radio_saturday.setObjectName("radio_saturday")
-        self.radio_sunday = QtWidgets.QRadioButton(self.centralwidget)
-        self.radio_sunday.setGeometry(QtCore.QRect(85,407,150,50))
-        self.radio_sunday.setObjectName("radio_sunday")
         self.label_task_prog = QtWidgets.QLabel(self.centralwidget)
         self.label_task_prog.setGeometry(QtCore.QRect(10,94,300,50))
         self.label_task_prog.setObjectName("label_task_prog")
         self.label_task_prog.setStyleSheet("color: white;"
         "font-size:20px;")
-        self.label_monday = QtWidgets.QLabel(self.centralwidget)
-        self.label_monday.setGeometry(QtCore.QRect(10,164,150,50))
-        self.label_monday.setStyleSheet("color:white;"
+        self.label_have_to_do = QtWidgets.QLabel(self.centralwidget)
+        self.label_have_to_do.setGeometry(QtCore.QRect(200,237,100,50))
+        self.label_have_to_do.setStyleSheet("color:white;"
         "font-size:20px;")
-        self.label_monday.setObjectName("label_monday")
-        self.label_tuesday = QtWidgets.QLabel(self.centralwidget)
-        self.label_tuesday.setGeometry(QtCore.QRect(10,204,150,50))
-        self.label_tuesday.setStyleSheet("color:white;"
+        self.label_have_to_do.setObjectName("label_monday")
+        self.label_did = QtWidgets.QLabel(self.centralwidget)
+        self.label_did.setGeometry(QtCore.QRect(200,277,100,50))
+        self.label_did.setStyleSheet("color:white;"
         "font-size:20px;")
-        self.label_tuesday.setObjectName("label_tuesday")
-        self.label_wednesday = QtWidgets.QLabel(self.centralwidget)
-        self.label_wednesday.setGeometry(QtCore.QRect(10,244,150,50))
-        self.label_wednesday.setStyleSheet("color:white;"
-        "font-size:20px;")
-        self.label_wednesday.setObjectName("label_wednesday")
-        self.label_thursday = QtWidgets.QLabel(self.centralwidget)
-        self.label_thursday.setGeometry(QtCore.QRect(10,284,150,50))
-        self.label_thursday.setStyleSheet("color:white;"
-        "font-size:20px;")
-        self.label_thursday.setObjectName("label_thursday")
-        self.label_friday = QtWidgets.QLabel(self.centralwidget)
-        self.label_friday.setGeometry(QtCore.QRect(10,324,150,50))
-        self.label_friday.setStyleSheet("color:white;"
-        "font-size:20px;")
-        self.label_friday.setObjectName("label_friday")
-        self.label_saturday = QtWidgets.QLabel(self.centralwidget)
-        self.label_saturday.setGeometry(QtCore.QRect(10,364,150,50))
-        self.label_saturday.setStyleSheet("color:white;"
-        "font-size:20px;")
-        self.label_saturday.setObjectName("label_saturday")
-        self.label_sunday = QtWidgets.QLabel(self.centralwidget)
-        self.label_sunday.setGeometry(QtCore.QRect(10,404,150,50))
-        self.label_sunday.setStyleSheet("color:white;"
-        "font-size:20px;")
-        self.label_sunday.setObjectName("label_sunday")
+        self.label_did.setObjectName("label_tuesday")
         self.todo_list_week = QtWidgets.QLabel(self.centralwidget)
         self.todo_list_week.setGeometry(QtCore.QRect(10,124,350,50))
         self.todo_list_week.setObjectName("todo_list_week")
@@ -337,6 +291,8 @@ class Ui_Core(object):
         self.Avatar.raise_()
         self.gridLayoutWidget.raise_()
         self.do.raise_()
+        self.label_have_to_do.raise_()
+        self.label_did.raise_()
         self.did.raise_()
         self.tableWidget.raise_()
         self.graphicsView.raise_()
@@ -355,34 +311,6 @@ class Ui_Core(object):
         self.line_enter.hide()
         self.left_button_popup_window.raise_()
         self.left_button_popup_window.hide()
-        self.radio_monday.raise_()
-        self.radio_monday.hide()
-        self.radio_tuesday.raise_()
-        self.radio_tuesday.hide()
-        self.radio_wednesday.raise_()
-        self.radio_wednesday.hide()
-        self.radio_thursday.raise_()
-        self.radio_thursday.hide()
-        self.radio_friday.raise_()
-        self.radio_friday.hide()
-        self.radio_saturday.raise_()
-        self.radio_saturday.hide()
-        self.radio_sunday.raise_()
-        self.radio_sunday.hide()
-        self.label_monday.raise_()
-        self.label_monday.hide()
-        self.label_tuesday.raise_()
-        self.label_tuesday.hide()
-        self.label_thursday.raise_()
-        self.label_thursday.hide()
-        self.label_wednesday.raise_()
-        self.label_wednesday.hide()
-        self.label_friday.raise_()
-        self.label_friday.hide()
-        self.label_saturday.raise_()
-        self.label_saturday.hide()
-        self.label_sunday.raise_()
-        self.label_sunday.hide()
         self.todo_list_week.raise_()
         self.todo_list_week.hide()
         self.daily_add_button.raise_()
@@ -393,8 +321,6 @@ class Ui_Core(object):
         self.label_daily_task.hide()
         self.label_hint.raise_()
         self.label_hint.hide()
-        self.radio_monday.raise_()
-        self.radio_monday.hide()
         self.statistic_button.raise_()
         self.statistic_button.hide()
         self.statistic_label.raise_()
@@ -407,8 +333,8 @@ class Ui_Core(object):
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("ToDo", "ToDo"))
-        self.do.setText(_translate("MainWindow","Today you have to do"))
-        self.did.setText(_translate("MainWindow","Today you completed"))
+        self.do.setText(_translate("MainWindow","Today you have to do:"))
+        self.did.setText(_translate("MainWindow","Today you completed:"))
         self.account_label.setText(_translate("MainWindow","Account"))
         self.notification_but.setText(_translate("MainWindow", "..."))
         self.day.setText(_translate("MainWindow", "Today"))
@@ -435,17 +361,11 @@ class Ui_Core(object):
         self.label_daily_task.setText(_translate("MainWindow","Your Daily task:"))
         self.label_task_prog.setText(_translate("MainWindow","task"))
         self.daily_add_button.setText(_translate("MainWindow","Add"))
-        self.todo_list_week.setText(_translate("MainWindow","Choose day of the week:"))
-        self.label_monday.setText(_translate("MainWindow","Monday"))
-        self.label_tuesday.setText(_translate("MainWindow","Tuesday"))
-        self.label_wednesday.setText(_translate("MainWindow","Wednesday"))
-        self.label_thursday.setText(_translate("MainWindow","Thursday"))
-        self.label_friday.setText(_translate("MainWindow","Friday"))
-        self.label_saturday.setText(_translate("MainWindow","Saturday"))
-        self.label_sunday.setText(_translate("MainWindow","Sunday"))
         self.statistic_label.setText(_translate("MainWindow","Statistic"))
         self.logout_button.setText(_translate("MainWindow","Log_Out"))
         self.logout_label.setText(_translate("MainWindow","Log out"))
+        self.label_have_to_do.setText(_translate("MainWindow","0"))
+        self.label_did.setText(_translate("MainWindow","0"))
 
     def check_theme_person(self):
         if Choose_Theme.theme == 0:
@@ -466,6 +386,10 @@ class Ui_Core(object):
             "font-size: 20px;")
             self.did.setStyleSheet("color:#666666;"
             "font-size: 20px;")
+            self.label_have_to_do.setStyleSheet("color:#666666;"
+            "font-size:20px")
+            self.label_did.setStyleSheet("color:#666666;"
+            "font-size:20px")
             self.daily_add_button.setStyleSheet("color: #663366;"
             "font-size:12px;"
             "border:none;"
@@ -501,20 +425,6 @@ class Ui_Core(object):
             "border: 1px;")
             self.graphicsView.setStyleSheet("background-color:#E2E2E2;"
             "border-radius:15px;")
-            self.label_monday.setStyleSheet("color:#474747;"
-            "font-size:20px;")
-            self.label_tuesday.setStyleSheet("color:#474747;"
-            "font-size:20px;")
-            self.label_wednesday.setStyleSheet("color:#474747;"
-            "font-size:20px;")
-            self.label_thursday.setStyleSheet("color:#474747;"
-            "font-size:20px;")
-            self.label_friday.setStyleSheet("color: #474747;"
-            "font-size:20px;")
-            self.label_saturday.setStyleSheet("color: #474747;"
-            "font-size:20px;")
-            self.label_sunday.setStyleSheet("color: #474747;"
-            "font-size:20px;")
             self.label_task_prog.setStyleSheet("color: #474747;"
             "font-size:20px;")
             self.tableWidget.setStyleSheet("QTableWidget{"
@@ -541,16 +451,6 @@ class Ui_Core(object):
             "font-family: Calibri, Candara, Segoe, \\Segoe UI\\, Optima, Arial, sans-serif;")
             self.graphicsView.setStyleSheet("background-color:#666666;"
             "border-radius:15px;")
-            self.check_box1.setIcon(QtGui.QIcon("icons/Empty_Box_Dark.png"))
-            self.check_box2.setIcon(QtGui.QIcon("icons/Empty_Box_Dark.png"))
-            self.check_box3.setIcon(QtGui.QIcon("icons/Empty_Box_Dark.png"))
-            self.check_box4.setIcon(QtGui.QIcon("icons/Empty_Box_Dark.png"))
-            self.check_box5.setIcon(QtGui.QIcon("icons/Empty_Box_Dark.png"))
-            self.check_box6.setIcon(QtGui.QIcon("icons/Empty_Box_Dark.png"))
-            self.check_box7.setIcon(QtGui.QIcon("icons/Empty_Box_Dark.png"))
-            self.check_box8.setIcon(QtGui.QIcon("icons/Empty_Box_Dark.png"))
-            self.check_box9.setIcon(QtGui.QIcon("icons/Empty_Box_Dark.png"))
-            self.check_box10.setIcon(QtGui.QIcon("icons/Empty_Box_Dark.png"))
             self.deal_text.setStyleSheet("color:white;\n"
     "font-weight:bold;\n"
     "font-family: Calibri, Candara, Segoe, \\Segoe UI\\, Optima, Arial, sans-serif;"
@@ -564,7 +464,7 @@ class Ui_Core(object):
             self.check_box7.setIcon(QtGui.QIcon("icons/Empty_Box_Dark.png"))
             self.check_box8.setIcon(QtGui.QIcon("icons/Empty_Box_Dark.png"))
             self.check_box9.setIcon(QtGui.QIcon("icons/Empty_Box_Dark.png"))
-            self.check_box10.setIcon(QtGui.QIcon("icons/Empty_Box_Dark.png")) 
+            self.check_box10.setIcon(QtGui.QIcon("icons/Empty_Box_Dark.png"))
             self.SecondName.setStyleSheet("color: #FFFFFF;\n"
     "font-size: 20px;\n"
     "font-family: Calibri, Candara, Segoe, \"Segoe UI\", Optima, Arial, sans-serif;\n"
@@ -591,6 +491,10 @@ class Ui_Core(object):
             "font-size: 20px;")
             self.did.setStyleSheet("color:white;"
             "font-size: 20px;")
+            self.label_have_to_do.setStyleSheet("color:#666666;"
+            "font-size:20px")
+            self.label_did.setStyleSheet("color:#666666;"
+            "font-size:20px")
             self.settings_popup.setStyleSheet("background-color: #666666;"
             "border:5px black")
             self.tableWidget.setStyleSheet("QTableWidget{"
@@ -609,21 +513,7 @@ class Ui_Core(object):
         #    "border-bottom: 2px solid white;}"
             )
     def left_button_popup_window_open(self):
-        self.radio_tuesday.show()
-        self.radio_wednesday.show()
-        self.radio_thursday.show()
-        self.radio_friday.show()
-        self.radio_saturday.show()
-        self.radio_sunday.show()
-        self.radio_monday.show()
         self.daily_add_button.show()
-        self.label_monday.show()
-        self.label_tuesday.show()
-        self.label_wednesday.show()
-        self.label_thursday.show()
-        self.label_friday.show()
-        self.label_saturday.show()
-        self.label_sunday.show()
         self.todo_list_week.show()
         self.label_task_prog.show()
         self.left_button_popup_window.show()
@@ -633,20 +523,6 @@ class Ui_Core(object):
         self.left_button.clicked.connect(self.close_window)
         self.daily_add_button.show()
     def left_button_popup_window_close(self):
-        self.radio_tuesday.hide()
-        self.radio_wednesday.hide()
-        self.radio_thursday.hide()
-        self.radio_friday.hide()
-        self.radio_saturday.hide()
-        self.radio_sunday.hide()
-        self.radio_monday.hide()
-        self.label_monday.hide()
-        self.label_tuesday.hide()
-        self.label_wednesday.hide()
-        self.label_thursday.hide()
-        self.label_friday.hide()
-        self.label_saturday.hide()
-        self.label_sunday.hide()
         self.todo_list_week.hide()
         self.label_task_prog.hide()
         self.label_daily_task.hide()
@@ -700,122 +576,82 @@ class Ui_Core(object):
         self.account_label.hide()
         self.Settings_but.clicked.connect(self.settings_but_clicked)
 
-    def check_box_unchecked1(self):
-        if Choose_Theme.theme == 0:
-            self.check_box1.setIcon(QtGui.QIcon("icons/Empty_Box_Dark.png"))
-            self.check_box1.clicked.connect(self.check_box_checked1)
-        else:
-            self.check_box1.setIcon(QtGui.QIcon("icons/Empty_Box_Light.png"))
-            self.check_box1.clicked.connect(self.check_box_checked1)
     def check_box_checked1(self):
+        self.check_box1.disconnect()
+        position = 1
+        self.adding_complete(position)
         if Choose_Theme.theme == 0:
             self.check_box1.setIcon(QtGui.QIcon("icons/Checkbox_Light.png"))
         else:
             self.check_box1.setIcon(QtGui.QIcon("icons/Checkbox_Dark.png"))
-    def check_box_unchecked2(self):
-        if Choose_Theme.theme == 0:
-            self.check_box2.setIcon(QtGui.QIcon("icons/Empty_Box_Dark.png"))
-            self.check_box2.clicked.connect(self.check_box_checked2)
-        else:
-            self.check_box2.setIcon(QtGui.QIcon("icons/Empty_Box_Light.png"))
-            self.check_box2.clicked.connect(self.check_box_checked2)
     def check_box_checked2(self):
+        self.check_box2.disconnect()
+        position = 2
+        self.adding_complete(position)
         if Choose_Theme.theme == 0:
             self.check_box2.setIcon(QtGui.QIcon("icons/Checkbox_Light.png"))
         else:
             self.check_box2.setIcon(QtGui.QIcon("icons/Checkbox_Dark.png"))
-    def check_box_unchecked3(self):
-        if Choose_Theme.theme == 0:
-            self.check_box3.setIcon(QtGui.QIcon("icons/Empty_Box_Dark.png"))
-            self.check_box3.clicked.connect(self.check_box_checked3)
-        else:
-            self.check_box3.setIcon(QtGui.QIcon("icons/Empty_Box_Light.png"))
-            self.check_box3.clicked.connect(self.check_box_checked3)
     def check_box_checked3(self):
+        self.check_box3.disconnect()
+        position = 3
+        self.adding_complete(position)
         if Choose_Theme.theme == 0:
             self.check_box3.setIcon(QtGui.QIcon("icons/Checkbox_Light.png"))
         else:
             self.check_box3.setIcon(QtGui.QIcon("icons/Checkbox_Dark.png"))
-    def check_box_unchecked4(self):
-        if Choose_Theme.theme == 0:
-            self.check_box4.setIcon(QtGui.QIcon("icons/Empty_Box_Dark.png"))
-            self.check_box4.clicked.connect(self.check_box_checked4)
-        else:
-            self.check_box4.setIcon(QtGui.QIcon("icons/Empty_Box_Light.png"))
-            self.check_box4.clicked.connect(self.check_box_checked4)
     def check_box_checked4(self):
+        self.check_box4.disconnect()
+        position = 4
+        self.adding_complete(position)
         if Choose_Theme.theme == 0:
             self.check_box4.setIcon(QtGui.QIcon("icons/Checkbox_Light.png"))
         else:
             self.check_box4.setIcon(QtGui.QIcon("icons/Checkbox_Dark.png"))
-    def check_box_unchecked5(self):
-        if Choose_Theme.theme == 0:
-            self.check_box5.setIcon(QtGui.QIcon("icons/Empty_Box_Dark.png"))
-            self.check_box5.clicked.connect(self.check_box_checked5)
-        else:
-            self.check_box5.setIcon(QtGui.QIcon("icons/Empty_Box_Light.png"))
-            self.check_box5.clicked.connect(self.check_box_checked5)
     def check_box_checked5(self):
+        self.check_box5.disconnect()
+        position = 5
+        self.adding_complete(position)
         if Choose_Theme.theme == 0:
             self.check_box5.setIcon(QtGui.QIcon("icons/Checkbox_Light.png"))
         else:
             self.check_box5.setIcon(QtGui.QIcon("icons/Checkbox_Dark.png"))
-    def check_box_unchecked6(self):
-        if Choose_Theme.theme == 0:
-            self.check_box6.setIcon(QtGui.QIcon("icons/Empty_Box_Dark.png"))
-            self.check_box6.clicked.connect(self.check_box_checked6)
-        else:
-            self.check_box6.setIcon(QtGui.QIcon("icons/Empty_Box_Light.png"))
-            self.check_box6.clicked.connect(self.check_box_checked6)
     def check_box_checked6(self):
+        self.check_box6.disconnect()
+        position = 6
+        self.adding_complete(position)
         if Choose_Theme.theme == 0:
             self.check_box6.setIcon(QtGui.QIcon("icons/Checkbox_Light.png"))
         else:
             self.check_box6.setIcon(QtGui.QIcon("icons/Checkbox_Dark.png"))
-    def check_box_unchecked7(self):
-        if Choose_Theme.theme == 0:
-            self.check_box7.setIcon(QtGui.QIcon("icons/Empty_Box_Dark.png"))
-            self.check_box7.clicked.connect(self.check_box_checked7)
-        else:
-            self.check_box7.setIcon(QtGui.QIcon("icons/Empty_Box_Light.png"))
-            self.check_box7.clicked.connect(self.check_box_checked7)
     def check_box_checked7(self):
+        self.check_box7.disconnect()
+        position = 7
+        self.adding_complete(position)
         if Choose_Theme.theme == 0:
             self.check_box7.setIcon(QtGui.QIcon("icons/Checkbox_Light.png"))
         else:
             self.check_box7.setIcon(QtGui.QIcon("icons/Checkbox_Dark.png"))
-    def check_box_unchecked8(self):
-        if Choose_Theme.theme == 0:
-            self.check_box8.setIcon(QtGui.QIcon("icons/Empty_Box_Dark.png"))
-            self.check_box8.clicked.connect(self.check_box_checked8)
-        else:
-            self.check_box8.setIcon(QtGui.QIcon("icons/Empty_Box_Light.png"))
-            self.check_box8.clicked.connect(self.check_box_checked8)
     def check_box_checked8(self):
+        self.check_box8.disconnect()
+        position = 8
+        self.adding_complete(position)
         if Choose_Theme.theme == 0:
             self.check_box8.setIcon(QtGui.QIcon("icons/Checkbox_Light.png"))
         else:
             self.check_box8.setIcon(QtGui.QIcon("icons/Checkbox_Dark.png"))
-    def check_box_unchecked9(self):
-        if Choose_Theme.theme == 0:
-            self.check_box9.setIcon(QtGui.QIcon("icons/Empty_Box_Dark.png"))
-            self.check_box9.clicked.connect(self.check_box_checked9)
-        else:
-            self.check_box9.setIcon(QtGui.QIcon("icons/Empty_Box_Light.png"))
-            self.check_box9.clicked.connect(self.check_box_checked9)
     def check_box_checked9(self):
+        self.check_box9.disconnect()
+        position = 9
+        self.adding_complete(position)
         if Choose_Theme.theme == 0:
             self.check_box9.setIcon(QtGui.QIcon("icons/Checkbox_Light.png"))
         else:
             self.check_box9.setIcon(QtGui.QIcon("icons/Checkbox_Dark.png"))
-    def check_box_unchecked10(self):
-        if Choose_Theme.theme == 0:
-            self.check_box10.setIcon(QtGui.QIcon("icons/Empty_Box_Dark.png"))
-            self.check_box10.clicked.connect(self.check_box_checked10)
-        else:
-            self.check_box10.setIcon(QtGui.QIcon("icons/Empty_Box_Light.png"))
-            self.check_box10.clicked.connect(self.check_box_checked10)
     def check_box_checked10(self):
+        self.check_box10.disconnect()
+        position = 10
+        self.adding_complete(position)
         if Choose_Theme.theme == 0:
             self.check_box10.setIcon(QtGui.QIcon("icons/Checkbox_Light.png"))
         else:
@@ -827,10 +663,9 @@ class Ui_Core(object):
         lines = str(lines)
         self.label_task_prog.setText(lines)
         self.daily_add_button.clicked.connect(lambda: self.add_task_random(lines))
-    def addWidgetss(self,text_task,str1,str2,time_deadline_time):
+    def addWidgetss(self,text_task,time_deadline_time):
         row = self.tableWidget.rowCount()
         self.tableWidget.insertRow(row)
-        row = row - str1
         time = QTableWidgetItem(time_deadline_time)
         object1 = self.check_box1
         object2 = self.check_box2
@@ -842,25 +677,43 @@ class Ui_Core(object):
         object8 = self.check_box8
         object9 = self.check_box9
         object10 = self.check_box10
+        if row == 1:
+            self.tableWidget.setCellWidget(row,0,object1)
+            self.tableWidget.setCellWidget(row + 1, 0,self.plus_button)
+        if row == 2:
+            self.tableWidget.setCellWidget(row,0,object2)
+            self.tableWidget.setCellWidget(row + 1,0,self.plus_button)
+        if row == 3:
+            self.tableWidget.setCellWidget(row,0,object3)
+            self.tableWidget.setCellWidget(row + 1,0,self.plus_button)
+        if row == 4:
+            self.tableWidget.setCellWidget(row,0,object4)
+            self.tableWidget.setCellWidget(row + 1,0,self.plus_button)
+        if row == 5:
+            self.tableWidget.setCellWidget(row,0,object5)
+            self.tableWidget.setCellWidget(row + 1,0,self.plus_button)
+        if row == 6:
+            self.tableWidget.setCellWidget(row,0,object6)
+            self.tableWidget.setCellWidget(row + 1,0,self.plus_button)
+        if row == 7:
+            self.tableWidget.setCellWidget(row,0,object7)
+            self.tableWidget.setCellWidget(row + 1,0,self.plus_button)
+        if row == 8:
+            self.tableWidget.setCellWidget(row,0,object8)
+            self.tableWidget.setCellWidget(row + 1,0,self.plus_button)
+        if row == 9:
+            self.tableWidget.setCellWidget(row,0,object9)
+            self.tableWidget.setCellWidget(row + 1,0,self.plus_button)
+        if row == 10:
+            self.tableWidget.setCellWidget(row,0,object10)
+            self.tableWidget.setCellWidget(row + 1,0,self.plus_button)
         item = QTableWidgetItem(text_task)
-        self.tableWidget.setCellWidget(1,0,object1)
-        self.tableWidget.setCellWidget(3,0,object2)
-        self.tableWidget.setCellWidget(5,0,object3)
-        self.tableWidget.setCellWidget(7,0,object4)
-        self.tableWidget.setCellWidget(9,0,object5)
-        self.tableWidget.setCellWidget(11,0,object6)
-        self.tableWidget.setCellWidget(13,0,object7)
-        self.tableWidget.setCellWidget(15,0,object8)
-        self.tableWidget.setCellWidget(17,0,object9)
-        self.tableWidget.setCellWidget(19,0,object10)
         self.tableWidget.setItem(row,1,item)
         self.tableWidget.setItem(row,2,QTableWidgetItem(f"Remaining time: {time_deadline_time} hours"))
-        row = row + str2
-        self.tableWidget.setCellWidget(row,0,self.plus_button)
-    def Reading_Tasks(self,TaskNT,str1,str2,time_deadline_time):
+        self.tableWidget.setCellWidget(row + 1,0,self.plus_button)
+    def Reading_Tasks(self,TaskNT,time_deadline_time):
         row = self.tableWidget.rowCount()
         self.tableWidget.insertRow(row)
-        row = row - str1
         time = QTableWidgetItem(time_deadline_time)
         object1 = self.check_box1
         object2 = self.check_box2
@@ -872,18 +725,27 @@ class Ui_Core(object):
         object8 = self.check_box8
         object9 = self.check_box9
         object10 = self.check_box10
+        if row == 1:
+            self.tableWidget.setCellWidget(1,0,object1)
+        if row == 2:
+            self.tableWidget.setCellWidget(2,0,object2)
+        if row == 3:
+            self.tableWidget.setCellWidget(3,0,object3)
+        if row == 4:
+            self.tableWidget.setCellWidget(4,0,object4)
+        if row == 5:
+            self.tableWidget.setCellWidget(5,0,object5)
+        if row == 6:
+            self.tableWidget.setCellWidget(6,0,object6)
+        if row == 7:
+            self.tableWidget.setCellWidget(7,0,object7)
+        if row == 8:
+            self.tableWidget.setCellWidget(8,0,object8)
+        if row == 9:
+            self.tableWidget.setCellWidget(9,0,object9)
+        if row == 10:
+            self.tableWidget.setCellWidget(10,0,object10)
         item = QTableWidgetItem(TaskNT)
-        self.tableWidget.setCellWidget(1,0,object1)
-        self.tableWidget.setCellWidget(3,0,object2)
-        self.tableWidget.setCellWidget(5,0,object3)
-        self.tableWidget.setCellWidget(7,0,object4)
-        self.tableWidget.setCellWidget(9,0,object5)
-        self.tableWidget.setCellWidget(11,0,object6)
-        self.tableWidget.setCellWidget(13,0,object7)
-        self.tableWidget.setCellWidget(15,0,object8)
-        self.tableWidget.setCellWidget(17,0,object9)
-        self.tableWidget.setCellWidget(19,0,object10)
         self.tableWidget.setItem(row,1,item)
         self.tableWidget.setItem(row,2,QTableWidgetItem(f"Remaining time: {time_deadline_time} hours"))
-        row = row + str2
-        self.tableWidget.setCellWidget(row,0,self.plus_button)
+        self.tableWidget.setCellWidget(row + 1,0,self.plus_button)

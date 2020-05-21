@@ -1,15 +1,31 @@
 import sqlite3
 
-def str_compare(str1, table, column):
+def str_compare_str(str1):
 	con = sqlite3.connect('./Data_base/DataBase.db')
 	cur = con.cursor()
-	query = 'SELECT '+column+' FROM '+table
+	query = 'SELECT First FROM user'
 	cur.execute(query)
 	data = cur.fetchall()
 	str1.lower()
 	str2 = ''
-	for i in range(int(read_db('count(User_ID)', table))):
-		for line in str(data[i]):
+	for i in range(int(read_db('count(User_ID)', 'user'))):
+		for line in data[i]:
+			str2 = line + str2
+		str2.lower()
+		if str1 == str2:
+			return 1
+		str2 = ''
+	return 0
+def str_compare_int(str1):
+	con = sqlite3.connect('./Data_base/DataBase.db')
+	cur = con.cursor()
+	query = 'SELECT User_ID FROM week_pb'
+	cur.execute(query)
+	data = cur.fetchall()
+	str1.lower()
+	str2 = ''
+	for i in range(int(read_db('count(User_ID)', 'week_pb'))):
+		for line in list(map(str,data[i])):
 			str2 = line + str2
 		str2.lower()
 		if str1 == str2:
@@ -85,10 +101,10 @@ def write_in_db_pb(column, record, table, User_ID):
 	cur = con.cursor()
 	if record == 0:
 		if column == 'Completed':
-			query = 'UPDATE daily_pb SET '+column+'='+str(record)+' WHERE '+'User_ID'+" = '"+str(User_ID)+"'"
+			query = 'UPDATE ' +table+' SET '+column+'='+str(record)+' WHERE '+'User_ID'+" = '"+str(User_ID)+"'"
 			cur.execute(query)
 		else:
-			query = 'UPDATE daily_pb SET '+column+'='+str(record)+' WHERE '+'User_ID'+" = '"+str(User_ID)+"'"
+			query = 'UPDATE ' +table+' SET '+column+'='+str(record)+' WHERE '+'User_ID'+" = '"+str(User_ID)+"'"
 			cur.execute(query)
 	else:
 		if column == 'Completed':
@@ -137,3 +153,17 @@ def import_pict_binary(pict_path):
     f = open(pict_path, 'rb')
     pict_binary = f.read()
     return pict_binary
+
+def read_position_task(User_ID):
+	con = sqlite3.connect('./Data_base/DataBase.db')
+	cur = con.cursor()
+	id_column = 'User_ID'
+	query = 'SELECT Num_Task FROM tasks WHERE '+id_column+" = '"+str(User_ID)+"'"#+' ORDER BY DESC'
+	cur.execute(query)
+	data = cur.fetchall()
+	# print(data)
+	i = int(read_db('count(User_ID)', 'tasks'))
+	str1 = ''
+	for line in list(map(str,data[i-1])):
+		str1 = line + str1
+	return str1
