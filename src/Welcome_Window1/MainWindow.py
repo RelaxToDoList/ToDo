@@ -583,7 +583,7 @@ class Ui_Core(object):
         if Choose_Theme.theme == 0:
             self.check_box1.setIcon(QtGui.QIcon("icons/Checkbox_Light.png"))
         else:
-            self.check_box1.setIcon(QtGui.QIcon("icons/Checkbox_Dark.png"))
+            self.check_box1.setIcon(QtGui.QIcon("icons/Сheckbox_Dark.png"))
     def check_box_checked2(self):
         self.check_box2.disconnect()
         position = 2
@@ -591,7 +591,7 @@ class Ui_Core(object):
         if Choose_Theme.theme == 0:
             self.check_box2.setIcon(QtGui.QIcon("icons/Checkbox_Light.png"))
         else:
-            self.check_box2.setIcon(QtGui.QIcon("icons/Checkbox_Dark.png"))
+            self.check_box2.setIcon(QtGui.QIcon("icons/Сheckbox_Dark.png"))
     def check_box_checked3(self):
         self.check_box3.disconnect()
         position = 3

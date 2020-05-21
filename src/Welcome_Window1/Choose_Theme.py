@@ -28,7 +28,7 @@ class Ui_Choose_Theme(object):
         self.Checkbox_Dark.setGeometry(QtCore.QRect(550, 280, 21, 21))
         self.Checkbox_Dark.setStyleSheet("")
         self.Checkbox_Dark.setText("")
-        self.Checkbox_Dark.setPixmap(QtGui.QPixmap("icons/Checkbox_Dark.png"))
+        self.Checkbox_Dark.setPixmap(QtGui.QPixmap("icons/Сheckbox_Dark.png"))
         self.Checkbox_Dark.setScaledContents(True)
         self.Checkbox_Dark.setObjectName("Checkbox_Dark")
         self.DarkDEal = QtWidgets.QLabel(self.centralwidget)
