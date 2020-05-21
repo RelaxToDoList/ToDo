@@ -586,40 +586,40 @@ class Ui_Core(object):
             self.check_box1.setIcon(QtGui.QIcon("icons/Checkbox_Dark.png"))
     def check_box_checked2(self):
         self.check_box2.disconnect()
-        self.adding_complete(position)
         position = 2
+        self.adding_complete(position)
         if Choose_Theme.theme == 0:
             self.check_box2.setIcon(QtGui.QIcon("icons/Checkbox_Light.png"))
         else:
             self.check_box2.setIcon(QtGui.QIcon("icons/Checkbox_Dark.png"))
     def check_box_checked3(self):
         self.check_box3.disconnect()
-        self.adding_complete(position)
         position = 3
+        self.adding_complete(position)
         if Choose_Theme.theme == 0:
             self.check_box3.setIcon(QtGui.QIcon("icons/Checkbox_Light.png"))
         else:
             self.check_box3.setIcon(QtGui.QIcon("icons/Checkbox_Dark.png"))
     def check_box_checked4(self):
         self.check_box4.disconnect()
-        self.adding_complete(position)
         position = 4
+        self.adding_complete(position)
         if Choose_Theme.theme == 0:
             self.check_box4.setIcon(QtGui.QIcon("icons/Checkbox_Light.png"))
         else:
             self.check_box4.setIcon(QtGui.QIcon("icons/Checkbox_Dark.png"))
     def check_box_checked5(self):
         self.check_box5.disconnect()
-        self.adding_complete(position)
         position = 5
+        self.adding_complete(position)
         if Choose_Theme.theme == 0:
             self.check_box5.setIcon(QtGui.QIcon("icons/Checkbox_Light.png"))
         else:
             self.check_box5.setIcon(QtGui.QIcon("icons/Checkbox_Dark.png"))
     def check_box_checked6(self):
         self.check_box6.disconnect()
-        self.adding_complete(position)
         position = 6
+        self.adding_complete(position)
         if Choose_Theme.theme == 0:
             self.check_box6.setIcon(QtGui.QIcon("icons/Checkbox_Light.png"))
         else:
@@ -634,24 +634,24 @@ class Ui_Core(object):
             self.check_box7.setIcon(QtGui.QIcon("icons/Checkbox_Dark.png"))
     def check_box_checked8(self):
         self.check_box8.disconnect()
-        self.adding_complete(position)
         position = 8
+        self.adding_complete(position)
         if Choose_Theme.theme == 0:
             self.check_box8.setIcon(QtGui.QIcon("icons/Checkbox_Light.png"))
         else:
             self.check_box8.setIcon(QtGui.QIcon("icons/Checkbox_Dark.png"))
     def check_box_checked9(self):
         self.check_box9.disconnect()
-        self.adding_complete(position)
         position = 9
+        self.adding_complete(position)
         if Choose_Theme.theme == 0:
             self.check_box9.setIcon(QtGui.QIcon("icons/Checkbox_Light.png"))
         else:
             self.check_box9.setIcon(QtGui.QIcon("icons/Checkbox_Dark.png"))
     def check_box_checked10(self):
         self.check_box10.disconnect()
-        self.adding_complete(position)
         position = 10
+        self.adding_complete(position)
         if Choose_Theme.theme == 0:
             self.check_box10.setIcon(QtGui.QIcon("icons/Checkbox_Light.png"))
         else:
