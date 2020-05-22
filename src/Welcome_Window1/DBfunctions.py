@@ -101,6 +101,17 @@ def update_record(table, param_column, param_val, id_column, record_id):
 	cur.close()
 	con.close()
 
+def update_status(User_ID,position,status):
+	con = sqlite3.connect('./Data_base/DataBase.db')
+	cur = con.cursor()
+	#query = 'UPDATE tasks SET Status_task '+str(status)+' WHERE '+'User_ID'+" = '"+str(User_ID)+"'"' AND '+'Num_Task'+" = '"+str(position)+"'"
+	query = f'UPDATE tasks SET Status_task = ? WHERE User_ID = ? AND Num_Task = ?'
+	cur.execute(query, (status, User_ID, position))
+	#cur.execute(query)
+	con.commit()
+	cur.close()
+	con.close()
+
 def write_in_db_tasks(records):
 	con = sqlite3.connect('./Data_base/DataBase.db')
 	cur = con.cursor()
