@@ -7,4 +7,5 @@ python:
 git:
   lfs_skip_smudge: true
 
-script: python test.py
+script:
+  - python src/Welcome_Window1/test.py
