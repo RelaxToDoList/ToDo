@@ -4,5 +4,8 @@ python:
   - "3.7"
   - "3.8"
   
+git:
+  lfs_skip_smudge: true
+  
 script: 
   - python -m unittest test.py
