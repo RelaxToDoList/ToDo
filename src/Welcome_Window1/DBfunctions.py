@@ -1,7 +1,7 @@
 import sqlite3
 
 def str_compare_str(str1):
-	con = sqlite3.connect('./Data_base/DataBase.db')
+	con = sqlite3.connect('./src/Welcome_Window1/Data_base/DataBase.db')
 	cur = con.cursor()
 	query = 'SELECT First FROM user'
 	cur.execute(query)
@@ -20,7 +20,7 @@ def str_compare_str(str1):
 	return 0
 
 def str_compare_int(str1):
-	con = sqlite3.connect('./Data_base/DataBase.db')
+	con = sqlite3.connect('./src/Welcome_Window1/Data_base/DataBase.db')
 	cur = con.cursor()
 	query = 'SELECT User_ID FROM week_pb'
 	cur.execute(query)
@@ -39,7 +39,7 @@ def str_compare_int(str1):
 	return 0
 
 def read_db(show_column_name, table, param_column_name = None, record = None):
-	con = sqlite3.connect('./Data_base/DataBase.db')
+	con = sqlite3.connect('./src/Welcome_Window1/Data_base/DataBase.db')
 	cur = con.cursor()
 	if record is None:
 		query = 'SELECT '+show_column_name+' FROM '+table
@@ -57,7 +57,7 @@ def read_db(show_column_name, table, param_column_name = None, record = None):
 		return data[0]
 
 def read_db_all(show_column_name, table, param_column_name, record):
-	con = sqlite3.connect('./Data_base/DataBase.db')
+	con = sqlite3.connect('./src/Welcome_Window1/Data_base/DataBase.db')
 	cur = con.cursor()
 	# if record is None:
 	# 	query = 'SELECT '+show_column_name+' FROM '+table
@@ -75,7 +75,7 @@ def read_db_all(show_column_name, table, param_column_name, record):
 	return data
 
 def delete_table(table):
-	con = sqlite3.connect('./Data_base/DataBase.db')
+	con = sqlite3.connect('./src/Welcome_Window1/Data_base/DataBase.db')
 	cur = con.cursor()
 	query = 'DROP TABLE IF EXISTS '+table
 	c.execute(query)
@@ -84,7 +84,7 @@ def delete_table(table):
 	con.close()
 
 def delete_record(table, id_column, record_id):
-	con = sqlite3.connect('./Data_base/DataBase.db')
+	con = sqlite3.connect('./src/Welcome_Window1/Data_base/DataBase.db')
 	cur = con.cursor()
 	query = 'DELETE FROM '+table+' WHERE '+id_column+" = '"+str(record_id)+"'"
 	cur.execute(query)
@@ -93,7 +93,7 @@ def delete_record(table, id_column, record_id):
 	con.close()
 
 def update_record(table, param_column, param_val, id_column, record_id):
-	con = sqlite3.connect('./Data_base/DataBase.db')
+	con = sqlite3.connect('./src/Welcome_Window1/Data_base/DataBase.db')
 	cur = con.cursor()
 	query = f'UPDATE {table} SET {param_column} = ? WHERE {id_column} = ?'
 	cur.execute(query, (param_val, record_id))
@@ -102,7 +102,7 @@ def update_record(table, param_column, param_val, id_column, record_id):
 	con.close()
 
 def update_status(User_ID,position,status):
-	con = sqlite3.connect('./Data_base/DataBase.db')
+	con = sqlite3.connect('./src/Welcome_Window1/Data_base/DataBase.db')
 	cur = con.cursor()
 	#query = 'UPDATE tasks SET Status_task '+str(status)+' WHERE '+'User_ID'+" = '"+str(User_ID)+"'"' AND '+'Num_Task'+" = '"+str(position)+"'"
 	query = f'UPDATE tasks SET Status_task = ? WHERE User_ID = ? AND Num_Task = ?'
@@ -113,7 +113,7 @@ def update_status(User_ID,position,status):
 	con.close()
 
 def write_in_db_tasks(records):
-	con = sqlite3.connect('./Data_base/DataBase.db')
+	con = sqlite3.connect('./src/Welcome_Window1/Data_base/DataBase.db')
 	cur = con.cursor()
 	query = 'INSERT INTO tasks VALUES (?, ?, ?, ?, ?, ?)'
 	cur.execute(query, records)
@@ -122,7 +122,7 @@ def write_in_db_tasks(records):
 	con.close()
 
 def write_in_db_user(records):
-	con = sqlite3.connect('./Data_base/DataBase.db')
+	con = sqlite3.connect('./src/Welcome_Window1/Data_base/DataBase.db')
 	cur = con.cursor()
 	query = 'INSERT INTO user VALUES (?, ?, ?, ?)'
 	cur.execute(query, records)
@@ -131,7 +131,7 @@ def write_in_db_user(records):
 	con.close()
 
 def write_in_db_pb(column, record, table, User_ID):
-	con = sqlite3.connect('./Data_base/DataBase.db')
+	con = sqlite3.connect('./src/Welcome_Window1/Data_base/DataBase.db')
 	cur = con.cursor()
 	if column == 'Completed':
 		query = 'UPDATE ' +table+' SET '+column+'='+str(record)+' WHERE '+'User_ID'+" = '"+str(User_ID)+"'"
@@ -144,7 +144,7 @@ def write_in_db_pb(column, record, table, User_ID):
 	con.close()
 
 def create_in_db_pb(User_ID):
-	con = sqlite3.connect('./Data_base/DataBase.db')
+	con = sqlite3.connect('./src/Welcome_Window1/Data_base/DataBase.db')
 	cur = con.cursor()
 	query = 'INSERT INTO week_pb VALUES (?, ?, ?)'
 	records = [0, 0, User_ID]
@@ -161,7 +161,7 @@ def pict_export(User_ID):
     pict_binary = read_db('Image', 'user', 'User_ID', User_ID)
     if pict_binary == None:
         return 0;
-    photoPath =  "./Data_base/pict_user.png"
+    photoPath =  "./src/Welcome_Window1/Data_base/DataBase.db"
     write_pict_from_binary(photoPath,pict_binary)
     return photoPath
 
@@ -179,7 +179,7 @@ def import_pict_binary(pict_path):
     return pict_binary
 
 def read_position_task(User_ID):
-	con = sqlite3.connect('./Data_base/DataBase.db')
+	con = sqlite3.connect('./src/Welcome_Window1/Data_base/DataBase.db')
 	cur = con.cursor()
 	id_column = 'User_ID'
 	query = 'SELECT Num_Task FROM tasks WHERE '+id_column+" = '"+str(User_ID)+"'"
