@@ -1,10 +1,10 @@
 import unittest
 import os.path
-import Main_File
+#import Main_File
 import DBfunctions
-from statistic import Ui_Statistic
-from Signin import Ui_Sign
-from MainWindow import Ui_Core
+# from statistic import Ui_Statistic
+# from Signin import Ui_Sign
+# from MainWindow import Ui_Core
 import Create_db
 import datetime
 class TestFucn(unittest.TestCase):
@@ -42,71 +42,71 @@ class TestFucn(unittest.TestCase):
 		DBfunctions.delete_record('daily_pb','User_ID',User_ID)
 		DBfunctions.delete_record('tasks','User_ID',User_ID)
 
-	def test_main_signin_empty(self):
-		name = 'random'
-		result = Main_File.Second_Window.check_signin(self,name)
-		self.assertFalse(result)
-
-	def test_main_signin_name(self):
-		first_name = 'Danil'
-		result = Main_File.Second_Window.check_signin(self,first_name)
-		self.assertTrue(result)
-
-	def test_main_check_daily_progressbar_today(self):
-		User_ID = 1
-		result = Main_File.Third_Window.check_daily_progressbar(self, User_ID)
-		self.assertIsNone(result)
-
-	def test_main_check_daily_progressbar_not_today(self):
-		User_ID = 1
-		DBfunctions.write_in_db_pb('Date','2021-05-22','tasks',User_ID)
-		Main_File.Third_Window.check_daily_progressbar(self, User_ID)
-		c = DBfunctions.read_db('Completed','daily_pb','User_ID',User_ID)
-		f = DBfunctions.read_db('Failed','daily_pb','User_ID',User_ID)
-		result = c + f
-		self.assertFalse(result)
-
-	def test_main_check_task_today(self):
-		User_ID = 1
-		result = Main_File.Third_Window.check_tasks(self, User_ID)
-		self.assertIsNone(result)
-
-	def test_main_check_task_not_today(self):
-		User_ID = 1
-		DBfunctions.update_record('tasks','Date','2021-05-22','User_ID', User_ID )
-		Main_File.Third_Window.check_tasks(self, User_ID)
-		result = DBfunctions.read_db('count(Num_Task)', 'tasks', 'User_ID', User_ID)
-		self.assertFalse(result)
-
-	def test_main_adding_fail_daily(self):
-		User_ID = 1
-		Main_File.Fifth_Window.adding_fail(self,User_ID)
-		result = DBfunctions.read_db('Failed','daily_pb','User_ID',User_ID)
-		self.assertEqual(result, 8)
-
-	def test_main_adding_fail_week(self):
-		User_ID = 1
-		Main_File.Fifth_Window.adding_fail(self,User_ID)
-		result = DBfunctions.read_db('Failed','week_pb','User_ID',User_ID)
-		self.assertEqual(result, 41)
-
-	def test_main_adding_complete_daily(self):
-		User_ID = 1
-		position = 1
-		Main_File.Fifth_Window.adding_complete(self,position,User_ID)
-		result = DBfunctions.read_db('Failed','daily_pb','User_ID',User_ID)
-		self.assertEqual(result, 6)
-		result = DBfunctions.read_db('Completed','daily_pb','User_ID',User_ID)
-		self.assertEqual(result, 4)
-
-	def test_main_adding_complete_week(self):
-		User_ID = 1
-		position = 1
-		Main_File.Fifth_Window.adding_complete(self,position,User_ID)
-		result = DBfunctions.read_db('Failed','week_pb','User_ID',User_ID)
-		self.assertEqual(result, 39)
-		result = DBfunctions.read_db('Completed','week_pb','User_ID',User_ID)
-		self.assertEqual(result, 21)
+	# def test_main_signin_empty(self):
+	# 	name = 'random'
+	# 	result = Main_File.Second_Window.check_signin(self,name)
+	# 	self.assertFalse(result)
+	#
+	# def test_main_signin_name(self):
+	# 	first_name = 'Danil'
+	# 	result = Main_File.Second_Window.check_signin(self,first_name)
+	# 	self.assertTrue(result)
+	#
+	# def test_main_check_daily_progressbar_today(self):
+	# 	User_ID = 1
+	# 	result = Main_File.Third_Window.check_daily_progressbar(self, User_ID)
+	# 	self.assertIsNone(result)
+	#
+	# def test_main_check_daily_progressbar_not_today(self):
+	# 	User_ID = 1
+	# 	DBfunctions.write_in_db_pb('Date','2021-05-22','tasks',User_ID)
+	# 	Main_File.Third_Window.check_daily_progressbar(self, User_ID)
+	# 	c = DBfunctions.read_db('Completed','daily_pb','User_ID',User_ID)
+	# 	f = DBfunctions.read_db('Failed','daily_pb','User_ID',User_ID)
+	# 	result = c + f
+	# 	self.assertFalse(result)
+	#
+	# def test_main_check_task_today(self):
+	# 	User_ID = 1
+	# 	result = Main_File.Third_Window.check_tasks(self, User_ID)
+	# 	self.assertIsNone(result)
+	#
+	# def test_main_check_task_not_today(self):
+	# 	User_ID = 1
+	# 	DBfunctions.update_record('tasks','Date','2021-05-22','User_ID', User_ID )
+	# 	Main_File.Third_Window.check_tasks(self, User_ID)
+	# 	result = DBfunctions.read_db('count(Num_Task)', 'tasks', 'User_ID', User_ID)
+	# 	self.assertFalse(result)
+	#
+	# def test_main_adding_fail_daily(self):
+	# 	User_ID = 1
+	# 	Main_File.Fifth_Window.adding_fail(self,User_ID)
+	# 	result = DBfunctions.read_db('Failed','daily_pb','User_ID',User_ID)
+	# 	self.assertEqual(result, 8)
+	#
+	# def test_main_adding_fail_week(self):
+	# 	User_ID = 1
+	# 	Main_File.Fifth_Window.adding_fail(self,User_ID)
+	# 	result = DBfunctions.read_db('Failed','week_pb','User_ID',User_ID)
+	# 	self.assertEqual(result, 41)
+	#
+	# def test_main_adding_complete_daily(self):
+	# 	User_ID = 1
+	# 	position = 1
+	# 	Main_File.Fifth_Window.adding_complete(self,position,User_ID)
+	# 	result = DBfunctions.read_db('Failed','daily_pb','User_ID',User_ID)
+	# 	self.assertEqual(result, 6)
+	# 	result = DBfunctions.read_db('Completed','daily_pb','User_ID',User_ID)
+	# 	self.assertEqual(result, 4)
+	#
+	# def test_main_adding_complete_week(self):
+	# 	User_ID = 1
+	# 	position = 1
+	# 	Main_File.Fifth_Window.adding_complete(self,position,User_ID)
+	# 	result = DBfunctions.read_db('Failed','week_pb','User_ID',User_ID)
+	# 	self.assertEqual(result, 39)
+	# 	result = DBfunctions.read_db('Completed','week_pb','User_ID',User_ID)
+	# 	self.assertEqual(result, 21)
 
 	def test_db_read_position_task_not_null(self):
 		User_ID = 1
