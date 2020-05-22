@@ -180,7 +180,8 @@ class Fifth_Window(QtWidgets.QMainWindow, Ui_Core):
         self.close()
 
     def adding_complete(self,position):
-        DBfunctions.update_record('tasks','Status_task',1,'Num_Task',position)
+        comp = 0
+        DBfunctions.update_status(User_ID,position,1)
         completed = DBfunctions.read_db('Completed','week_pb',User_ID)
         failed = DBfunctions.read_db('Failed','week_pb',User_ID)
         if failed != 0:
@@ -203,9 +204,13 @@ class Fifth_Window(QtWidgets.QMainWindow, Ui_Core):
         self.label_did.setText(str(comp))
         DBfunctions.write_in_db_pb('Completed', comp,'daily_pb', User_ID)
         self.check_statistic()
+        comp = 0
 
     def adding_fail(self):
+        f = 0
         failed = DBfunctions.read_db('Failed', 'week_pb',User_ID)
+        if failed == 0:
+            failed = 0
         f = failed + 1
         DBfunctions.write_in_db_pb('Failed', f, 'week_pb', User_ID)
         failed = 0
@@ -214,7 +219,7 @@ class Fifth_Window(QtWidgets.QMainWindow, Ui_Core):
         f = failed + 1
         DBfunctions.write_in_db_pb('Failed', f, 'daily_pb', User_ID)
         self.check_statistic()
-
+        f = 0
     def Add_Task(self):
         self.position = self.position + 1
         if self.line_enter.text() == '':
@@ -246,8 +251,6 @@ class Fifth_Window(QtWidgets.QMainWindow, Ui_Core):
     def check_status_task(self):
         status = DBfunctions.read_db_all('Status_task', 'tasks', 'User_ID', User_ID)
         position = DBfunctions.read_db_all('Num_Task', 'tasks', 'User_ID', User_ID)
-        print(f"status{status}")
-        print(f"position{position}")
         if not position:
             return
         if len(position) == 1:
