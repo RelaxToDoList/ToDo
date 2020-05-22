@@ -209,8 +209,6 @@ class Fifth_Window(QtWidgets.QMainWindow, Ui_Core):
     def adding_fail(self):
         f = 0
         failed = DBfunctions.read_db('Failed', 'week_pb',User_ID)
-        if failed == 0:
-            failed = 0
         f = failed + 1
         DBfunctions.write_in_db_pb('Failed', f, 'week_pb', User_ID)
         failed = 0
