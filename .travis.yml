@@ -6,7 +6,5 @@ python:
   
 git:
   lfs_skip_smudge: true
-  
-install: "pip install -r requirements.txt"
 
 script: python test.py
