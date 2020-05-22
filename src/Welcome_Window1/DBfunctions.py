@@ -56,6 +56,24 @@ def read_db(show_column_name, table, param_column_name = None, record = None):
 		con.close()
 		return data[0]
 
+def read_db_all(show_column_name, table, param_column_name = None, record = None):
+	con = sqlite3.connect('./Data_base/DataBase.db')
+	cur = con.cursor()
+	if record is None:
+		query = 'SELECT '+show_column_name+' FROM '+table
+		cur.execute(query)
+		data = cur.fetchall()
+		cur.close()
+		con.close()
+		return data
+	else:
+		query = 'SELECT '+show_column_name+' FROM '+table+' WHERE '+param_column_name+" = '"+str(record)+"'"
+		cur.execute(query)
+		data = cur.fetchall()
+		cur.close()
+		con.close()
+		return data
+
 def delete_table(table):
 	con = sqlite3.connect('./Data_base/DataBase.db')
 	cur = con.cursor()

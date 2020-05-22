@@ -235,27 +235,17 @@ class Fifth_Window(QtWidgets.QMainWindow, Ui_Core):
         time_deadline = time + datetime.timedelta(days = 1)
         time_deadline_time = time_deadline-time
         time_deadline_time = (time_deadline_time.total_seconds())/3600
-        User = DBfunctions.read_db('User_ID', 'user', 'First', first_name)
-        conn = sqlite3.connect("Data_base/DataBase.db")
-        cursor = conn.cursor()
-        cursor.execute("SELECT Task_text FROM tasks WHERE User_ID = :User", {"User": User})
-        TaskDB = cursor.fetchall()
+        TaskDB = DBfunctions.read_db_all('Task_text', 'tasks', 'User_ID', User_ID)
         self.line_enter.clear()
         self.check_status_task()
         for i in range(0,len(TaskDB),1):
             Task = TaskDB[i]
             TaskNT = Task[0]
             self.Reading_Tasks(TaskNT,time_deadline_time)
-        conn.close()
 
     def check_status_task(self):
-        User = DBfunctions.read_db('User_ID','user','First',first_name)
-        conn = sqlite3.connect("Data_base/DataBase.db")
-        cursor = conn.cursor()
-        cursor.execute('SELECT Status_task FROM tasks WHERE User_ID = :User',{'User':User})
-        status = cursor.fetchall()
-        cursor.execute('SELECT Num_Task FROM tasks WHERE User_ID = :User',{'User':User})
-        position = cursor.fetchall()
+        status = DBfunctions.read_db_all('Status_task', 'tasks', 'User_ID', User_ID)
+        position = DBfunctions.read_db_all('Num_Task', 'tasks', 'User_ID', User_ID)
         if not position:
             return
         if len(position) == 1:
@@ -454,7 +444,7 @@ class Fifth_Window(QtWidgets.QMainWindow, Ui_Core):
         time_deadline = time + datetime.timedelta(days = 1)
         time_deadline_time = time_deadline-time
         time_deadline_time = (time_deadline_time.total_seconds())/3600
-        task = [None, 0, str(datetime.date.today()), str(time_deadline_time), text_task, User_ID]
+        task = [self.position, 0, str(datetime.date.today()), str(time_deadline_time), text_task, User_ID]
         DBfunctions.write_in_db_tasks(task)
         self.adding_fail()
         self.addWidgetss(text_task,time_deadline_time)
