@@ -170,12 +170,12 @@ def pict_import(User_ID, pict_path):
     update_record('user', 'Image', binary_pict, 'User_ID', User_ID)
 
 def write_pict_from_binary(file_path, pict_binary):
-    f = open(file_path, 'wb')
-    f.write(pict_binary)
+    with open(file_path, 'wb') as f:
+    	f.write(pict_binary)
 
 def import_pict_binary(pict_path):
-    f = open(pict_path, 'rb')
-    pict_binary = f.read()
+    with open(pict_path, 'rb') as f:
+    	pict_binary = f.read()
     return pict_binary
 
 def read_position_task(User_ID):

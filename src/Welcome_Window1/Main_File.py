@@ -118,6 +118,7 @@ class Fifth_Window(QtWidgets.QMainWindow, Ui_Core):
     def __init__(self,parent = None):
         super(Fifth_Window, self).__init__(parent)
         self.setupUi(self)
+        user_id = User_ID
         time = datetime.datetime.today()
         self.setupUi(self)
         self.Data.setText(time.strftime("%A, %d %B"))
@@ -170,16 +171,18 @@ class Fifth_Window(QtWidgets.QMainWindow, Ui_Core):
         if statistic == 0:
             statistic = 1
         self.progress.setValue((completed_d/statistic)*100)
+
     def statisticMenu(self):
         self.next = Statistic_Menu()
         self.next.show()
         self.close()
+
     def nextWindow(self):
         self.next = Settings_Menu()
         self.next.show()
         self.close()
 
-    def adding_complete(self,position):
+    def adding_complete(self,position,User_ID):
         comp = 0
         DBfunctions.update_status(User_ID,position,1)
         completed = DBfunctions.read_db('Completed','week_pb',User_ID)
@@ -188,7 +191,7 @@ class Fifth_Window(QtWidgets.QMainWindow, Ui_Core):
             f = failed - 1
             DBfunctions.write_in_db_pb('Failed', f,'week_pb',User_ID)
         comp = completed + 1
-        self.label_did.setText(str(comp))
+        # self.label_did.setText(str(comp))
         DBfunctions.write_in_db_pb('Completed', comp,'week_pb',User_ID)
         failed = 0
         f = 0
@@ -196,17 +199,16 @@ class Fifth_Window(QtWidgets.QMainWindow, Ui_Core):
         if failed != 0:
             f = failed - 1
             DBfunctions.write_in_db_pb('Failed',f,'daily_pb',User_ID)
-            self.label_have_to_do.setText(str(f))
+            # self.label_have_to_do.setText(str(f))
         completed = 0
         comp = 0
         completed = DBfunctions.read_db('Completed','daily_pb',User_ID)
         comp = completed + 1
-        self.label_did.setText(str(comp))
+        # self.label_did.setText(str(comp))
         DBfunctions.write_in_db_pb('Completed', comp,'daily_pb', User_ID)
-        self.check_statistic()
-        comp = 0
+        # self.check_statistic()
 
-    def adding_fail(self):
+    def adding_fail(self,User_ID):
         f = 0
         failed = DBfunctions.read_db('Failed', 'week_pb',User_ID)
         f = failed + 1
@@ -216,8 +218,8 @@ class Fifth_Window(QtWidgets.QMainWindow, Ui_Core):
         failed = DBfunctions.read_db('Failed', 'daily_pb',User_ID)
         f = failed + 1
         DBfunctions.write_in_db_pb('Failed', f, 'daily_pb', User_ID)
-        self.check_statistic()
-        f = 0
+        # self.check_statistic()
+
     def Add_Task(self):
         self.position = self.position + 1
         if self.line_enter.text() == '':
@@ -229,7 +231,8 @@ class Fifth_Window(QtWidgets.QMainWindow, Ui_Core):
         text_task = self.line_enter.text()
         task = [self.position, 0, str(datetime.date.today()), str(time_deadline_time), text_task, User_ID]
         DBfunctions.write_in_db_tasks(task)
-        self.adding_fail()
+        user_id = User_ID
+        self.adding_fail(user_id)
         self.line_enter.clear()
         self.addWidgetss(text_task,time_deadline_time)
 
@@ -464,7 +467,7 @@ class Fourth_Window(QtWidgets.QMainWindow, Ui_Choose_Theme): ## Window of theme 
         self.next.show()
 
 class Third_Window(QtWidgets.QMainWindow, Ui_Welcome): ## Window of Welcoming user
-    def check_tasks(self):
+    def check_tasks(self, User_ID):
         today = datetime.date.today()
         if DBfunctions.read_db('count(Num_Task)', 'tasks', 'User_ID', User_ID) == 0:
             return
@@ -474,7 +477,7 @@ class Third_Window(QtWidgets.QMainWindow, Ui_Welcome): ## Window of Welcoming us
             date = DBfunctions.read_db('Date', 'tasks', 'User_ID', User_ID)
             DBfunctions.delete_record('tasks', 'Date', str(date))
 
-    def check_daily_progressbar(self):
+    def check_daily_progressbar(self,User_ID):
         today = datetime.date.today()
         if DBfunctions.read_db('count(Num_Task)', 'tasks', 'User_ID', User_ID) == 0:
             return
@@ -486,9 +489,10 @@ class Third_Window(QtWidgets.QMainWindow, Ui_Welcome): ## Window of Welcoming us
 
     def __init__(self, parent = None):
         super(Third_Window, self).__init__(parent)
+        user_id = User_ID
         self.setupUi(self)
-        self.check_daily_progressbar()
-        self.check_tasks()
+        self.check_daily_progressbar(user_id)
+        self.check_tasks(user_id)
         self.usersname.setText(DBfunctions.read_db('First', 'user', 'User_ID', User_ID))
         self.Letsgobutton_2.clicked.connect(self.nextWindow)
     def nextWindow(self):
