@@ -79,22 +79,22 @@ class Settings_Menu(QtWidgets.QMainWindow, Ui_Settings):
         #self.change_secname.clicked.connect(self.change_secname_func)
         self.change_avatar.clicked.connect(self.choose_picture_dialog_open)
 
-    def change_name_func(self):
-        self.change_name_pressed()
-        self.save_change.clicked.connect(self.save_changes_button)
-    def change_secname_func(self):
-        self.change_secname_pressed()
-        self.save_change.clicked.connect(self.save_changes_button)
-    def save_changes_button(self):
-        first_name = self.firstname_change.text()
-        second_name = self.secondname_change.text()
-        if first_name:
-            DBfunctions.update_record('user','First',str(first_name),'User_ID',User_ID)
-            self.name.setText(first_name)
-        if second_name:
-            DBfunctions.update_record('user','Last',second_name,'User_ID',User_ID)
-            self.secname.setText(second_name)
-        self.close_line_edit()
+    # def change_name_func(self):
+    #     self.change_name_pressed()
+    #     self.save_change.clicked.connect(self.save_changes_button)
+    # def change_secname_func(self):
+    #     self.change_secname_pressed()
+    #     self.save_change.clicked.connect(self.save_changes_button)
+    # def save_changes_button(self):
+    #     first_name = self.firstname_change.text()
+    #     second_name = self.secondname_change.text()
+    #     if first_name:
+    #         DBfunctions.update_record('user','First',str(first_name),'User_ID',User_ID)
+    #         self.name.setText(first_name)
+    #     if second_name:
+    #         DBfunctions.update_record('user','Last',second_name,'User_ID',User_ID)
+    #         self.secname.setText(second_name)
+    #     self.close_line_edit()
 
     def back_main(self):
         self.back = Fifth_Window()
@@ -502,7 +502,7 @@ class Second_Window(QtWidgets.QMainWindow, Ui_Sign): ##Window of signing in
         else:
             return
 
-    def check_signin(self,first_name):
+    def check_signin(self, first_name):
         if DBfunctions.read_db('count(User_ID)', 'user') == 0:
             return 0
         elif DBfunctions.str_compare_str(first_name) == 0:
@@ -513,11 +513,8 @@ class Second_Window(QtWidgets.QMainWindow, Ui_Sign): ##Window of signing in
             return 1
 
     def signin(self):
-        global first_name
         first_name = self.InputFirst.text()
-        global last_name
         last_name = self.InputSecond.text()
-        name = first_name
         if not first_name:
             self.error()
             return
@@ -525,7 +522,7 @@ class Second_Window(QtWidgets.QMainWindow, Ui_Sign): ##Window of signing in
             self.error()
             return
         else:
-            if self.check_signin(name) == 1:
+            if self.check_signin(first_name) == 1:
                 self.nextWindow()
             else:
                 global User_ID
