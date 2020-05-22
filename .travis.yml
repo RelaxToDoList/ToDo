@@ -8,4 +8,4 @@ git:
   lfs_skip_smudge: true
 
 script:
-  - python src/Welcome_Window1/test.py
+  - cd src/Welcome_Window1/ && python test.py

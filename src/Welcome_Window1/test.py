@@ -141,7 +141,7 @@ class TestFucn(unittest.TestCase):
 
 	def test_pict_import_true(self):
 		User_ID = 1
-		pict_path = './src/Welcome_Window1/icons/Empty_avatar.png'
+		pict_path = 'icons/Empty_avatar.png'
 		DBfunctions.pict_import(User_ID,pict_path)
 		result = DBfunctions.read_db('Image', 'user', 'User_ID', User_ID)
 		self.assertIsNotNone(result)
@@ -153,11 +153,11 @@ class TestFucn(unittest.TestCase):
 
 	def test_pict_export_not_none(self):
 		User_ID = 1
-		pict_path = './src/Welcome_Window1/icons/Empty_avatar.png'
+		pict_path = 'icons/Empty_avatar.png'
 		DBfunctions.pict_import(User_ID, pict_path)
 		result = DBfunctions.pict_export(User_ID)
 		self.assertTrue(result)
-		if os.path.exists('./src/Welcome_Window1/Data_base/pict_user.png'):
-			os.remove('./src/Welcome_Window1/Data_base/pict_user.png')
+		if os.path.exists('./Data_base/pict_user.png'):
+			os.remove('./Data_base/pict_user.png')
 		else:
 			pass
