@@ -181,8 +181,8 @@ class Fifth_Window(QtWidgets.QMainWindow, Ui_Core):
 
     def adding_complete(self,position):
         DBfunctions.update_record('tasks','Status_task',1,'Num_Task',position)
-        completed = DBfunctions.read_db('Completed','week_pb')
-        failed = DBfunctions.read_db('Failed','week_pb')
+        completed = DBfunctions.read_db('Completed','week_pb',User_ID)
+        failed = DBfunctions.read_db('Failed','week_pb',User_ID)
         if failed != 0:
             f = failed - 1
             DBfunctions.write_in_db_pb('Failed', f,'week_pb',User_ID)
@@ -191,26 +191,26 @@ class Fifth_Window(QtWidgets.QMainWindow, Ui_Core):
         DBfunctions.write_in_db_pb('Completed', comp,'week_pb',User_ID)
         failed = 0
         f = 0
-        failed = DBfunctions.read_db('Failed','daily_pb')
+        failed = DBfunctions.read_db('Failed','daily_pb',User_ID)
         if failed != 0:
             f = failed - 1
             DBfunctions.write_in_db_pb('Failed',f,'daily_pb',User_ID)
             self.label_have_to_do.setText(str(f))
         completed = 0
         comp = 0
-        completed = DBfunctions.read_db('Completed','daily_pb')
+        completed = DBfunctions.read_db('Completed','daily_pb',User_ID)
         comp = completed + 1
         self.label_did.setText(str(comp))
         DBfunctions.write_in_db_pb('Completed', comp,'daily_pb', User_ID)
         self.check_statistic()
 
     def adding_fail(self):
-        failed = DBfunctions.read_db('Failed', 'week_pb')
+        failed = DBfunctions.read_db('Failed', 'week_pb',User_ID)
         f = failed + 1
         DBfunctions.write_in_db_pb('Failed', f, 'week_pb', User_ID)
         failed = 0
         f = 0
-        failed = DBfunctions.read_db('Failed', 'daily_pb')
+        failed = DBfunctions.read_db('Failed', 'daily_pb',User_ID)
         f = failed + 1
         DBfunctions.write_in_db_pb('Failed', f, 'daily_pb', User_ID)
         self.check_statistic()
@@ -246,6 +246,8 @@ class Fifth_Window(QtWidgets.QMainWindow, Ui_Core):
     def check_status_task(self):
         status = DBfunctions.read_db_all('Status_task', 'tasks', 'User_ID', User_ID)
         position = DBfunctions.read_db_all('Num_Task', 'tasks', 'User_ID', User_ID)
+        print(f"status{status}")
+        print(f"position{position}")
         if not position:
             return
         if len(position) == 1:

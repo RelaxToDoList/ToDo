@@ -56,23 +56,23 @@ def read_db(show_column_name, table, param_column_name = None, record = None):
 		con.close()
 		return data[0]
 
-def read_db_all(show_column_name, table, param_column_name = None, record = None):
+def read_db_all(show_column_name, table, param_column_name, record):
 	con = sqlite3.connect('./Data_base/DataBase.db')
 	cur = con.cursor()
-	if record is None:
-		query = 'SELECT '+show_column_name+' FROM '+table
-		cur.execute(query)
-		data = cur.fetchall()
-		cur.close()
-		con.close()
-		return data
-	else:
-		query = 'SELECT '+show_column_name+' FROM '+table+' WHERE '+param_column_name+" = '"+str(record)+"'"
-		cur.execute(query)
-		data = cur.fetchall()
-		cur.close()
-		con.close()
-		return data
+	# if record is None:
+	# 	query = 'SELECT '+show_column_name+' FROM '+table
+	# 	cur.execute(query)
+	# 	data = cur.fetchall()
+	# 	cur.close()
+	# 	con.close()
+	# 	return data
+	# else:
+	query = 'SELECT '+show_column_name+' FROM '+table+' WHERE '+param_column_name+" = '"+str(record)+"'"
+	cur.execute(query)
+	data = cur.fetchall()
+	cur.close()
+	con.close()
+	return data
 
 def delete_table(table):
 	con = sqlite3.connect('./Data_base/DataBase.db')
@@ -122,21 +122,12 @@ def write_in_db_user(records):
 def write_in_db_pb(column, record, table, User_ID):
 	con = sqlite3.connect('./Data_base/DataBase.db')
 	cur = con.cursor()
-	if record == 0:
-		if column == 'Completed':
-			query = 'UPDATE ' +table+' SET '+column+'='+str(record)+' WHERE '+'User_ID'+" = '"+str(User_ID)+"'"
-			cur.execute(query)
-		else:
-			query = 'UPDATE ' +table+' SET '+column+'='+str(record)+' WHERE '+'User_ID'+" = '"+str(User_ID)+"'"
-			cur.execute(query)
+	if column == 'Completed':
+		query = 'UPDATE ' +table+' SET '+column+'='+str(record)+' WHERE '+'User_ID'+" = '"+str(User_ID)+"'"
+		cur.execute(query)
 	else:
-		if column == 'Completed':
-			query = 'UPDATE '+table+' SET '+column+'='+str(record)+' WHERE '+'User_ID'+" = '"+str(User_ID)+"'"
-			cur.execute(query)
-		else:
-			cw = read_db('Completed', 'week_pb')
-			query = 'UPDATE '+table+' SET '+column+'='+str(record)+' WHERE '+'User_ID'+" = '"+str(User_ID)+"'"
-			cur.execute(query)
+		query = 'UPDATE ' +table+' SET '+column+'='+str(record)+' WHERE '+'User_ID'+" = '"+str(User_ID)+"'"
+		cur.execute(query)
 	con.commit()
 	cur.close()
 	con.close()
