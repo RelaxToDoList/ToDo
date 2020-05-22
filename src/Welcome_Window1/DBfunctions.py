@@ -15,7 +15,10 @@ def str_compare_str(str1):
 		if str1 == str2:
 			return 1
 		str2 = ''
+	cur.close()
+	con.close()
 	return 0
+
 def str_compare_int(str1):
 	con = sqlite3.connect('./Data_base/DataBase.db')
 	cur = con.cursor()
@@ -31,6 +34,8 @@ def str_compare_int(str1):
 		if str1 == str2:
 			return 1
 		str2 = ''
+	cur.close()
+	con.close()
 	return 0
 
 def read_db(show_column_name, table, param_column_name = None, record = None):
@@ -132,7 +137,6 @@ def create_in_db_pb(User_ID):
 	cur.close()
 	con.close()
 
-
 def pict_export(User_ID):
     pict_binary = read_db('Image', 'user', 'User_ID', User_ID)
     if pict_binary == None:
@@ -158,7 +162,7 @@ def read_position_task(User_ID):
 	con = sqlite3.connect('./Data_base/DataBase.db')
 	cur = con.cursor()
 	id_column = 'User_ID'
-	query = 'SELECT Num_Task FROM tasks WHERE '+id_column+" = '"+str(User_ID)+"'"#+' ORDER BY DESC'
+	query = 'SELECT Num_Task FROM tasks WHERE '+id_column+" = '"+str(User_ID)+"'"
 	cur.execute(query)
 	data = cur.fetchall()
 	i = int(read_db('count(User_ID)', 'tasks', 'User_ID',User_ID))

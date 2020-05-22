@@ -26,8 +26,8 @@ class Statistic_Menu(QtWidgets.QMainWindow, Ui_Statistic):
         self.statistic_button.clicked.connect(self.statisticMenu)
 
     def check_statistic(self):
-        completed_w = DBfunctions.read_db('Completed', 'week_pb')
-        failed_w = DBfunctions.read_db('Failed', 'week_pb')
+        completed_w = DBfunctions.read_db('Completed', 'week_pb', 'User_ID', User_ID)
+        failed_w = DBfunctions.read_db('Failed', 'week_pb', 'User_ID', User_ID)
 
         statistic = completed_w + failed_w
         if statistic == 0:
@@ -162,8 +162,8 @@ class Fifth_Window(QtWidgets.QMainWindow, Ui_Core):
             pass
         self.close()
     def check_statistic(self):
-        completed_d = DBfunctions.read_db('Completed', 'daily_pb')
-        failed_d = DBfunctions.read_db('Failed', 'daily_pb')
+        completed_d = DBfunctions.read_db('Completed', 'daily_pb', 'User_ID', User_ID)
+        failed_d = DBfunctions.read_db('Failed', 'daily_pb', 'User_ID', User_ID)
         self.label_have_to_do.setText(str(failed_d))
         self.label_did.setText(str(completed_d))
         statistic = completed_d + failed_d
