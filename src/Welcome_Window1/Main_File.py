@@ -36,10 +36,12 @@ class Statistic_Menu(QtWidgets.QMainWindow, Ui_Statistic):
         self.number_all.setText(str(completed_w+failed_w))
         self.completted_number.setText(str(completed_w))
         self.failed_number.setText(str(failed_w))
+
     def mainWindow(self):
         self.previous = Fifth_Window()
         self.close()
         self.previous.show()
+
     def statisticMenu(self):
         self.statistic = Settings_Menu()
         self.close()
@@ -100,10 +102,12 @@ class Settings_Menu(QtWidgets.QMainWindow, Ui_Settings):
         self.back = Fifth_Window()
         self.close()
         self.back.show()
+
     def statistic_menu(self):
         self.back = Statistic_Menu()
         self.close()
         self.back.show()
+
 class Fifth_Window(QtWidgets.QMainWindow, Ui_Core):
     def show_first_last(self):
         self.FirstName.setText(DBfunctions.read_db('First', 'user', 'User_ID', User_ID))
@@ -161,6 +165,7 @@ class Fifth_Window(QtWidgets.QMainWindow, Ui_Core):
         else:
             pass
         self.close()
+
     def check_statistic(self):
         completed_d = DBfunctions.read_db('Completed', 'daily_pb', 'User_ID', User_ID)
         failed_d = DBfunctions.read_db('Failed', 'daily_pb', 'User_ID', User_ID)
@@ -170,10 +175,12 @@ class Fifth_Window(QtWidgets.QMainWindow, Ui_Core):
         if statistic == 0:
             statistic = 1
         self.progress.setValue((completed_d/statistic)*100)
+
     def statisticMenu(self):
         self.next = Statistic_Menu()
         self.next.show()
         self.close()
+
     def nextWindow(self):
         self.next = Settings_Menu()
         self.next.show()
@@ -204,7 +211,6 @@ class Fifth_Window(QtWidgets.QMainWindow, Ui_Core):
         self.label_did.setText(str(comp))
         DBfunctions.write_in_db_pb('Completed', comp,'daily_pb', User_ID)
         self.check_statistic()
-        comp = 0
 
     def adding_fail(self):
         f = 0
@@ -217,7 +223,7 @@ class Fifth_Window(QtWidgets.QMainWindow, Ui_Core):
         f = failed + 1
         DBfunctions.write_in_db_pb('Failed', f, 'daily_pb', User_ID)
         self.check_statistic()
-        f = 0
+
     def Add_Task(self):
         self.position = self.position + 1
         if self.line_enter.text() == '':
@@ -458,12 +464,14 @@ class Fourth_Window(QtWidgets.QMainWindow, Ui_Choose_Theme): ## Window of theme 
         self.setupUi(self)
         self.toolButton_2.clicked.connect(self.buttonpressed_2)
         self.toolButton.clicked.connect(self.buttonpressed_1)
+
     def nextWindow(self):
         self.close()
         self.next = Fifth_Window()
         self.next.show()
 
 class Third_Window(QtWidgets.QMainWindow, Ui_Welcome): ## Window of Welcoming user
+
     def check_tasks(self):
         today = datetime.date.today()
         if DBfunctions.read_db('count(Num_Task)', 'tasks', 'User_ID', User_ID) == 0:
@@ -491,6 +499,7 @@ class Third_Window(QtWidgets.QMainWindow, Ui_Welcome): ## Window of Welcoming us
         self.check_tasks()
         self.usersname.setText(DBfunctions.read_db('First', 'user', 'User_ID', User_ID))
         self.Letsgobutton_2.clicked.connect(self.nextWindow)
+
     def nextWindow(self):
         self.close()
         self.next = Fourth_Window()
@@ -539,10 +548,12 @@ class Second_Window(QtWidgets.QMainWindow, Ui_Sign): ##Window of signing in
         self.setupUi(self)
         self.Letsgobutton.clicked.connect(self.signin)
         self.Letsgobutton.clicked.connect(self.create_pb)
+
     def nextWindow(self):
         self.close()
         self.next = Third_Window()
         self.next.show()
+
     def repeat_win(self):
         self.signin()
 class First_Window(QtWidgets.QMainWindow,Ui_MainWindow): ## Window Start
@@ -551,6 +562,7 @@ class First_Window(QtWidgets.QMainWindow,Ui_MainWindow): ## Window Start
         super(First_Window,self).__init__(parent)
         self.setupUi(self)
         self.pushButton.clicked.connect(self.nextWindow)
+        
     def nextWindow(self):
         self.close()
         self.first = First_Window()

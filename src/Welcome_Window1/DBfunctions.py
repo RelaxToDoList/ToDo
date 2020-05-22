@@ -59,14 +59,6 @@ def read_db(show_column_name, table, param_column_name = None, record = None):
 def read_db_all(show_column_name, table, param_column_name, record):
 	con = sqlite3.connect('./Data_base/DataBase.db')
 	cur = con.cursor()
-	# if record is None:
-	# 	query = 'SELECT '+show_column_name+' FROM '+table
-	# 	cur.execute(query)
-	# 	data = cur.fetchall()
-	# 	cur.close()
-	# 	con.close()
-	# 	return data
-	# else:
 	query = 'SELECT '+show_column_name+' FROM '+table+' WHERE '+param_column_name+" = '"+str(record)+"'"
 	cur.execute(query)
 	data = cur.fetchall()
@@ -104,10 +96,8 @@ def update_record(table, param_column, param_val, id_column, record_id):
 def update_status(User_ID,position,status):
 	con = sqlite3.connect('./Data_base/DataBase.db')
 	cur = con.cursor()
-	#query = 'UPDATE tasks SET Status_task '+str(status)+' WHERE '+'User_ID'+" = '"+str(User_ID)+"'"' AND '+'Num_Task'+" = '"+str(position)+"'"
 	query = f'UPDATE tasks SET Status_task = ? WHERE User_ID = ? AND Num_Task = ?'
 	cur.execute(query, (status, User_ID, position))
-	#cur.execute(query)
 	con.commit()
 	cur.close()
 	con.close()
@@ -170,12 +160,12 @@ def pict_import(User_ID, pict_path):
     update_record('user', 'Image', binary_pict, 'User_ID', User_ID)
 
 def write_pict_from_binary(file_path, pict_binary):
-    f = open(file_path, 'wb')
-    f.write(pict_binary)
+    with open(file_path, 'wb') as f:
+    	f.write(pict_binary)
 
 def import_pict_binary(pict_path):
-    f = open(pict_path, 'rb')
-    pict_binary = f.read()
+    with open(pict_path, 'rb') as f:
+    	pict_binary = f.read()
     return pict_binary
 
 def read_position_task(User_ID):
