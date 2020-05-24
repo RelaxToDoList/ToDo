@@ -47,22 +47,11 @@ class Statistic_Menu(QtWidgets.QMainWindow, Ui_Statistic):
         self.statistic.show()
 
 class Settings_Menu(QtWidgets.QMainWindow, Ui_Settings):
-    def choose_picture_dialog_open(self):
-        fname = QFileDialog.getOpenFileName(self,
+    def choose_picture_func(photo_data):
+        photo_data = QFileDialog.getOpenFileName(self,
                                             'Choose picture',
                                             './')
-        if not fname[0]:
-            return;
-        pict_path = fname[0]
-        pixmap = QtGui.QPixmap(fname[0])
-        self.avatar.setPixmap(pixmap)
-        DBfunctions.pict_import(User_ID, pict_path)
-
-    def show_avatar(self):
-        if DBfunctions.pict_export(User_ID) == 0:
-            return;
-        photo = QtGui.QPixmap(DBfunctions.pict_export(User_ID))
-        self.avatar.setPixmap(photo)
+        self.Main_func.choose_picture_dialog_open(photo_data)
 
     def __init__(self, parent = None):
         super(Settings_Menu, self).__init__(parent)
@@ -70,7 +59,9 @@ class Settings_Menu(QtWidgets.QMainWindow, Ui_Settings):
         self.check_theme()
         self.name.setText(DBfunctions.read_db('First', 'user', 'User_ID', User_ID))
         self.secname.setText(DBfunctions.read_db('Last','user','User_ID',User_ID))
-        self.show_avatar()
+        if DBfunctions.show_avatar() != 0:
+            photopath = QtGui.QPixmap(DBfunctions.show_avatar())
+            self.avatar.setPixmap(photopath)
         self.dark_theme.clicked.connect(self.buttonpressed_1)
         self.light_theme.clicked.connect(self.buttonpressed_2)
         self.setting_menu.clicked.connect(self.settings_but_open)
@@ -106,16 +97,6 @@ class Settings_Menu(QtWidgets.QMainWindow, Ui_Settings):
         self.close()
         self.back.show()
 class Fifth_Window(QtWidgets.QMainWindow, Ui_Core):
-    def show_first_last(self):
-        self.FirstName.setText(DBfunctions.read_db('First', 'user', 'User_ID', User_ID))
-        self.SecondName.setText(DBfunctions.read_db('Last', 'user', 'User_ID', User_ID))
-
-    def show_Avatar(self):
-        if DBfunctions.pict_export(User_ID) == 0:
-            return;
-        photo = QtGui.QPixmap(DBfunctions.pict_export(User_ID))
-        self.Avatar.setPixmap(photo)
-
     def __init__(self,parent = None):
         super(Fifth_Window, self).__init__(parent)
         self.setupUi(self)
@@ -503,7 +484,7 @@ class Second_Window(QtWidgets.QMainWindow, Ui_Sign): ##Window of signing in
         self.next = Third_Window()
         self.next.show()
     def repeat_win(self):
-        self.signin()
+        self.signin(first_name, last_name)
 class First_Window(QtWidgets.QMainWindow,Ui_MainWindow): ## Window Start
 
     def __init__(self, parent= None):
@@ -512,7 +493,6 @@ class First_Window(QtWidgets.QMainWindow,Ui_MainWindow): ## Window Start
         self.pushButton.clicked.connect(self.nextWindow)
     def nextWindow(self):
         self.close()
-        self.first = First_Window()
         self.second = Second_Window()
         self.second.show()
 

@@ -178,6 +178,7 @@ def import_pict_binary(pict_path):
     pict_binary = f.read()
     return pict_binary
 
+<<<<<<< HEAD
 def read_position_task(User_ID):
 	con = sqlite3.connect('./Data_base/DataBase.db')
 	cur = con.cursor()
@@ -192,3 +193,10 @@ def read_position_task(User_ID):
 	for line in list(map(str,data[i-1])):
 		str1 = line + str1
 	return str1
+=======
+def show_avatar():
+    if pict_export(User_ID) == 0:
+        return 0;
+    photopath = pict_export(User_ID)
+    return photopath;
+>>>>>>> a0dabbf39e3bb23530756a7ec9500bea3e31661d
