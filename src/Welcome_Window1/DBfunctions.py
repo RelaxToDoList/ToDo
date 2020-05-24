@@ -170,15 +170,14 @@ def pict_import(User_ID, pict_path):
     update_record('user', 'Image', binary_pict, 'User_ID', User_ID)
 
 def write_pict_from_binary(file_path, pict_binary):
-    f = open(file_path, 'wb')
-    f.write(pict_binary)
+    with open(file_path, 'wb') as f:
+    	f.write(pict_binary)
 
 def import_pict_binary(pict_path):
-    f = open(pict_path, 'rb')
-    pict_binary = f.read()
+    with open(pict_path, 'rb') as f:
+    	pict_binary = f.read()
     return pict_binary
 
-<<<<<<< HEAD
 def read_position_task(User_ID):
 	con = sqlite3.connect('./Data_base/DataBase.db')
 	cur = con.cursor()
@@ -193,10 +192,3 @@ def read_position_task(User_ID):
 	for line in list(map(str,data[i-1])):
 		str1 = line + str1
 	return str1
-=======
-def show_avatar():
-    if pict_export(User_ID) == 0:
-        return 0;
-    photopath = pict_export(User_ID)
-    return photopath;
->>>>>>> a0dabbf39e3bb23530756a7ec9500bea3e31661d
