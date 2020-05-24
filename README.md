@@ -1,4 +1,4 @@
-https://travis-ci.com/RelaxToDoList/ToDo.svg?branch=issue46-file_for_functions
+[![Build Status](https://travis-ci.com/RelaxToDoList/ToDo.svg?branch=issue46-file_for_functions)](https://travis-ci.com/RelaxToDoList/ToDo)
 
 Короче, я тут задокументировал и в благородство играть не буду: выполнишь для проекта пару заданий - и мы в расчете. Заодно посмотрим, как быстро у тебя башка после всего этого прояснится. А по твоей теме постараюсь разузнать. Хрен его знает, на кой ляд тебе этот проект сдался, но я в чужие дела не лезу, хочешь писать ToDo List, значит есть за что...
 
