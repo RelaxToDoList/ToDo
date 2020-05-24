@@ -7,6 +7,7 @@ from PyQt5.QtGui     import *
 from PyQt5.QtWidgets import *
 from qroundprogressbar import QRoundProgressBar
 import random
+import datetime
 class Ui_Core(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
@@ -663,7 +664,11 @@ class Ui_Core(object):
         lines = str(lines)
         self.label_task_prog.setText(lines)
         self.daily_add_button.clicked.connect(lambda: self.add_task_random(lines))
-    def addWidgetss(self,text_task,time_deadline_time):
+    def addWidgetss(self,text_task):
+        time = datetime.datetime.today()
+        time_deadline = time + datetime.timedelta(days = 1)
+        time_deadline_time = time_deadline - time
+        time_deadline_time = (time_deadline_time.total_seconds())/3600
         row = self.tableWidget.rowCount()
         self.tableWidget.insertRow(row)
         time = QTableWidgetItem(time_deadline_time)
