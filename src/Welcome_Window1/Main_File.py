@@ -119,32 +119,27 @@ class Fifth_Window(QtWidgets.QMainWindow, Ui_Core):
     def __init__(self,parent = None):
         super(Fifth_Window, self).__init__(parent)
         self.setupUi(self)
-        position = 0
         time = datetime.datetime.today()
         self.setupUi(self)
         self.Data.setText(time.strftime("%A, %d %B"))
-        # if DBfunctions.read_db('count(Num_Task)', 'tasks') == 0:
-        #     self.position = 0
-        # else:
-        #     self.position = DBfunctions.read_position_task(User_ID)
-        #     self.position = int(self.position)
         if DBfunctions.read_db('count(Num_Task)', 'tasks') == 0:
-            position = 0
+            self.position = 0
+
         else:
-            position = DBfunctions.read_position_task(User_ID)
-            position = int(position)
+            self.position = DBfunctions.read_position_task(User_ID)
+            self.position = int(self.position)
         self.check_statistic()
         self.check_theme_person()
-        self.check_box1.clicked.connect(self.check_box_checked1)
-        self.check_box2.clicked.connect(self.check_box_checked2)
-        self.check_box3.clicked.connect(self.check_box_checked3)
-        self.check_box4.clicked.connect(self.check_box_checked4)
-        self.check_box5.clicked.connect(self.check_box_checked5)
-        self.check_box6.clicked.connect(self.check_box_checked6)
-        self.check_box7.clicked.connect(self.check_box_checked7)
-        self.check_box8.clicked.connect(self.check_box_checked8)
-        self.check_box9.clicked.connect(self.check_box_checked9)
-        self.check_box10.clicked.connect(self.check_box_checked10)
+        self.check_box1.clicked.connect(lambda: self.check_box_checked1(User_ID))
+        self.check_box2.clicked.connect(lambda: self.check_box_checked2(User_ID))
+        self.check_box3.clicked.connect(lambda: self.check_box_checked3(User_ID))
+        self.check_box4.clicked.connect(lambda: self.check_box_checked4(User_ID))
+        self.check_box5.clicked.connect(lambda: self.check_box_checked5(User_ID))
+        self.check_box6.clicked.connect(lambda: self.check_box_checked6(User_ID))
+        self.check_box7.clicked.connect(lambda: self.check_box_checked7(User_ID))
+        self.check_box8.clicked.connect(lambda: self.check_box_checked8(User_ID))
+        self.check_box9.clicked.connect(lambda: self.check_box_checked9(User_ID))
+        self.check_box10.clicked.connect(lambda: self.check_box_checked10(User_ID))
         self.Settings_but.clicked.connect(self.settings_but_clicked)
         self.settings_but_open.clicked.connect(self.nextWindow)
         self.show_first_last()
@@ -154,21 +149,22 @@ class Fifth_Window(QtWidgets.QMainWindow, Ui_Core):
         self.okey.clicked.connect(self.add_task_button_clicked)
         self.left_button.clicked.connect(self.left_button_popup_window_open)
         self.statistic_button.clicked.connect(self.statisticMenu)
-        self.okey.clicked.connect(lambda: self.button_okey_clicked(position))
+        self.okey.clicked.connect(self.button_okey_clicked)
         # self.okey.clicked.connect(self.check_statistic)
         self.logout_button.clicked.connect(self.logout_to_signin)
         self.addtaskfromfile()
         self.Output_Task()
 
-    def button_okey_clicked(self, position):
+    def button_okey_clicked(self):
         if self.line_enter.text() == '':
             return
         text_task = self.line_enter.text()
         self.line_enter.clear()
-        Functions.Add_Task.add_task(position, text_task, User_ID)
+        Functions.Add_Task.add_task(self.position, text_task, User_ID)
         Functions.Add_Task.add_fail(User_ID)
         self.addWidgetss(text_task)
         self.check_statistic()
+        self.position = self.position + 1
 
     def logout_to_signin(self):
         self.next = Second_Window()
@@ -195,33 +191,6 @@ class Fifth_Window(QtWidgets.QMainWindow, Ui_Core):
         self.next = Settings_Menu()
         self.next.show()
         self.close()
-
-    def adding_complete(self,position):
-        comp = 0
-        DBfunctions.update_status(User_ID,position,1)
-        completed = DBfunctions.read_db('Completed','week_pb',User_ID)
-        failed = DBfunctions.read_db('Failed','week_pb',User_ID)
-        if failed != 0:
-            f = failed - 1
-            DBfunctions.write_in_db_pb('Failed', f,'week_pb',User_ID)
-        comp = completed + 1
-        self.label_did.setText(str(comp))
-        DBfunctions.write_in_db_pb('Completed', comp,'week_pb',User_ID)
-        failed = 0
-        f = 0
-        failed = DBfunctions.read_db('Failed','daily_pb',User_ID)
-        if failed != 0:
-            f = failed - 1
-            DBfunctions.write_in_db_pb('Failed',f,'daily_pb',User_ID)
-            self.label_have_to_do.setText(str(f))
-        completed = 0
-        comp = 0
-        completed = DBfunctions.read_db('Completed','daily_pb',User_ID)
-        comp = completed + 1
-        self.label_did.setText(str(comp))
-        DBfunctions.write_in_db_pb('Completed', comp,'daily_pb', User_ID)
-        self.check_statistic()
-        comp = 0
 
     def Output_Task(self):
         time = datetime.datetime.today()
