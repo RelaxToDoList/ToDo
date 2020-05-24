@@ -5,6 +5,7 @@ import Choose_Theme
 from PyQt5.QtCore    import *
 from PyQt5.QtGui     import *
 from PyQt5.QtWidgets import *
+import Functions
 from qroundprogressbar import QRoundProgressBar
 import random
 import datetime
@@ -577,86 +578,106 @@ class Ui_Core(object):
         self.account_label.hide()
         self.Settings_but.clicked.connect(self.settings_but_clicked)
 
-    def check_box_checked1(self):
+    def check_box_checked1(self, User_ID):
         self.check_box1.disconnect()
         position = 1
-        self.adding_complete(position)
+        Functions.Add_Task.add_complete(User_ID, position)
+        self.check_statistic()
         if Choose_Theme.theme == 0:
             self.check_box1.setIcon(QtGui.QIcon("icons/Checkbox_Light.png"))
         else:
             self.check_box1.setIcon(QtGui.QIcon("icons/Сheckbox_Dark.png"))
-    def check_box_checked2(self):
+
+    def check_box_checked2(self, User_ID):
         self.check_box2.disconnect()
         position = 2
-        self.adding_complete(position)
+        Functions.Add_Task.add_complete(User_ID, position)
+        self.check_statistic()
         if Choose_Theme.theme == 0:
             self.check_box2.setIcon(QtGui.QIcon("icons/Checkbox_Light.png"))
         else:
             self.check_box2.setIcon(QtGui.QIcon("icons/Сheckbox_Dark.png"))
-    def check_box_checked3(self):
+
+    def check_box_checked3(self, User_ID):
         self.check_box3.disconnect()
         position = 3
-        self.adding_complete(position)
+        Functions.Add_Task.add_complete(User_ID, position)
+        self.check_statistic()
         if Choose_Theme.theme == 0:
             self.check_box3.setIcon(QtGui.QIcon("icons/Checkbox_Light.png"))
         else:
             self.check_box3.setIcon(QtGui.QIcon("icons/Checkbox_Dark.png"))
-    def check_box_checked4(self):
+
+    def check_box_checked4(self, User_ID):
         self.check_box4.disconnect()
         position = 4
-        self.adding_complete(position)
+        Functions.Add_Task.add_complete(User_ID, position)
+        self.check_statistic()
         if Choose_Theme.theme == 0:
             self.check_box4.setIcon(QtGui.QIcon("icons/Checkbox_Light.png"))
         else:
             self.check_box4.setIcon(QtGui.QIcon("icons/Checkbox_Dark.png"))
-    def check_box_checked5(self):
+
+    def check_box_checked5(self, User_ID):
         self.check_box5.disconnect()
         position = 5
-        self.adding_complete(position)
+        Functions.Add_Task.add_complete(User_ID, position)
+        self.check_statistic()
         if Choose_Theme.theme == 0:
             self.check_box5.setIcon(QtGui.QIcon("icons/Checkbox_Light.png"))
         else:
             self.check_box5.setIcon(QtGui.QIcon("icons/Checkbox_Dark.png"))
-    def check_box_checked6(self):
+
+    def check_box_checked6(self, User_ID):
         self.check_box6.disconnect()
         position = 6
-        self.adding_complete(position)
+        Functions.Add_Task.add_complete(User_ID, position)
+        self.check_statistic()
         if Choose_Theme.theme == 0:
             self.check_box6.setIcon(QtGui.QIcon("icons/Checkbox_Light.png"))
         else:
             self.check_box6.setIcon(QtGui.QIcon("icons/Checkbox_Dark.png"))
-    def check_box_checked7(self):
+
+    def check_box_checked7(self, User_ID):
         self.check_box7.disconnect()
         position = 7
-        self.adding_complete(position)
+        Functions.Add_Task.add_complete(User_ID, position)
+        self.check_statistic()
         if Choose_Theme.theme == 0:
             self.check_box7.setIcon(QtGui.QIcon("icons/Checkbox_Light.png"))
         else:
             self.check_box7.setIcon(QtGui.QIcon("icons/Checkbox_Dark.png"))
-    def check_box_checked8(self):
+
+    def check_box_checked8(self, User_ID):
         self.check_box8.disconnect()
         position = 8
-        self.adding_complete(position)
+        Functions.Add_Task.add_complete(User_ID, position)
+        self.check_statistic()
         if Choose_Theme.theme == 0:
             self.check_box8.setIcon(QtGui.QIcon("icons/Checkbox_Light.png"))
         else:
             self.check_box8.setIcon(QtGui.QIcon("icons/Checkbox_Dark.png"))
-    def check_box_checked9(self):
+
+    def check_box_checked9(self, User_ID):
         self.check_box9.disconnect()
         position = 9
-        self.adding_complete(position)
+        Functions.Add_Task.add_complete(User_ID, position)
+        self.check_statistic()
         if Choose_Theme.theme == 0:
             self.check_box9.setIcon(QtGui.QIcon("icons/Checkbox_Light.png"))
         else:
             self.check_box9.setIcon(QtGui.QIcon("icons/Checkbox_Dark.png"))
-    def check_box_checked10(self):
+
+    def check_box_checked10(self, User_ID):
         self.check_box10.disconnect()
         position = 10
-        self.adding_complete(position)
+        Functions.Add_Task.add_complete(User_ID, position)
+        self.check_statistic()
         if Choose_Theme.theme == 0:
             self.check_box10.setIcon(QtGui.QIcon("icons/Checkbox_Light.png"))
         else:
             self.check_box10.setIcon(QtGui.QIcon("icons/Checkbox_Dark.png"))
+
     def addtaskfromfile(self):
         taskfile = open("tasks/tasks.txt","r", encoding ='utf-8')
         row = random.randint(0,21)

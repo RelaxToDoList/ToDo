@@ -9,6 +9,7 @@ import Choose_Theme
 from MainWindow import Ui_Core
 from Settings import Ui_Settings
 from statistic import Ui_Statistic
+import Functions
 import os.path
 import DBfunctions
 import sqlite3
@@ -118,14 +119,20 @@ class Fifth_Window(QtWidgets.QMainWindow, Ui_Core):
     def __init__(self,parent = None):
         super(Fifth_Window, self).__init__(parent)
         self.setupUi(self)
+        position = 0
         time = datetime.datetime.today()
         self.setupUi(self)
         self.Data.setText(time.strftime("%A, %d %B"))
+        # if DBfunctions.read_db('count(Num_Task)', 'tasks') == 0:
+        #     self.position = 0
+        # else:
+        #     self.position = DBfunctions.read_position_task(User_ID)
+        #     self.position = int(self.position)
         if DBfunctions.read_db('count(Num_Task)', 'tasks') == 0:
-            self.position = 0
+            position = 0
         else:
-            self.position = DBfunctions.read_position_task(User_ID)
-            self.position = int(self.position)
+            position = DBfunctions.read_position_task(User_ID)
+            position = int(position)
         self.check_statistic()
         self.check_theme_person()
         self.check_box1.clicked.connect(self.check_box_checked1)
@@ -147,11 +154,21 @@ class Fifth_Window(QtWidgets.QMainWindow, Ui_Core):
         self.okey.clicked.connect(self.add_task_button_clicked)
         self.left_button.clicked.connect(self.left_button_popup_window_open)
         self.statistic_button.clicked.connect(self.statisticMenu)
-        self.okey.clicked.connect(self.Add_Task)
-        self.okey.clicked.connect(self.check_statistic)
+        self.okey.clicked.connect(lambda: self.button_okey_clicked(position))
+        # self.okey.clicked.connect(self.check_statistic)
         self.logout_button.clicked.connect(self.logout_to_signin)
         self.addtaskfromfile()
         self.Output_Task()
+
+    def button_okey_clicked(self, position):
+        if self.line_enter.text() == '':
+            return
+        text_task = self.line_enter.text()
+        self.line_enter.clear()
+        Functions.Add_Task.add_task(position, text_task, User_ID)
+        Functions.Add_Task.add_fail(User_ID)
+        self.addWidgetss(text_task)
+        self.check_statistic()
 
     def logout_to_signin(self):
         self.next = Second_Window()
@@ -205,33 +222,6 @@ class Fifth_Window(QtWidgets.QMainWindow, Ui_Core):
         DBfunctions.write_in_db_pb('Completed', comp,'daily_pb', User_ID)
         self.check_statistic()
         comp = 0
-
-    def adding_fail(self):
-        f = 0
-        failed = DBfunctions.read_db('Failed', 'week_pb',User_ID)
-        f = failed + 1
-        DBfunctions.write_in_db_pb('Failed', f, 'week_pb', User_ID)
-        failed = 0
-        f = 0
-        failed = DBfunctions.read_db('Failed', 'daily_pb',User_ID)
-        f = failed + 1
-        DBfunctions.write_in_db_pb('Failed', f, 'daily_pb', User_ID)
-        self.check_statistic()
-        f = 0
-    def Add_Task(self):
-        self.position = self.position + 1
-        if self.line_enter.text() == '':
-            return
-        time = datetime.datetime.today()
-        time_deadline = time + datetime.timedelta(days = 1)
-        time_deadline_time = time_deadline-time
-        time_deadline_time = (time_deadline_time.total_seconds())/3600
-        text_task = self.line_enter.text()
-        task = [self.position, 0, str(datetime.date.today()), str(time_deadline_time), text_task, User_ID]
-        DBfunctions.write_in_db_tasks(task)
-        self.adding_fail()
-        self.line_enter.clear()
-        self.addWidgetss(text_task,time_deadline_time)
 
     def Output_Task(self):
         time = datetime.datetime.today()
